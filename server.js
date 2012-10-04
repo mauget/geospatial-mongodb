@@ -15,11 +15,8 @@ var App = function(){
   self.zcache = { 'index.html': '' };
   self.zcache['index.html'] = fs.readFileSync('./index.html');
   
-  //self.dbServer = new mongodb.Server(process.env.OPENSHIFT_NOSQL_DB_HOST, parseInt(process.env.OPENSHIFT_NOSQL_DB_PORT));
-  console.warn(process.env.OPENSHIFT_APP_NAME + " :: " + process.env.OPENSHIFT_NOSQL_DB_HOST + " :: " +  27017);
-  self.db  = new mongodb.Db(process.env.OPENSHIFT_APP_NAME, new mongodb.Server(process.env.OPENSHIFT_NOSQL_DB_HOST, 27017, {auto_reconnect: true
-}));
-  //new mongodb.Db(process.env.OPENSHIFT_APP_NAME, self.dbServer, {auto_reconnect: true});
+  self.dbServer = new mongodb.Server(process.env.OPENSHIFT_NOSQL_DB_HOST, parseInt(process.env.OPENSHIFT_NOSQL_DB_PORT));
+  self.db = new mongodb.Db(process.env.OPENSHIFT_APP_NAME, self.dbServer, {auto_reconnect: true});
   self.dbUser = process.env.OPENSHIFT_NOSQL_DB_USERNAME;
   self.dbPass = process.env.OPENSHIFT_NOSQL_DB_PASSWORD;
 
