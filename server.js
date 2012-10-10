@@ -11,9 +11,6 @@ var App = function(){
   var self = this;
 
   // Setup
-
-  self.zcache = { 'index.html': '' };
-  self.zcache['index.html'] = fs.readFileSync('./index.html');
   
   self.dbServer = new mongodb.Server(process.env.OPENSHIFT_NOSQL_DB_HOST, parseInt(process.env.OPENSHIFT_NOSQL_DB_PORT));
   self.db = new mongodb.Db(process.env.OPENSHIFT_APP_NAME, self.dbServer, {auto_reconnect: true});
@@ -26,6 +23,14 @@ var App = function(){
   if (typeof self.ipaddr === "undefined") {
     console.warn('No OPENSHIFT_INTERNAL_IP environment variable');
   };
+  
+  
+    // Webapp urls
+
+  self.app  = express.createServer();
+  self.app.get('/health', self.routes['health']);
+  self.app.get('/', self.routes['root']);
+  
 
   // Web app logic
 
@@ -33,10 +38,6 @@ var App = function(){
 
   self.routes['health'] = function(req, res){ res.send('1'); };
 
-  self.routes['asciimo'] = function(req, res){
-    var link="https://a248.e.akamai.net/assets.github.com/img/d84f00f173afcf3bc81b4fad855e39838b23d8ff/687474703a2f2f696d6775722e636f6d2f6b6d626a422e706e67";
-    res.send("<html><body><img src='" + link + "'></body></html>");
-  };
 
   self.routes['root'] = function(req, res){
     self.db.collection('names').find().toArray(function(err, names) {
@@ -46,14 +47,9 @@ var App = function(){
   };
 
 
-  // Webapp
 
-  self.app  = express.createServer();
-  self.app.get('/health', self.routes['health']);
-  self.app.get('/asciimo', self.routes['asciimo']);
-  self.app.get('/', self.routes['root']);
 
-  // Logic
+  // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
 
   self.connectDb = function(callback){
     self.db.open(function(err, db){
@@ -64,6 +60,9 @@ var App = function(){
       });
     });
   };
+  
+  
+  //starting the nodejs server with express
 
   self.startServer = function(){
     self.app.listen(self.port, self.ipaddr, function(){
@@ -91,5 +90,8 @@ var App = function(){
 
 };
 
+//make a new express app
 var app = new App();
+
+//call the connectDb function and pass in the start server command
 app.connectDb(app.startServer);
