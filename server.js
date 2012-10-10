@@ -28,9 +28,8 @@ var App = function(){
    
 
   // Web app logic
-
+  self.routes = {};
   self.routes['health'] = function(req, res){ res.send('1'); };
-
 
   self.routes['root'] = function(req, res){
     self.db.collection('names').find().toArray(function(err, names) {
@@ -40,7 +39,7 @@ var App = function(){
   };
 
     // Webapp urls
-  self.routes = {};
+  
   self.app  = express.createServer();
   self.app.get('/health', self.routes['health']);
   self.app.get('/', self.routes['root']);
