@@ -52,7 +52,7 @@ var App = function(){
   self.connectDb = function(callback){
     self.db.open(function(err, db){
       if(err){ throw err };
-      self.db.authenticate(self.dbUser, self.dbPass, function(err, res){
+      self.db.authenticate(self.dbUser, self.dbPass, {authdb: "admin"},  function(err, res){
         if(err){ throw err };
         callback();
       });
