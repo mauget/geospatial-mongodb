@@ -24,7 +24,9 @@
     "npm": ">= 1.0.0"
   },
 
+  
   "dependencies": {
+      "mongodb" : "> 1.1.10" 
   },
   "devDependencies": {},
   "bundleDependencies": [],
