@@ -29,6 +29,15 @@ The MongoDB code you want to modify can be found in this line
 
 	self.db.collection('names').find().toArray(function(err, names) {}
 	
+If you chose to use a different database other than the one named the same as your application you need to change the Auth section as well. 
+
+OpenShift has authentication turned on for the database, therefore any connection has to authenticate. By default a connection from the MongoDB driver will try to authenticate against users in the DB you specify.
+
+Please change the Auth line to look like the following so that the authentication uses the OpenShift provided credentials.
+
+	self.db.authenticate(self.dbUser, self.dbPass, {authdb: "admin"}, function(err, res){...
+
+	
 
 
 
