@@ -37,7 +37,7 @@ Please change the Auth line to look like the following so that the authenticatio
 
 	self.db.authenticate(self.dbUser, self.dbPass, {authdb: "admin"}, function(err, res){...
 
-	
+License
+-------
 
-
-
+This code is dedicated to the public domain to the maximum extent permitted by applicable law, pursuant to CC0 (http://creativecommons.org/publicdomain/zero/1.0/)
