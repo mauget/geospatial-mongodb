@@ -37,14 +37,18 @@ var App = function(){
     });
   };
   */
+  self.routes['hello'] = function(req, res) {
+	res.send("Hello, from L.E. Mauget!");
+  }
 
-  self.route['root'] = function(req, res){
+  self.routes['root'] = function(req, res){
     res.send('You have come to the park apps web service. All the web services are at /ws/parks*. For example /ws/parks will return all the parks in the system in a JSON payload. Thanks for stopping by and have a nice day');
   };
 
   // Webapp urls
   
-  //self.app  = express.createServer();
+  self.app  = express.createServer();
+/*
   self.app  = express();
 
   //This uses the Connect frameworks body parser to parse the body of the post request  
@@ -53,9 +57,10 @@ var App = function(){
     self.app.use(express.methodOverride());
     self.app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   });
-
+*/
 
   self.app.get('/health', self.routes['health']);
+  self.app.get('/hello', self.routes['hello']);
   self.app.get('/', self.routes['root']);
  
 
