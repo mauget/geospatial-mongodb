@@ -24,8 +24,6 @@ var App = function(){
     console.warn('No OPENSHIFT_INTERNAL_IP environment variable');
   };
   
-  
-   
 
   // Web app logic
   self.routes = {};
@@ -44,7 +42,6 @@ var App = function(){
   self.app.get('/health', self.routes['health']);
   self.app.get('/', self.routes['root']);
  
-
 
 
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
