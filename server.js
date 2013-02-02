@@ -38,7 +38,7 @@ var App = function(){
   };
   */
   self.routes['hello'] = function(req, res) {
-	res.send("Hello, from L.E. Mauget!");
+	res.send("<h1>It's Just Me</h1><p>Hello, from L.E. Mauget!</p>");
   }
 
   self.routes['root'] = function(req, res){
