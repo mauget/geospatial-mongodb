@@ -32,11 +32,19 @@ var App = function(){
   self.routes['health'] = function(req, res){ res.send('1'); };
 
   self.routes['root'] = function(req, res){
-	var query = {zip: "27526"};
-    self.db.collection( self.coll ).find( query ).toArray(function(err, names) {
-        res.header("Content-Type:","text/json");
-        res.end(JSON.stringify(names));
-    });
+	var arg = '27526';
+	var query = {zip: arg};
+ //   self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
+ //       res.header("Content-Type:","text/json");
+ //       res.end(JSON.stringify(locations));
+ //   });
+
+	var record = self.db.collection( self.coll ).find( query );
+	res.header("Content-Type:","text/html");
+	var s = '<h1>Location of ZIP ' + arg + '</h1>';
+	s += '<p>City, state: '+record.city+', '+record.state+'</p>';
+	s += '<p>Lat,long: ('+record.loc.x','+record.loc.y+')</p>';
+	res.end(s);
   };
 
     // Webapp urls
