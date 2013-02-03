@@ -33,7 +33,7 @@ var App = function(){
 
   self.routes['root'] = function(req, res){
 	var query = {zip: "27526"};
-    self.db.collection( coll ).find( query ).toArray(function(err, names) {
+    self.db.collection( self.coll ).find( query ).toArray(function(err, names) {
         res.header("Content-Type:","text/json");
         res.end(JSON.stringify(names));
     });
