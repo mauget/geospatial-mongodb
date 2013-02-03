@@ -40,8 +40,8 @@ var App = function(){
 
 		var rec = locations[0];
 		var s = '<h1>Location of ZIP '+arg+'</h1>';
-		s = s + '<p>City, state: '+rec.city+', '+rec.state+'</p>';
-		s = S + '<p>Lat,long: ('+rec.loc.x','+rec.loc.y+')</p>';
+	//	s = s + '<p>City, state: '+rec.city+', '+rec.state+'</p>';
+	//	s = S + '<p>Lat,long: ('+rec.loc.x','+rec.loc.y+')</p>';
 		//res.header("Content-Type:","text/html");
 		res.send(s);
     });
