@@ -29,33 +29,17 @@ var App = function(){
   self.routes = {};
   self.routes['health'] = function(req, res){ res.send('1'); };
 
-  self.routes['hello'] = function(req, res) {
-	res.send("<h1>It's Just Me</h1><p>Hello, from L.E. Mauget!</p>");
-  }
-
   self.routes['root'] = function(req, res){
-    res.send('You have come to the park apps web service. All the web services are at /ws/parks*. For example /ws/parks will return all the parks in the system in a JSON payload. Thanks for stopping by and have a nice day');
+    res.send("<h1>It's Just Me</h1><p>Hello, from L.E. Mauget!</p>");
   };
 
   // Webapp urls
   
   self.app  = express.createServer();
-/*
-  self.app  = express();
-
-  //This uses the Connect frameworks body parser to parse the body of the post request  
-  self.app.configure(function () {
-    self.app.use(express.bodyParser());
-    self.app.use(express.methodOverride());
-    self.app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  });
-*/
 
   self.app.get('/health', self.routes['health']);
-  self.app.get('/hello', self.routes['hello']);
   self.app.get('/', self.routes['root']);
  
-
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
 
   self.connectDb = function(callback){
