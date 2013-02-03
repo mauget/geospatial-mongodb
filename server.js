@@ -42,7 +42,7 @@ var App = function(){
 		var s = '<h1>Location of ZIP '+arg+'</h1>';
 	//	s = s + '<p>City, state: '+rec.city+', '+rec.state+'</p>';
 	//	s = S + '<p>Lat,long: ('+rec.loc.x','+rec.loc.y+')</p>';
-		//res.header("Content-Type:","text/html");
+		res.header("Content-Type:","text/html");
 		res.send(s);
     });
   };
