@@ -39,12 +39,14 @@ var App = function(){
  //       res.end(JSON.stringify(locations));
  //   });
 
-	var record = self.db.collection( self.coll ).find( query );
-	res.header("Content-Type:","text/html");
-	var s = '<h1>Location of ZIP ' + arg + '</h1>';
-	s += '<p>City, state: '+record.city+', '+record.state+'</p>';
-	s += '<p>Lat,long: ('+record.loc.x','+record.loc.y+')</p>';
-	res.end(s);
+	self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
+		var record = locations[0];
+		var s = '<h1>Location of ZIP '+arg+'</h1>';
+		s += '<p>City, state: '+record.city+', '+record.state+'</p>';
+		s += '<p>Lat,long: ('+record.loc.x','+record.loc.y+')</p>';
+		res.header("Content-Type:","text/html");
+		res.end(s);
+	});
   };
 
     // Webapp urls
