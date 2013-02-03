@@ -31,7 +31,7 @@ var App = function(){
   self.routes['health'] = function(req, res){ res.send('1'); };
 
   self.routes['root'] = function(req, res){
-    self.db.collection('zips').find('{zip:"27526"}').toArray(function(err, names) {
+    self.db.collection('zips').find({zip:"27526"}).toArray(function(err, names) {
         res.header("Content-Type:","text/json");
         res.end(JSON.stringify(names));
     });
