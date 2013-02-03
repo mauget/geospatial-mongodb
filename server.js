@@ -25,21 +25,25 @@ var App = function(){
   };
   
 
+
   // Web app logic
   self.routes = {};
   self.routes['health'] = function(req, res){ res.send('1'); };
 
   self.routes['root'] = function(req, res){
-    res.send("<h1>It's Just Me</h1><p>Hello, from L.E. Mauget!</p>");
+    self.db.collection('zips').find().toArray(function(err, names) {
+        res.header("Content-Type:","text/json");
+        res.end(JSON.stringify(names));
+    });
   };
 
-  // Webapp urls
+    // Webapp urls
   
   self.app  = express.createServer();
-
   self.app.get('/health', self.routes['health']);
   self.app.get('/', self.routes['root']);
  
+
   // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
 
   self.connectDb = function(callback){
