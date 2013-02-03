@@ -29,14 +29,6 @@ var App = function(){
   self.routes = {};
   self.routes['health'] = function(req, res){ res.send('1'); };
 
-  /*
-  self.routes['root'] = function(req, res){
-    self.db.collection('names').find().toArray(function(err, names) {
-        res.header("Content-Type:","text/json");
-        res.end(JSON.stringify(names));
-    });
-  };
-  */
   self.routes['hello'] = function(req, res) {
 	res.send("<h1>It's Just Me</h1><p>Hello, from L.E. Mauget!</p>");
   }
