@@ -23,7 +23,8 @@ var App = function(){
   if (typeof self.ipaddr === "undefined") {
     console.warn('No OPENSHIFT_INTERNAL_IP environment variable');
   };
-  
+
+  self.coll = 'zips';
 
 
   // Web app logic
@@ -31,7 +32,8 @@ var App = function(){
   self.routes['health'] = function(req, res){ res.send('1'); };
 
   self.routes['root'] = function(req, res){
-    self.db.collection('zips').find({zip:"27526"}).toArray(function(err, names) {
+	var query = {zip: "27526"};
+    self.db.collection( coll ).find( query ).toArray(function(err, names) {
         res.header("Content-Type:","text/json");
         res.end(JSON.stringify(names));
     });
@@ -44,7 +46,7 @@ var App = function(){
   self.app.get('/', self.routes['root']);
  
 
-  // Logic to open a database connection. We are going to call this outside of app so it is available to all our functions inside.
+  // Logic to open a database connection. We call this outside of app so it is available to all our functions inside.
 
   self.connectDb = function(callback){
     self.db.open(function(err, db){
@@ -57,7 +59,7 @@ var App = function(){
   };
   
   
-  //starting the nodejs server with express
+  // Start nodejs server with express
 
   self.startServer = function(){
     self.app.listen(self.port, self.ipaddr, function(){
@@ -84,6 +86,8 @@ var App = function(){
   ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT', 'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGPIPE', 'SIGTERM'].forEach(self.terminatorSetup);
 
 };
+
+// Intialization:
 
 //make a new express app
 var app = new App();
