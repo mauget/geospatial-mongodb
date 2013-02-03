@@ -34,19 +34,19 @@ var App = function(){
   self.routes['root'] = function(req, res){
 	var arg = '27526';
 	var query = {zip: arg};
- //   self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
- //       res.header("Content-Type:","text/json");
- //       res.end(JSON.stringify(locations));
- //   });
+    self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
+        res.header("Content-Type:","text/json");
+        res.end(JSON.stringify(locations));
+    });
 
-	self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
-		var record = locations[0];
-		var s = '<h1>Location of ZIP '+arg+'</h1>';
-		s = s + '<p>City, state: '+record.city+', '+record.state+'</p>';
-		s = S + '<p>Lat,long: ('+record.loc.x','+record.loc.y+')</p>';
-		res.header("Content-Type:","text/html");
-		res.end(s);
-	});
+//	self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
+//		var record = locations[0];
+//		var s = '<h1>Location of ZIP '+arg+'</h1>';
+//		s = s + '<p>City, state: '+record.city+', '+record.state+'</p>';
+//		s = S + '<p>Lat,long: ('+record.loc.x','+record.loc.y+')</p>';
+//		res.header("Content-Type:","text/html");
+//		res.end(s);
+//	});
   };
 
     // Webapp urls
