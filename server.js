@@ -43,14 +43,15 @@ var App = function(){
 		//	res.header("Content-Type:","text/html");
 		var s = "Nothing found";
 		if (locations != "undefined") {
+			s = '';
 			for (rec in locations) {
 				var rec = locations[0];
 				var s = '<h5>Location of ZIP '+rec.zip+'</h5>';
 				s += '<p>City, state: '+rec.city+', '+rec.state+' ';
 				s += 'Lat, long: ('+rec.loc.x+','+rec.loc.y+')</p>';
 			}
-			res.send(s);
-			s = '';
+			//res.send(s);
+			//s = '';
 		} 
 		res.end(s);
     });
