@@ -48,7 +48,7 @@ var App = function(){
 		if (locations === "undefined") {
 			res.send("Nothing found");
 		} else {
-			var s = '<p>Query: '+ '{"loc": {$near: [ -73.977842, 40.752315 ] } }' +'</p><ol>';
+			var s = '<p>Query: '+ query +'</p><ol>';
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
 				s += '<li>' + rec.city + ', ' + rec.zip + ' (' + rec.loc.x + ',' + rec.loc.y + ')</li>';
