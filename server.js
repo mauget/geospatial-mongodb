@@ -47,8 +47,8 @@ var App = function(){
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
 				s += '<li>';
-				s += 'City, state '+rec.city+', '+rec.state+' '+rec.zip + ' ';
-				s += 'Lat, long ('+rec.loc.x+','+rec,loc.y+')</li>';
+				s += 'rec.city+', '+rec.zip;
+				s += ' ('+rec.loc.x+','+rec,loc.y+')</li>';
 			}
 			s += '</ol>';
 			res.send(s);
