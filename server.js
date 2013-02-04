@@ -49,7 +49,7 @@ var App = function(){
 			}
 			res.send(s);
 		} 
-		res.end(' ');
+		//res.end(s);
     });
   };
 
