@@ -43,11 +43,12 @@ var App = function(){
 		query = param;
 	}
 	
+	var isFound = false;
+	
     self.db.collection( self.coll ).find( query ).limit(limit).toArray(function(err, locations) {
 		//res.header("Content-Type:","text/html");
 		if (locations === "undefined") {
 			res.send("Nothing found");
-			req.flash('error', 'Nothing found');
 		} else {
 			var s = '<p>Query: '+ JSON.stringify(query) +'</p><ol>';
 			for (var i = 0; i < locations.length; i++) {
@@ -56,9 +57,14 @@ var App = function(){
 			}
 			s += '</ol>';
 			res.send(s);
-			req.flash('info', 'Query comple');
 		}
     });
+
+	if (isFound){
+		req.flash('info', 'Query complete');
+	} else {
+		req.flash('error', 'Nothing found');
+	}
   };
 
   // Webapp urls
