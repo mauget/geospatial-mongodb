@@ -40,7 +40,7 @@ var App = function(){
 	var query = {'loc': {$near: [ -73.977842, 40.752315 ]}};
 	
     self.db.collection( self.coll ).find( query ).limit(10).toArray(function(err, locations) {
-		res.header("Content-Type:","text/html");
+		//res.header("Content-Type:","text/html");
 		var s = "Nothing found";
 		if (locations != "undefined") {
 			s = '';
@@ -49,10 +49,10 @@ var App = function(){
 				s += '<p>City, state: '+rec.city+', '+rec.state+' ';
 				s += 'Lat, long: ('+rec.loc.x+','+rec.loc.y+')</p>';
 			}
-			//res.send(s);
+			res.send(s);
 			//s = '';
 		} 
-		res.send(s);
+		res.end('');
     });
   };
 
