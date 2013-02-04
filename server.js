@@ -49,10 +49,10 @@ var App = function(){
 				s += '<p>City, state: '+rec.city+', '+rec.state+' ';
 				s += 'Lat, long: ('+rec.loc.x+','+rec.loc.y+')</p>';
 			}
-			//res.send(s);
+			res.send(s);
 			//s = '';
 		} 
-		res.end(s);
+		//res.end(s);
     });
   };
 
