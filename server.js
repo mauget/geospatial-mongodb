@@ -48,9 +48,11 @@ var App = function(){
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
 				s += '<li>' + rec.city + ', ' + rec.zip + ' (' + rec.loc.x + ',' + rec.loc.y + ')</li>';
+				res.write(s);
+				s = '';
 			}
-			s += '</ol>';
-			res.send(s);
+			//s += '</ol>';
+			res.send('</ol>');
 		}
     });
   };
