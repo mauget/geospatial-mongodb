@@ -38,7 +38,7 @@ var App = function(){
  //       res.header("Content-Type:","text/json");
  //       res.end(JSON.stringify(locations));
 	
-		res.header("Content-Type:","text/html");
+	//	res.header("Content-Type:","text/html");
 		var s = "Zip Code "+arg+ " not found";
 		if (locations != "undefined") {
 			for (rec in locations) {
@@ -49,7 +49,7 @@ var App = function(){
 			}
 			res.send(s);
 		} 
-		//res.end(s);
+		res.end();
     });
   };
 
