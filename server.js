@@ -40,7 +40,7 @@ var App = function(){
 	var query = {'loc': {$near: [ -73.977842, 40.752315 ]}};
 	
     self.db.collection( self.coll ).find( query ).limit(10).toArray(function(err, locations) {
-		res.header("Content-Type:","text/html");
+		//res.header("Content-Type:","text/html");
 		var s = "Nothing found";
 		if (locations != "undefined") {
 			s = '';
