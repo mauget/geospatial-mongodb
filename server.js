@@ -38,6 +38,10 @@ var App = function(){
 	//var radius = 2.0;
 	var limit = 25;
 	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
+	var param = req.param('query', '');
+	if (param !== ''){
+		query = param;
+	}
 	
     self.db.collection( self.coll ).find( query ).limit(limit).toArray(function(err, locations) {
 		//res.header("Content-Type:","text/html");
