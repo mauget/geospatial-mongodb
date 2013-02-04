@@ -36,7 +36,7 @@ var App = function(){
 	
 	//var center = center = [-73.977842, 40.752315];
 	//var radius = 2.0;
-	var limit = 100;
+	var limit = 25;
 	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
 	
     self.db.collection( self.coll ).find( query ).limit(limit).toArray(function(err, locations) {
