@@ -43,7 +43,7 @@ var App = function(){
 		query = param;
 	}
 	
-	var isFound = false;
+//	var isFound = false;
 	
     self.db.collection( self.coll ).find( query ).limit(limit).toArray(function(err, locations) {
 		//res.header("Content-Type:","text/html");
@@ -54,18 +54,18 @@ var App = function(){
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
 				s += '<li>' + rec.city + ', ' + rec.zip + ' (-' + rec.loc.x + ',' + rec.loc.y + ')</li>';
-				isFound = true;
+//				isFound = true;
 			}
 			s += '</ol>';
 			res.send(s);
 		}
     });
 
-	if (isFound){
-		req.flash('info', 'Query complete');
-	} else {
-		req.flash('error', 'Nothing found');
-	}
+//	if (isFound){
+//		req.flash('info', 'Query complete');
+//	} else {
+//		req.flash('error', 'Nothing found');
+//	}
   };
 
   // Webapp urls
