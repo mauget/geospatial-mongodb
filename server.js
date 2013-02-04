@@ -34,22 +34,23 @@ var App = function(){
   self.routes['root'] = function(req, res){
 	var arg = '95123';
 	var query = {zip: arg};
-    self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
- //       res.header("Content-Type:","text/json");
- //       res.end(JSON.stringify(locations));
+	var center = center = [-73.977842, 40.752315];
 	
-	//	res.header("Content-Type:","text/html");
+	query = {loc: {$within: {$center: [ center, radius ] }}};
+    self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
+		//	res.header("Content-Type:","text/html");
 		var s = "Zip Code "+arg+ " not found";
 		if (locations != "undefined") {
 			for (rec in locations) {
 				var rec = locations[0];
-				var s = '<h4>Location of ZIP '+rec.zip+'</h4>';
+				var s = '<h5>Location of ZIP '+rec.zip+'</h5>';
 				s += '<p>City, state: '+rec.city+', '+rec.state+' ';
 				s += 'Lat, long: ('+rec.loc.x+','+rec.loc.y+')</p>';
 			}
 			res.send(s);
+			s = '';
 		} 
-		res.end();
+		res.end(s);
     });
   };
 
