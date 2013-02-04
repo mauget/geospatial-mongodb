@@ -46,8 +46,7 @@ var App = function(){
 			for (rec in locations) {
 				var s = '<h5>Location of ZIP '+rec.zip+'</h5>';
 				s = s + '<p>City, state '+rec.city+', '+rec.state+' ';
-				var loc = rec.loc;
-				//s = s + 'Lat, long ('+loc.x+','+loc.y+')</p>';
+				s = s + 'Lat, long ('+rec.loc.x+','+rec,loc.y+')</p>';
 				res.send(s);
 			}
 		}
@@ -56,7 +55,8 @@ var App = function(){
 
   // Webapp urls
   
-  self.app  = express.createServer();
+  //self.app  = express.createServer();
+  self.app  = express();
   self.app.get('/health', self.routes['health']);
   self.app.get('/', self.routes['root']);
  
