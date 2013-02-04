@@ -37,15 +37,19 @@ var App = function(){
     self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
  //       res.header("Content-Type:","text/json");
  //       res.end(JSON.stringify(locations));
-		var s = "Zip Code "+arg+ " not found";
-		if (locations != "undefined" && locations.length > 0) {
-			var rec = locations[0];
-			var s = '<h1>Location of ZIP '+rec.zip+'</h1>';
-			s = s + '<p>City, state: '+rec.city+', '+rec.state+'</p>';
-			s = s + '<p>Lat,long: ('+rec.loc.x+','+rec.loc.y+')</p>';
-		} 
+	
 		res.header("Content-Type:","text/html");
-		res.end(s);
+		var s = "Zip Code "+arg+ " not found";
+		if (locations != "undefined") {
+			for (rec in locations) {
+				var rec = locations[0];
+				var s = '<h6>Location of ZIP '+rec.zip+'</h6>';
+				s += '<p>City, state: '+rec.city+', '+rec.state+' ';
+				s += 'Lat, long: ('+rec.loc.x+','+rec.loc.y+')</p>';
+			}
+			res.send(s);
+		} 
+		res.end(' ');
     });
   };
 
