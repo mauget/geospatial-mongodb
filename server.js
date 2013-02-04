@@ -40,9 +40,9 @@ var App = function(){
 		var s = "Zip Code "+arg+ " not found";
 		if (locations != "undefined" && locations.length > 0) {
 			var rec = locations[0];
-			var s = '<h1>Location of ZIP '+arg+'</h1>';
+			var s = '<h1>Location of ZIP '+rec.zip+'</h1>';
 			s = s + '<p>City, state: '+rec.city+', '+rec.state+'</p>';
-			//	s = S + '<p>Lat,long: ('+rec.loc.x','+rec.loc.y+')</p>';
+			s = S + '<p>Lat,long: ('+rec.loc.x','+rec.loc.y+')</p>';
 		} 
 		res.header("Content-Type:","text/html");
 		res.end(s);
