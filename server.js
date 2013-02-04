@@ -44,7 +44,7 @@ var App = function(){
 			res.send("Nothing found");
 		} else {
 			var s = '';
-			for (var i = 0; i < locations.length; i++)
+			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
 				s = s + '<h5>Location of ZIP '+rr.zip+'</h5>';
 				s = s + '<p>City, state '+rr.city+', '+rr.state+' ';
