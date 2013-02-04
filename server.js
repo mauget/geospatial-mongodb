@@ -26,7 +26,6 @@ var App = function(){
 
   self.coll = 'zips';
 
-
   // Web app logic
   self.routes = {};
   self.routes['health'] = function(req, res){ res.send('1'); };
@@ -37,23 +36,20 @@ var App = function(){
 	
 	//var center = center = [-73.977842, 40.752315];
 	//var radius = 2.0;
-	var query = {'loc': {$near: [ -73.977842, 40.752315 ]}};
+	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
 	
-    self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
+    self.db.collection( self.coll ).find( query ).limit(10).toArray(function(err, locations) {
 		//res.header("Content-Type:","text/html");
-		var s = "Nothing found";
-		if (locations != "undefined") {
-			s = '';
-			for (rec in locations) {
-				s = s + '<h5>Location of ZIP '+rec.zip+'</h5>';
-				s = s + '<p>City, state '+rec.city+', '+rec.state+' ';
-				var lc = rec.loc;
-				//s = s + 'Lat, long ('+lc.x+','+lc.y+')</p>';
-			}
-			res.send(s);
-			s = '';
+		if (locations = "undefined") {
+			res.send("Nothing found");
 		} else {
-			res.send(s);
+			for (rec in locations) {
+				var s = '<h5>Location of ZIP '+rec.zip+'</h5>';
+				s = s + '<p>City, state '+rec.city+', '+rec.state+' ';
+				var loc = rec.loc;
+				//s = s + 'Lat, long ('+loc.x+','+loc.y+')</p>';
+				res.send(s);
+			}
 		}
     });
   };
