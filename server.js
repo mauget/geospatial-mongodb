@@ -44,11 +44,12 @@ var App = function(){
 	//		res.send("Nothing found");
 	//	} else {
 			var s = '';
-			for (rec in locations) {
+		//	for (rec in locations) {
+				var rec = locations[0];
 				s = s + '<h5>Location of ZIP '+rec.zip+'</h5>';
 				s = s + '<p>City, state '+rec.city+', '+rec.state+' ';
 				//s = s + 'Lat, long ('+rec.loc.x+','+rec,loc.y+')</p>';
-			}	
+		//	}	
 			res.send(s);
 	//	}
     });
