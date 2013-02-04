@@ -40,7 +40,7 @@ var App = function(){
 	
     self.db.collection( self.coll ).find( query ).limit(10).toArray(function(err, locations) {
 		//res.header("Content-Type:","text/html");
-		if (locations = "undefined") {
+		if (locations == "undefined") {
 			res.send("Nothing found");
 		} else {
 			for (rec in locations) {
@@ -61,7 +61,7 @@ var App = function(){
   self.app.get('/', self.routes['root']);
  
 
-  // Logic to open a database connection. We call this outside of app so it is available to all our functions inside.
+  // Open a database connection. We call this outside of app so it is available to all our functions inside.
 
   self.connectDb = function(callback){
     self.db.open(function(err, db){
