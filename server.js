@@ -38,14 +38,14 @@ var App = function(){
 	//var radius = 2.0;
 	//var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
 	
-    self.db.collection( self.coll ).find( query ).limit(10).toArray(function(err, locations) {
+    self.db.collection( self.coll ).find( query ).limit(10).toArray(function(err, locs) {
 		//res.header("Content-Type:","text/html");
 	//	if (locations === "undefined") {
 	//		res.send("Nothing found");
 	//	} else {
 			var s = '';
-			for (rr in locations) {
-				//var rec = locations[0];
+			for (var i = 0; i < locs.length; i++)
+				var rec = locs[i];
 				s = s + '<h5>Location of ZIP '+rr.zip+'</h5>';
 				s = s + '<p>City, state '+rr.city+', '+rr.state+' ';
 				//s = s + 'Lat, long ('+rec.loc.x+','+rec,loc.y+')</p>';
