@@ -47,14 +47,16 @@ var App = function(){
 		//res.header("Content-Type:","text/html");
 		if (locations === "undefined") {
 			res.send("Nothing found");
+			req.flash('error', 'Nothing found');
 		} else {
 			var s = '<p>Query: '+ JSON.stringify(query) +'</p><ol>';
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
-				s += '<li>' + rec.city + ', ' + rec.zip + ' (' + rec.loc.x + ',' + rec.loc.y + ')</li>';
+				s += '<li>' + rec.city + ', ' + rec.zip + ' (-' + rec.loc.x + ',' + rec.loc.y + ')</li>';
 			}
 			s += '</ol>';
 			res.send(s);
+			req.flash('info', 'Query comple');
 		}
     });
   };
