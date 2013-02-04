@@ -44,7 +44,7 @@ var App = function(){
 		var s = "Nothing found";
 		if (locations != "undefined") {
 			s = '';
-			for (var rec in locations) {
+			for (rec in locations) {
 				s += '<h5>Location of ZIP '+rec.zip+'</h5>';
 				s += '<p>City, state: '+rec.city+', '+rec.state+' ';
 				s += 'Lat, long: ('+rec.loc.x+','+rec.loc.y+')</p>';
