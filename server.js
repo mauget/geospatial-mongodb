@@ -31,12 +31,12 @@ var App = function(){
   self.routes['health'] = function(req, res){ res.send('1'); };
 
   self.routes['root'] = function(req, res){
-	//var arg = '95123';
-	//var query = {zip: arg};
+	var arg = '95123';
+	var query = {zip: arg};
 	
 	//var center = center = [-73.977842, 40.752315];
 	//var radius = 2.0;
-	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
+	//var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
 	
     self.db.collection( self.coll ).find( query ).limit(10).toArray(function(err, locations) {
 		//res.header("Content-Type:","text/html");
