@@ -32,7 +32,7 @@ var App = function(){
 
   self.routes['root'] = function(req, res){
 	var arg = '95123';
-	var query = {zip: arg};
+	var query = {'zip': arg};
 	
 	//var center = center = [-73.977842, 40.752315];
 	//var radius = 2.0;
