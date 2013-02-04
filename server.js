@@ -32,7 +32,7 @@ var App = function(){
   self.routes['health'] = function(req, res){ res.send('1'); };
 
   self.routes['root'] = function(req, res){
-	var arg = '27526';
+	var arg = '95123';
 	var query = {zip: arg};
     self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
  //       res.header("Content-Type:","text/json");
@@ -43,7 +43,7 @@ var App = function(){
 		if (locations != "undefined") {
 			for (rec in locations) {
 				var rec = locations[0];
-				var s = '<h6>Location of ZIP '+rec.zip+'</h6>';
+				var s = '<h4>Location of ZIP '+rec.zip+'</h4>';
 				s += '<p>City, state: '+rec.city+', '+rec.state+' ';
 				s += 'Lat, long: ('+rec.loc.x+','+rec.loc.y+')</p>';
 			}
