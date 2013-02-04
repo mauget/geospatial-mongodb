@@ -34,13 +34,14 @@ var App = function(){
   self.routes['root'] = function(req, res){
 	var arg = '95123';
 	var query = {zip: arg};
-	var center = center = [-73.977842, 40.752315];
-	var radius = 0.011;
 	
+	var center = center = [-73.977842, 40.752315];
+	var radius = 2.0;
 	query = {loc: {$within: {$center: [ center, radius ] }}};
+	
     self.db.collection( self.coll ).find( query ).toArray(function(err, locations) {
 		//	res.header("Content-Type:","text/html");
-		var s = "Zip Code "+arg+ " not found";
+		var s = "Nothing found";
 		if (locations != "undefined") {
 			for (rec in locations) {
 				var rec = locations[0];
