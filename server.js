@@ -30,7 +30,7 @@ var App = function(){
   self.routes = {};
   self.routes['health'] = function(req, res){ res.send('1'); };
 
-  self.routes['root'] = function(req, res){
+  self.routes['geo'] = function(req, res){
 	//var arg = '95123';
 	//var query = {'zip': arg};
 	
@@ -66,7 +66,7 @@ var App = function(){
   //self.app  = express.createServer();
   self.app  = express();
   self.app.get('/health', self.routes['health']);
-  self.app.get('/', self.routes['root']);
+  self.app.get('/geo', self.routes['geo']);
   self.app.use(express.static(__dirname + '/html'));
  
 
