@@ -50,6 +50,7 @@ var App = function(){
 			res.send("Nothing found");
 		} else {
 			var s = '<p>Query: '+ JSON.stringify(query) +'</p><ol>';
+			s += '<p> | <a href="/">Home</a> |'</p>';'
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
 				s += '<li>' + rec.city + ', ' + rec.zip + ' (-' + rec.loc.x + ',' + rec.loc.y + ')</li>';
