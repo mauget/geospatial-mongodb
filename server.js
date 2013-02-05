@@ -67,6 +67,7 @@ var App = function(){
   self.app  = express();
   self.app.get('/health', self.routes['health']);
   self.app.get('/', self.routes['root']);
+  self.app.use(express.static(__dirname + '/html'));
  
 
   // Open a database connection. We call this outside of app so it is available to all our functions inside.
