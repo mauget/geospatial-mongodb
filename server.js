@@ -40,7 +40,7 @@ var App = function(){
 	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
 	var param = req.query.query;
 	if (param !== 'undefined'){
-		query = decodeURIComponent(param);
+	//	query = decodeURIComponent(param);
 	}
 	
 	
