@@ -37,7 +37,7 @@ var App = function(){
 	//var center = center = [-73.977842, 40.752315];
 	//var radius = 2.0;
 	self.limit = 25;
-	self.query ;//= {'loc': {$near: [ -73.977842, 40.752315 ] } };
+//	self.query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
 	
 	//var param = req.query.query;
 	//if (param !== 'undefined'){
