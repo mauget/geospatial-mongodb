@@ -44,7 +44,7 @@ var App = function(){
 	//	self.query = decodeURIComponent(param);
 	//}
 	
-	var query;
+	var query = {};
 	
 	self.db.collection( self.coll ).find( {zip: '27526'}).toArray(function(err, center) {
 		var rec = center[0];
@@ -63,7 +63,7 @@ var App = function(){
 			s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
-				s += '<li>' + rec.city + ', ' + rec.zip + ' (-' + rec.loc.x + ',' + rec.loc.y + ')</li>';
+				s += '<li>' + rec.city + ', ' + rec.state + ', ' + rec.zip + ' (-' + rec.loc.x + ',' + rec.loc.y + ')</li>';
 			}
 			s += '</ol>';
 			res.send(s);
