@@ -43,14 +43,13 @@ var App = function(){
 	//	self.query = decodeURIComponent(param);
 	//}
 	
-	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
+	//var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
 	
 	self.db.collection( self.coll ).find( {zip: '27526'}).toArray(function(err, center) {
 		var rec = center[0];
 		var x = -rec.loc.x;
 		var y =  rec.loc.y;
 		query = {'loc': {$near: [ x, y ] } };
-	});
 	
 	
     self.db.collection( self.coll ).find( query ).limit( limit ).toArray(function(err, locations) {
@@ -68,6 +67,8 @@ var App = function(){
 			res.send(s);
 		}
     });
+	
+	});
 
   };
 
