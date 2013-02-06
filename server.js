@@ -50,7 +50,7 @@ var App = function(){
 		var rec = center[0];
 		var x = -rec.loc.x;
 		var y =  rec.loc.y;
-		query = {'loc': {$near: [ x, y ] } };
+	//	query = {'loc': {$near: [ x, y ] } };
 	});
 	
 	
@@ -63,7 +63,7 @@ var App = function(){
 			s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
-				s += '<li>' + rec.city + ', ' + rec.state + ', ' + rec.zip + ' (-' + rec.loc.x + ',' + rec.loc.y + ')</li>';
+				s += '<li>' + rec.city + ', ' + rec.state + ', ' + rec.zip + ' (-' + rec.loc.x + ', ' + rec.loc.y + ' )</li>';
 			}
 			s += '</ol>';
 			res.send(s);
