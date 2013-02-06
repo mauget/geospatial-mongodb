@@ -45,7 +45,7 @@ var App = function(){
 	
 	self.db.collection( self.coll).find( {zip: '27526'}).toArray(function(err, center) {
 		var x = -center[0].loc.x;
-		var y =  center[0].log.y;
+		var y =  center[0].loc.y;
 		query = {'loc': {$near: [ x, y ] } };
 	});
 	
