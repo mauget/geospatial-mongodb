@@ -37,20 +37,19 @@ var App = function(){
 	//var center = center = [-73.977842, 40.752315];
 	//var radius = 2.0;
 	var limit = 25;
-//	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
 	
 	//var param = req.query.query;
 	//if (param !== 'undefined'){
 	//	self.query = decodeURIComponent(param);
 	//}
 	
-	var query = {};
+	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
 	
 	self.db.collection( self.coll ).find( {zip: '27526'}).toArray(function(err, center) {
 		var rec = center[0];
 		var x = -rec.loc.x;
 		var y =  rec.loc.y;
-	//	query = {'loc': {$near: [ x, y ] } };
+		query = {'loc': {$near: [ x, y ] } };
 	});
 	
 	
