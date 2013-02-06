@@ -47,7 +47,7 @@ var App = function(){
 		var x = -center[0].loc.x;
 		var y =  center[0].log.y;
 		query = {'loc': {$near: [ x, y ] } };
-	};
+	});
 	
 	
     self.db.collection( self.coll ).find( query ).limit(limit).toArray(function(err, locations) {
