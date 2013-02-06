@@ -50,24 +50,29 @@ var App = function(){
 		var x = -rec.loc.x;
 		var y =  rec.loc.y;
 		query = {'loc': {$near: [ x, y ] } };
+		self.query2(query, res);
 	});
-		
-    self.db.collection( self.coll ).find( query ).limit( limit ).toArray(function(err, locations) {
 
-		if (locations === "undefined") {
-			res.send("Nothing found");
-		} else {
-			var s = '<p>Query '+ JSON.stringify( query ) +'</p><ol>';
-			s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
-			for (var i = 0; i < locations.length; i++) {
-				var rec = locations[i];
-				s += '<li>' + rec.city + ', ' + rec.state + ', ' + rec.zip + ' (-' + rec.loc.x + ', ' + rec.loc.y + ' )</li>';
+
+  };
+
+  self.query2 = function(aQuery, res) {
+
+	    self.db.collection( self.coll ).find( aQuery ).limit( limit ).toArray(function(err, locations) {
+
+			if (locations === "undefined") {
+				res.send("Nothing found");
+			} else {
+				var s = '<p>Query '+ JSON.stringify( aQuery ) +'</p><ol>';
+				s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
+				for (var i = 0; i < locations.length; i++) {
+					var rec = locations[i];
+					s += '<li>' + rec.city + ', ' + rec.state + ', ' + rec.zip + ' (-' + rec.loc.x + ', ' + rec.loc.y + ' )</li>';
+				}
+				s += '</ol>';
+				res.send(s);
 			}
-			s += '</ol>';
-			res.send(s);
-		}
-    });
-
+	    });
   };
 
   // Webapp urls
