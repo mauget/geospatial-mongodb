@@ -37,20 +37,21 @@ var App = function(){
 	//var center = center = [-73.977842, 40.752315];
 	//var radius = 2.0;
 	var limit = 25;
-	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
-	var param = req.query.query;
-	if (param !== 'undefined'){
+	self.query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
+	
+	//var param = req.query.query;
+	//if (param !== 'undefined'){
 	//	query = decodeURIComponent(param);
-	}
+	//}
 	
 	self.db.collection( self.coll).find( {zip: '27526'}).toArray(function(err, center) {
 		var x = -center[0].loc.x;
 		var y =  center[0].loc.y;
-		query = {'loc': {$near: [ x, y ] } };
+		self.query = {'loc': {$near: [ x, y ] } };
 	});
 	
 	
-    self.db.collection( self.coll ).find( query ).limit(limit).toArray(function(err, locations) {
+    self.db.collection( self.coll ).find( self.query ).limit(limit).toArray(function(err, locations) {
 		//res.header("Content-Type:","text/html");
 		if (locations === "undefined") {
 			res.send("Nothing found");
