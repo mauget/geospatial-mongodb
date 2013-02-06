@@ -50,6 +50,7 @@ var App = function(){
 		var x = -rec.loc.x;
 		var y =  rec.loc.y;
 		query = {'loc': {$near: [ x, y ] } };
+	});
 	
 	
     self.db.collection( self.coll ).find( query ).limit( limit ).toArray(function(err, locations) {
@@ -67,8 +68,6 @@ var App = function(){
 			res.send(s);
 		}
     });
-	
-	});
 
   };
 
