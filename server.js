@@ -50,13 +50,13 @@ var App = function(){
 		var x = -rec.loc.x;
 		var y =  rec.loc.y;
 		query = {'loc': {$near: [ x, y ] } };
-		self.query2(query, res);
+		self.query2(query, limit, res);
 	});
 
 
   };
 
-  self.query2 = function(aQuery, res) {
+  self.query2 = function(aQuery, limit, res) {
 
 	    self.db.collection( self.coll ).find( aQuery ).limit( limit ).toArray(function(err, locations) {
 
