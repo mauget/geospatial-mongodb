@@ -43,8 +43,12 @@ var App = function(){
 	//	query = decodeURIComponent(param);
 	}
 	
-	var center = self.db.collection( self.coll).find( {zip: '27526'});
-	query = {'loc': {$near: [ -center.loc.x, center.loc.y ] } };
+	self.db.collection( self.coll).find( {zip: '27526'}).toArray(function(err, center) {
+		var x = -center[0].loc.x;
+		var y =  center[0].log.y;
+		query = {'loc': {$near: [ x, y ] } };
+	};
+	
 	
     self.db.collection( self.coll ).find( query ).limit(limit).toArray(function(err, locations) {
 		//res.header("Content-Type:","text/html");
