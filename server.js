@@ -36,28 +36,30 @@ var App = function(){
 	
 	//var center = center = [-73.977842, 40.752315];
 	//var radius = 2.0;
-	self.limit = 25;
-//	self.query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
+	var limit = 25;
+//	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
 	
 	//var param = req.query.query;
 	//if (param !== 'undefined'){
-	//	query = decodeURIComponent(param);
+	//	self.query = decodeURIComponent(param);
 	//}
+	
+	var query;
 	
 	self.db.collection( self.coll ).find( {zip: '27526'}).toArray(function(err, center) {
 		var rec = center[0];
 		var x = -rec.loc.x;
 		var y =  rec.loc.y;
-		self.query = {'loc': {$near: [ x, y ] } };
+		query = {'loc': {$near: [ x, y ] } };
 	});
 	
 	
-    self.db.collection( self.coll ).find( self.query ).limit( self.limit ).toArray(function(err, locations) {
+    self.db.collection( self.coll ).find( query ).limit( limit ).toArray(function(err, locations) {
 
 		if (locations === "undefined") {
 			res.send("Nothing found");
 		} else {
-			var s = '<p>Query '+ JSON.stringify( self.query ) +'</p><ol>';
+			var s = '<p>Query '+ JSON.stringify( query ) +'</p><ol>';
 			s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
