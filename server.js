@@ -12,8 +12,7 @@ var App = function(){
 
   // Setup
   
-  self.dbServer = new mongodb.Server(process.env.OPENSHIFT_MONGODB_DB_HOST,
-                            parseInt(process.env.OPENSHIFT_MONGODB_DB_PORT));
+  self.dbServer = new mongodb.Server(process.env.OPENSHIFT_MONGODB_DB_HOST, parseInt(process.env.OPENSHIFT_MONGODB_DB_PORT));
   self.db = new mongodb.Db(process.env.OPENSHIFT_APP_NAME, self.dbServer, {auto_reconnect: true});
   self.dbUser = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
   self.dbPass = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
@@ -31,7 +30,7 @@ var App = function(){
   self.routes = {};
   self.routes['health'] = function(req, res){ res.send('1'); };
 
-  self.routes['geo'] = function(req, res){
+  self.routes['geo'] = function(req, res) {
 	//var arg = '95123';
 	//var query = {'zip': arg};
 	
