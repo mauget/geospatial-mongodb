@@ -12,7 +12,8 @@ var App = function(){
 
   // Setup
   
-  self.dbServer = new mongodb.Server(process.env.OPENSHIFT_MONGODB_DB_HOST, parseInt(process.env.OPENSHIFT_MONGODB_DB_PORT));
+  self.dbServer = new mongodb.Server(process.env.OPENSHIFT_MONGODB_DB_HOST,
+                            parseInt(process.env.OPENSHIFT_MONGODB_DB_PORT));
   self.db = new mongodb.Db(process.env.OPENSHIFT_APP_NAME, self.dbServer, {auto_reconnect: true});
   self.dbUser = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
   self.dbPass = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
@@ -50,29 +51,23 @@ var App = function(){
 		var x = -rec.loc.x;
 		var y =  rec.loc.y;
 		query = {'loc': {$near: [ x, y ] } };
-		self.query2(query, limit, res);
 	});
 
-
-  };
-
-  self.query2 = function(aQuery, limit, res) {
-
-	    self.db.collection( self.coll ).find( aQuery ).limit( limit ).toArray(function(err, locations) {
-
-			if (locations === "undefined") {
-				res.send("Nothing found");
-			} else {
-				var s = '<p>Query '+ JSON.stringify( aQuery ) +'</p><ol>';
-				s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
-				for (var i = 0; i < locations.length; i++) {
-					var rec = locations[i];
-					s += '<li>' + rec.city + ', ' + rec.state + ', ' + rec.zip + ' (-' + rec.loc.x + ', ' + rec.loc.y + ' )</li>';
-				}
-				s += '</ol>';
-				res.send(s);
+	self.db.collection( self.coll ).find( query ).limit( limit ).toArray(function(err, locations) {
+		if (locations === "undefined") {
+			res.send("Nothing found");
+		} else {
+			var s = '<p>Query '+ JSON.stringify( aQuery ) +'</p><ol>';
+			s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
+			for (var i = 0; i < locations.length; i++) {
+				var rec = locations[i];
+				s += '<li>' + rec.city + ', ' + rec.state + ', ' + 
+				      rec.zip + ' (-' + rec.loc.x + ', ' + rec.loc.y + ' )</li>';
 			}
-	    });
+			s += '</ol>';
+			res.send(s);
+		}
+	});
   };
 
   // Webapp urls
