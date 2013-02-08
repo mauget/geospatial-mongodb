@@ -37,7 +37,7 @@ var App = function(){
 	
 	//var center = center = [40.752315,73.977842];
 	//var radius = 2.0;
-	var limit = 25;
+	var limit = 5;
 
 	//var param = req.query.query;
 	//if (param !== 'undefined'){
