@@ -40,12 +40,12 @@ var App = function(){
 	//{ "_id" : ObjectId("510dcc6724b2186932ec1f7b"), "city" : "FUQUAY VARINA", "zip" : "27526", "loc" : { "y" : 35.579952, "x" : 78.790807 }, "pop" : 16537, "state" : "NC" }
 	
 	//var query = {'loc': {$near: [ 40.752315, 73.977842 ] } };
-	var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
+	//var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
 	
 	self.db.collection( self.coll ).find( {zip: '27526'}).toArray( function( err, center)  {
 		var rec = center[0];
-		var x =  rec.loc.x;
 		var y =  rec.loc.y;
+		var x =  rec.loc.x;
 		res.redirect("/near?y="+y+"&x="+x);
 	});
 
@@ -55,10 +55,11 @@ var App = function(){
  
   self.routes['near'] = function(req, res) {
 	
-	var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
+	//                                y          x
+	//var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
 	var y =  req.query.y;
 	var x =  req.query.x;
-	query = {'loc': {$near: [ x, y ] } };
+	var query = {'loc': {$near: [ y, x ] } };
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
 		if (locations === "undefined") {
