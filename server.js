@@ -47,7 +47,7 @@ var App = function(){
 		var x =  rec.loc.x;
 		var y =  rec.loc.y;
 		query = {'loc': {$near: [ y, x ] } };
-		res.redirect("/near");
+		res.redirect("/near?y="+y+"&x="+x);
 	});
 
 	
