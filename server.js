@@ -46,7 +46,6 @@ var App = function(){
 		var rec = center[0];
 		var x =  rec.loc.x;
 		var y =  rec.loc.y;
-		query = {'loc': {$near: [ y, x ] } };
 		res.redirect("/near?y="+y+"&x="+x);
 	});
 
@@ -57,6 +56,9 @@ var App = function(){
   self.routes['near'] = function(req, res) {
 	
 	var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
+	var y =  req.parm.y;
+	var x =  req.parm.x;
+	query = {'loc': {$near: [ y, x ] } };
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
 		if (locations === "undefined") {
