@@ -35,7 +35,7 @@ var App = function(){
 	//var arg = '95123';
 	//var query = {'zip': arg};
 	
-	//var center = center = [-73.977842, 40.752315];
+	//var center = center = [73.977842, 40.752315];
 	//var radius = 2.0;
 	var limit = 25;
 
@@ -44,7 +44,7 @@ var App = function(){
 	//	self.query = decodeURIComponent(param);
 	//}
 	
-	var query = {'loc': {$near: [ -73.977842, 40.752315 ] } };
+	var query = {'loc': {$near: [ 73.977842, 40.752315 ] } };
 	
 	self.db.collection( self.coll ).find( {zip: '27526'}).toArray( function( err, center)  {
 		var rec = center[0];
@@ -62,7 +62,7 @@ var App = function(){
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
 				s += '<li>' + rec.city + ', ' + rec.state + ', ' + 
-				      rec.zip + ' (-' + rec.loc.x + ', ' + rec.loc.y + ' )</li>';
+				      rec.zip + ' (' + rec.loc.x + ', ' + rec.loc.y + ' )</li>';
 			}
 			s += '</ol>';
 			res.send(s);
