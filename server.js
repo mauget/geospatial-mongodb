@@ -42,7 +42,7 @@ var App = function(){
 	//var param = req.query.query;
 	//if (param !== 'undefined'){
 	//	self.query = decodeURIComponent(param);
-	//}
+	//} 
 	
 	var query = {'loc': {$near: [ 73.977842, 40.752315 ] } };
 	
