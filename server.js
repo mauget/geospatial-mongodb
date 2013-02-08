@@ -32,18 +32,9 @@ var App = function(){
   self.routes['health'] = function(req, res){ res.send('1'); };
 
   self.routes['geo'] = function(req, res) {
-	//var arg = '95123';
-	//var query = {'zip': arg};
-	
-	//var center = center = [40.752315,73.977842];
-	//var radius = 2.0;
+
 	var limit = 5;
 
-	//var param = req.query.query;
-	//if (param !== 'undefined'){
-	//	self.query = decodeURIComponent(param);
-	//} 
-	
 	// Fuquay record
 	// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
 	//{ "_id" : ObjectId("510dcc6724b2186932ec1f7b"), "city" : "FUQUAY VARINA", "zip" : "27526", "loc" : { "y" : 35.579952, "x" : 78.790807 }, "pop" : 16537, "state" : "NC" }
@@ -56,7 +47,16 @@ var App = function(){
 		var x =  rec.loc.x;
 		var y =  rec.loc.y;
 		query = {'loc': {$near: [ y, x ] } };
+		res.redirect("/near");
 	});
+
+	
+  };
+
+ 
+  self.routes['near'] = function(req, res) {
+	
+	var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
 		if (locations === "undefined") {
@@ -72,8 +72,10 @@ var App = function(){
 			s += '</ol>';
 			res.send(s);
 		}
-	});
+	});	
   };
+
+	var limit = 5;
 
   // Webapp urls
   
@@ -81,6 +83,7 @@ var App = function(){
   self.app  = express();
   self.app.get('/health', self.routes['health']);
   self.app.get('/geo', self.routes['geo']);
+  self.app.get('/near', self.routes['near']);
   self.app.use(express.static(__dirname + '/html'));
  
 
@@ -121,7 +124,8 @@ var App = function(){
     process.on(element, function() { self.terminator(element); });
   };
 
-  ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT', 'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGPIPE', 'SIGTERM'].forEach(self.terminatorSetup);
+  ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT', 'SIGBUS', 
+   'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGPIPE', 'SIGTERM'].forEach(self.terminatorSetup);
 
 };
 
