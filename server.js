@@ -44,15 +44,17 @@ var App = function(){
 	//	self.query = decodeURIComponent(param);
 	//} 
 	
-	// Fuquay recxord
+	// Fuquay record
+	// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
 	//{ "_id" : ObjectId("510dcc6724b2186932ec1f7b"), "city" : "FUQUAY VARINA", "zip" : "27526", "loc" : { "y" : 35.579952, "x" : 78.790807 }, "pop" : 16537, "state" : "NC" }
 	
-	var query = {'loc': {$near: [ 40.752315, 73.977842 ] } };
+	//var query = {'loc': {$near: [ 40.752315, 73.977842 ] } };
+	var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
 	
 	self.db.collection( self.coll ).find( {zip: '27526'}).toArray( function( err, center)  {
 		var rec = center[0];
-		var y =  rec.loc.y;
 		var x =  rec.loc.x;
+		var y =  rec.loc.y;
 		query = {'loc': {$near: [ y, x ] } };
 	});
 
