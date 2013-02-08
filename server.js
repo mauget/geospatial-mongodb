@@ -50,7 +50,7 @@ var App = function(){
 		var rec = center[0];
 		var x =  rec.loc.x;
 		var y =  rec.loc.y;
-		query = {'loc': {$near: [ x, y ] } };
+		query = {'loc': {$near: [ y, x ] } };
 	});
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
@@ -62,7 +62,7 @@ var App = function(){
 			for (var i = 0; i < locations.length; i++) {
 				var rec = locations[i];
 				s += '<li>' + rec.city + ', ' + rec.state + ', ' + 
-				      rec.zip + ' (' + rec.loc.x + ', ' + rec.loc.y + ' )</li>';
+				      rec.zip + ' (' + rec.loc.y + ', ' + rec.loc.x + ' )</li>';
 			}
 			s += '</ol>';
 			res.send(s);
