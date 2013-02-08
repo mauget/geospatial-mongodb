@@ -13,7 +13,7 @@ var SampleApp = function() {
     var self = this;
 
 	// Setup
-
+/*
 	self.dbServer = new mongodb.Server(process.env.OPENSHIFT_MONGODB_DB_HOST, parseInt(process.env.OPENSHIFT_MONGODB_DB_PORT));
 	self.db = new mongodb.Db(process.env.OPENSHIFT_APP_NAME, self.dbServer, {auto_reconnect: true});
 	self.dbUser = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
@@ -25,7 +25,7 @@ var SampleApp = function() {
 	if (typeof self.ipaddr === "undefined") {
 		console.warn('No OPENSHIFT_INTERNAL_IP environment variable');
 	};
-
+*/
 	self.coll = 'zips';
 
     /*  ================================================================  */
@@ -127,7 +127,7 @@ var SampleApp = function() {
     };
 
 	// Open a database connection. We call this outside of app so it is available to all our functions inside.
-
+/*
 	self.connectDb = function(callback){
 		self.db.open(function(err, db){
 		if(err){ throw err };
@@ -137,7 +137,7 @@ var SampleApp = function() {
 			});
 		});
 	};
-
+*/
 
     /**
      *  Initialize the server (express) and create the routes and register
