@@ -31,7 +31,7 @@ var App = function(){
   self.routes = {};
   self.routes['health'] = function(req, res){ res.send('1'); };
 
-  self.routes['geo'] = function(req, res) {
+  self.routes['zip'] = function(req, res) {
 
 	var limit = 5;
 
@@ -42,7 +42,9 @@ var App = function(){
 	//var query = {'loc': {$near: [ 40.752315, 73.977842 ] } };
 	//var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
 	
-	self.db.collection( self.coll ).find( {zip: '27526'}).toArray( function( err, center)  {
+	var zipCode = req.query.zip;
+	
+	self.db.collection( self.coll ).find( {zip: zipCode}).toArray( function( err, center)  {
 		var record = center[0];
 		var y =  record.loc.y;
 		var x =  record.loc.x;
@@ -84,7 +86,7 @@ var App = function(){
   //self.app  = express.createServer();
   self.app  = express();
   self.app.get('/health', self.routes['health']);
-  self.app.get('/geo', self.routes['geo']);
+  self.app.get('/zip', self.routes['zip']);
   self.app.get('/near', self.routes['near']);
   self.app.use(express.static(__dirname + '/html'));
  
