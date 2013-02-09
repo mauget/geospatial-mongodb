@@ -43,23 +43,22 @@ var App = function(){
 	//var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
 	
 	self.db.collection( self.coll ).find( {zip: '27526'}).toArray( function( err, center)  {
-		var rec = center[0];
-		var y =  rec.loc.y;
-		var x =  rec.loc.x;
+		var record = center[0];
+		var y =  record.loc.y;
+		var x =  record.loc.x;
 		res.redirect("/near?y="+y+"&x="+x);
 	});
-
 	
   };
 
- 
   self.routes['near'] = function(req, res) {
 	
-	//                                y          x
+	//  db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}})
+	//                               y          x
 	//var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
-	var y =  req.query.y;
-	var x =  req.query.x;
-	var query = {'loc': {$near: [ y, x ] } };
+	var lat =  req.query.y;
+	var lon =  req.query.x;
+	var query = {'loc': {$near: [ lat, lon ] } };
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
 		if (locations === "undefined") {
@@ -78,7 +77,7 @@ var App = function(){
 	});	
   };
 
-	var limit = 5;
+  var limit = 5;
 
   // Webapp urls
   
@@ -89,7 +88,6 @@ var App = function(){
   self.app.get('/near', self.routes['near']);
   self.app.use(express.static(__dirname + '/html'));
  
-
   // Open a database connection. We call this outside of app so it is available to all our functions inside.
 
   self.connectDb = function(callback){
@@ -101,7 +99,6 @@ var App = function(){
       });
     });
   };
-  
   
   // Start nodejs server with express
 
@@ -129,7 +126,6 @@ var App = function(){
 
   ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT', 'SIGBUS', 
    'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGPIPE', 'SIGTERM'].forEach(self.terminatorSetup);
-
 };
 
 // Intialization:
