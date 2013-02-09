@@ -53,7 +53,7 @@ var App = function(){
 
   self.routes['near'] = function(req, res) {
 	
-	var limit = 15;
+	var limit = 25;
 	var lat =  Number(req.query.y);
 	var lon =  Number(req.query.x);
 	var query = {loc: {$near: [ lat, lon ] } };
