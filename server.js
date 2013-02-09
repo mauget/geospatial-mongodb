@@ -51,7 +51,7 @@ var App = function(){
 			var x =  record.loc.x;
 			res.redirect("/near?y="+y+"&x="+x);
 		} else {
-			res.redirect("/html/index.html");
+			res.redirect("/");
 		}
 	});
 	
