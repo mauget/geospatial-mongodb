@@ -46,7 +46,7 @@ var App = function(){
 	
 	self.db.collection( self.coll ).find( {zip: zipCode}).toArray( function( err, center)  {
 		var record = center[0];
-		if (recorcd !== "undefined"){
+		if (record !== "undefined"){
 			var y =  record.loc.y;
 			var x =  record.loc.x;
 			res.redirect("/near?y="+y+"&x="+x);
