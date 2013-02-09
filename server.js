@@ -43,7 +43,7 @@ var App = function(){
 			var record = center[0];
 			var y =  record.loc.y;
 			var x =  record.loc.x;
-			res.redirect("/near?y="+y+"&x="+x);
+			res.redirect("/near/"+y+"/"+x);
 		} else {
 			res.redirect("/");
 		}
