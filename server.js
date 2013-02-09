@@ -36,7 +36,7 @@ var App = function(){
 	// Fuquay record
 	// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
 	
-	var zipCode = req.query.zip;
+	var zipCode = req.param.zip;
 	
 	self.db.collection( self.coll ).find( {zip: zipCode}).toArray( function( err, center)  {
 		if (center !== undefined && center.length > 0){
@@ -54,8 +54,8 @@ var App = function(){
   self.routes['near'] = function(req, res) {
 	
 	var limit = 25;
-	var lat =  Number(req.query.y);
-	var lon =  Number(req.query.x);
+	var lat =  Number(req.param:lat);
+	var lon =  Number(req.param:lon);
 	var query = {loc: {$near: [ lat, lon ] } };
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
@@ -79,8 +79,8 @@ var App = function(){
   
   self.app  = express();
   self.app.get('/health', self.routes['health']);
-  self.app.get('/zip', self.routes['zip']);
-  self.app.get('/near', self.routes['near']);
+  self.app.get('/zip/:zip', self.routes['zip']);
+  self.app.get('/near/:lat/:lon', self.routes['near']);
   self.app.use(express.static(__dirname + '/html'));
  
   // Open a database connection. We call this outside of app so it is available to all our functions inside.
