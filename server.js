@@ -54,8 +54,8 @@ var App = function(){
   self.routes['near'] = function(req, res) {
 	
 	var limit = 25;
-	var lat =  Number(req.param:lat);
-	var lon =  Number(req.param:lon);
+	var lat =  Number(req.param.lat);
+	var lon =  Number(req.param.lon);
 	var query = {loc: {$near: [ lat, lon ] } };
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
