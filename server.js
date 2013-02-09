@@ -36,7 +36,7 @@ var App = function(){
 	// Fuquay record
 	// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
 	
-	var zipCode = req.param.zip;
+	var zipCode = req.params.zip;
 	
 	self.db.collection( self.coll ).find( {zip: zipCode}).toArray( function( err, center)  {
 		if (center !== undefined && center.length > 0){
@@ -54,8 +54,8 @@ var App = function(){
   self.routes['near'] = function(req, res) {
 	
 	var limit = 25;
-	var lat =  Number(req.param.lat);
-	var lon =  Number(req.param.lon);
+	var lat =  Number(req.params.lat);
+	var lon =  Number(req.params.lon);
 	var query = {loc: {$near: [ lat, lon ] } };
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
