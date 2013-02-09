@@ -33,8 +33,6 @@ var App = function(){
 
   self.routes['zip'] = function(req, res) {
 
-	var limit = 5;
-
 	// Fuquay record
 	// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
 	
@@ -55,7 +53,7 @@ var App = function(){
 
   self.routes['near'] = function(req, res) {
 	
-	var limit = 5;
+	var limit = 15;
 	var lat =  Number(req.query.y);
 	var lon =  Number(req.query.x);
 	var query = {loc: {$near: [ lat, lon ] } };
