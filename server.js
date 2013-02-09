@@ -58,7 +58,7 @@ var App = function(){
 	//var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
 	var lat =  req.query.y;
 	var lon =  req.query.x;
-	var query = {'loc': {$near: [ lat, lon ] } };
+	var query = {loc: {$near: [ lat, lon ] } };
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
 		if (locations === "undefined") {
