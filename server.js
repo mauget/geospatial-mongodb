@@ -45,8 +45,8 @@ var App = function(){
 	var zipCode = req.query.zip;
 	
 	self.db.collection( self.coll ).find( {zip: zipCode}).toArray( function( err, center)  {
-		var record = center[0];
-		if (record !== "undefined"){
+		if (center !== undefined && center.length > 0){
+			var record = center[0];
 			var y =  record.loc.y;
 			var x =  record.loc.x;
 			res.redirect("/near?y="+y+"&x="+x);
@@ -67,7 +67,7 @@ var App = function(){
 	var query = {loc: {$near: [ lat, lon ] } };
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
-		if (locations === "undefined") {
+		if (locations === undefined) {
 			res.send("Nothing found");
 		} else {
 			var s = '<p>Query '+ JSON.stringify( query ) +'</p><ol>';
