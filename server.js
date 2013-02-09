@@ -37,10 +37,6 @@ var App = function(){
 
 	// Fuquay record
 	// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
-	//{ "_id" : ObjectId("510dcc6724b2186932ec1f7b"), "city" : "FUQUAY VARINA", "zip" : "27526", "loc" : { "y" : 35.579952, "x" : 78.790807 }, "pop" : 16537, "state" : "NC" }
-	
-	//var query = {'loc': {$near: [ 40.752315, 73.977842 ] } };
-	//var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
 	
 	var zipCode = req.query.zip;
 	
@@ -59,9 +55,7 @@ var App = function(){
 
   self.routes['near'] = function(req, res) {
 	
-	//  db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}})
-	//                               y          x
-	//var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
+	var limit = 5;
 	var lat =  Number(req.query.y);
 	var lon =  Number(req.query.x);
 	var query = {loc: {$near: [ lat, lon ] } };
@@ -83,11 +77,8 @@ var App = function(){
 	});	
   };
 
-  var limit = 5;
-
-  // Webapp urls
+  // Web app URLs
   
-  //self.app  = express.createServer();
   self.app  = express();
   self.app.get('/health', self.routes['health']);
   self.app.get('/zip', self.routes['zip']);
@@ -134,10 +125,10 @@ var App = function(){
    'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGPIPE', 'SIGTERM'].forEach(self.terminatorSetup);
 };
 
-// Intialization:
+// Initialization:
 
-//make a new express app
+// Create an express app
 var app = new App();
 
-//call the connectDb function and pass in the start server command
+// Call the connectDb function and pass in the start server command
 app.connectDb(app.startServer);
