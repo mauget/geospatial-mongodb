@@ -56,8 +56,8 @@ var App = function(){
 	//  db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}})
 	//                               y          x
 	//var query = {'loc': {$near: [ 35.579952, 78.780807 ] } };
-	var lat =  req.query.y;
-	var lon =  req.query.x;
+	var lat =  Number(req.query.y);
+	var lon =  Number(req.query.x);
 	var query = {loc: {$near: [ lat, lon ] } };
 
 	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
