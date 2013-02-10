@@ -152,9 +152,10 @@ var NodeApp = function() {
 			var query = {loc: {$near: [ lat, lon ] } };
 
 			self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
-				if (typeof locations === "undefined") {
-					res.send("Nothing found");
+				if (!locations ) {
+					res.send('{err: "Nothing found"}');
 				} else {
+					/*
 					var s = '<p>Query '+ JSON.stringify( query ) +'</p><ol>';
 					s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
 					for (var i = 0; i < locations.length; i++) {
@@ -164,6 +165,8 @@ var NodeApp = function() {
 					}
 					s += '</ol>';
 					res.send(s);
+					*/
+					res.send(locations);
 				}
 			});	
 	  	}; /* nearLatLon */
