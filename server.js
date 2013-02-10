@@ -155,17 +155,6 @@ var NodeApp = function() {
 				if (!locations ) {
 					res.send('{err: "Nothing found"}');
 				} else {
-					/*
-					var s = '<p>Query '+ JSON.stringify( query ) +'</p><ol>';
-					s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
-					for (var i = 0; i < locations.length; i++) {
-						var rec = locations[i];
-						s += '<li>' + rec.city + ', ' + rec.state + ', ' + 
-					      rec.zip + ' (' + rec.loc.y + ', ' + rec.loc.x + ' )</li>';
-					}
-					s += '</ol>';
-					res.send(s);
-					*/
 					res.send(locations);
 				}
 			});	
@@ -181,8 +170,7 @@ var NodeApp = function() {
 				} else {
 					res.send(cities);
 				}
-			}
-			
+			});			
 		}; /* cities search */
 
     }; /* create routes */
