@@ -1,132 +1,238 @@
 #!/bin/env node
 
+//  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
 var mongodb = require('mongodb');
 
-var App = function(){
+/**
+ *  Define the nodejs application.
+ */
+var NodeApp = function() {
 
-  // Scope
+	//  Scope.
+	var self = this;
 
-  var self = this;
+    /*  ================================================================  */
+    /*  Helper functions.                                                 */
+    /*  ================================================================  */
 
-  // Setup
-  
-  self.dbServer = new mongodb.Server(process.env.OPENSHIFT_MONGODB_DB_HOST,
-                            parseInt(process.env.OPENSHIFT_MONGODB_DB_PORT));
-  self.db = new mongodb.Db(process.env.OPENSHIFT_APP_NAME, self.dbServer, {auto_reconnect: true});
-  self.dbUser = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
-  self.dbPass = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
+    /**
+     *  Set up server IP address and port # using env variables/defaults.
+     */
+    self.setupVariables = function() {
 
-  self.ipaddr  = process.env.OPENSHIFT_INTERNAL_IP;
-  self.port    = parseInt(process.env.OPENSHIFT_INTERNAL_PORT) || 8080;
+		// Mongo environment variables
+		
+		self.dbServer = new mongodb.Server(process.env.OPENSHIFT_MONGODB_DB_HOST,
+	                              parseInt(process.env.OPENSHIFT_MONGODB_DB_PORT));
 
-  if (typeof self.ipaddr === "undefined") {
-    console.warn('No OPENSHIFT_INTERNAL_IP environment variable');
-  };
+		self.db = new mongodb.Db(process.env.OPENSHIFT_APP_NAME, self.dbServer, {auto_reconnect: true});
 
-  self.coll = 'zips';
+		self.dbUser = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
+		self.dbPass = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
+		
+		self.coll = 'zips';
+		
+		//  Web app environment variables
 
-  // Web app logic
-  self.routes = {};
-  self.routes['health'] = function(req, res){ res.send('1'); };
+		self.ipaddress = process.env.OPENSHIFT_INTERNAL_IP;
+		self.port      = process.env.OPENSHIFT_INTERNAL_PORT || 8080;
 
-  self.routes['nearZip'] = function(req, res) {
+		if (typeof self.ipaddress === "undefined") {
+            //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
+            //  allows us to run/test the app locally.
+            console.warn('No OPENSHIFT_INTERNAL_IP var, using 127.0.0.1');
+            self.ipaddress = "127.0.0.1";
+		};
 
-	// Fuquay record
-	// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
-	
-	var zipCode = req.params.zip;
-	
-	self.db.collection( self.coll ).find( {zip: zipCode}).toArray( function( err, center)  {
-		if (center !== undefined && center.length > 0){
-			var record = center[0];
-			var y =  record.loc.y;
-			var x =  record.loc.x;
-			res.redirect("/near/lat/"+y+"/lon/"+x);
-		} else {
-			res.redirect("/");
-		}
-	});
-	
-  };
+	}; /* setupVariables */
 
-  self.routes['nearLatLon'] = function(req, res) {
-	
-	var limit = 25;
-	var lat =  Number(req.params.lat);
-	var lon =  Number(req.params.lon);
-	var query = {loc: {$near: [ lat, lon ] } };
+    /**
+     *  Populate the cache.
+     */
+    self.populateCache = function() {
 
-	self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
-		if (locations === undefined) {
-			res.send("Nothing found");
-		} else {
-			var s = '<p>Query '+ JSON.stringify( query ) +'</p><ol>';
-			s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
-			for (var i = 0; i < locations.length; i++) {
-				var rec = locations[i];
-				s += '<li>' + rec.city + ', ' + rec.state + ', ' + 
-				      rec.zip + ' (' + rec.loc.y + ', ' + rec.loc.x + ' )</li>';
-			}
-			s += '</ol>';
-			res.send(s);
-		}
-	});	
-  };
+        if (typeof self.zcache === "undefined") {
+            self.zcache = { 'index.html': '' };
+        }
 
-  // Web app URLs
-  
-  self.app  = express();
-  self.app.get('/health', self.routes['health']);
-  self.app.get('/near/zip/:zip', self.routes['nearZip']);
-  self.app.get('/near/lat/:lat/lon/:lon', self.routes['nearLatLon']);
-  self.app.use(express.static(__dirname + '/html'));
- 
-  // Open a database connection. We call this outside of app so it is available to all our functions inside.
+        //  Local cache for static content.
+        self.zcache['index.html'] = fs.readFileSync('./index.html');
 
-  self.connectDb = function(callback){
-    self.db.open(function(err, db){
-      if(err){ throw err };
-      self.db.authenticate(self.dbUser, self.dbPass, {authdb: "admin"},  function(err, res){
-        if(err){ throw err };
-        callback();
-      });
-    });
-  };
-  
-  // Start nodejs server with express
+    }; /* populate cache */
 
-  self.startServer = function(){
-    self.app.listen(self.port, self.ipaddr, function(){
-      console.log('%s: Node server started on %s:%d ...', Date(Date.now()), self.ipaddr, self.port);
-    });
-  }
+    /**
+     *  Retrieve entry (content) from cache.
+     *  @param {string} key  Key identifying content to retrieve from cache.
+     */
+    self.cache_get = function(key) { return self.zcache[key]; };
 
-  // Destructors
+    /**
+     *  terminator === the termination handler
+     *  Terminate server on receipt of the specified signal.
+     *  @param {string} sig  Signal to terminate on.
+     */
+    self.terminator = function(sig){
+        if (typeof sig === "string") {
+           console.log('%s: Received %s - terminating sample app ...',
+                       Date(Date.now()), sig);
+           process.exit(1);
+        }
+        console.log('%s: Node server stopped.', Date(Date.now()) );
+    }; /* terminator */
 
-  self.terminator = function(sig) {
-    if (typeof sig === "string") {
-      console.log('%s: Received %s - terminating Node server ...', Date(Date.now()), sig);
-      process.exit(1);
-    };
-    console.log('%s: Node server stopped.', Date(Date.now()) );
-  };
+    /**
+     *  Setup termination handlers (for exit and a list of signals).
+     */
+    self.setupTerminationHandlers = function(){
+        //  Process on exit and signals.
+        process.on('exit', function() { self.terminator(); });
 
-  process.on('exit', function() { self.terminator(); });
+        // Removed 'SIGPIPE' from the list - bugz 852598.
+        ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
+         'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
+        ].forEach(function(element, index, array) {
+            process.on(element, function() { self.terminator(element); });
+        });
+    }; /* termination handlers */
 
-  self.terminatorSetup = function(element, index, array) {
-    process.on(element, function() { self.terminator(element); });
-  };
 
-  ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT', 'SIGBUS', 
-   'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGPIPE', 'SIGTERM'].forEach(self.terminatorSetup);
-};
+    /*  ================================================================  */
+    /*  App server functions (main app logic).                            */
+    /*  ================================================================  */
 
-// Initialization:
+    /**
+     *  Create the routing table entries with handlers for the application.
+     */
+    self.createRoutes = function() {
+        self.routes = { };
 
-// Create an express app
-var app = new App();
+        // Routes for /health, /asciimo and /
+        self.routes['/health'] = function(req, res) {
+            res.send('1');
+        }; /* health */
 
-// Call the connectDb function and pass in the start server command
-app.connectDb(app.startServer);
+        self.routes['/asciimo'] = function(req, res) {
+            var link = "http://i.imgur.com/kmbjB.png";
+            res.send("<html><body><img src='" + link + "'></body></html>");
+        }; /* asciimo */
+
+        self.routes['/'] = function(req, res) {
+            res.setHeader('Content-Type', 'text/html');
+            res.send(self.cache_get('index.html') );
+        }; /* root */
+
+
+		self.routes['/near/zip/:zip''] = function(req, res) {
+
+			// Fuquay record
+			// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
+
+			var zipCode = req.params.zip;
+
+			self.db.collection( self.coll ).find( {zip: zipCode}).toArray( function( err, center)  {
+				if (center !== undefined && center.length > 0){
+					var record = center[0];
+					var y =  record.loc.y;
+					var x =  record.loc.x;
+					res.redirect("/near/lat/"+y+"/lon/"+x);
+					} else {
+					res.redirect("/");
+					}
+					});
+
+		}; /* nearZip */
+		
+		self.routes[''/near/lat/:lat/lon/:lon','] = function(req, res) {
+
+			var limit = 25;
+			var lat =  Number(req.params.lat);
+			var lon =  Number(req.params.lon);
+			var query = {loc: {$near: [ lat, lon ] } };
+
+			self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
+				if (typeof locations === "undefined") {
+					res.send("Nothing found");
+				} else {
+					var s = '<p>Query '+ JSON.stringify( query ) +'</p><ol>';
+					s += '<p>&nbsp;|&nbsp;<a href="/">Home</a>&nbsp;|&nbsp;</p>';
+					for (var i = 0; i < locations.length; i++) {
+						var rec = locations[i];
+						s += '<li>' + rec.city + ', ' + rec.state + ', ' + 
+					      rec.zip + ' (' + rec.loc.y + ', ' + rec.loc.x + ' )</li>';
+					}
+					s += '</ol>';
+					res.send(s);
+				}
+			});	
+	  	}; /* nearLatLon */
+
+    }; /* create routes */
+
+
+    /**
+     *  Initialize the server (express) and create the routes and register
+     *  the handlers.
+     */
+    self.initializeServer = function() {
+        self.createRoutes();
+        self.app = express.createServer();
+
+        //  Add handlers for the app (from the routes).
+        for (var r in self.routes) {
+            self.app.get(r, self.routes[r]);
+        }
+    }; /* initialize server */
+
+
+    /**
+     *  Initialize application.
+     */
+    self.initialize = function() {
+        self.setupVariables();
+        self.populateCache();
+        self.setupTerminationHandlers();
+
+        // Create the express server and routes.
+        self.initializeServer();
+    }; /* initialize app */
+
+
+	/**
+	  *  Start the server and the application.
+	  */
+	self.start = function() {
+
+		//  Start the app on the specific interface (and port).
+		console.log('%s self.start entered', Date(Date.now()) );
+
+		self.app.listen(self.port, self.ipaddress, function() {
+			console.log('%s: Node server started on %s:%d ...',
+				Date(Date.now() ), self.ipaddress, self.port);
+		});
+	}; /* app start */
+
+	/**
+	 *  Connect db and then callback to start the application.
+	 */
+	self.connectDb = function(appStart) {
+		self.db.open(function(err, db) {
+			if (err) { throw err; }
+			self.db.authenticate(self.dbUser, self.dbPass,  function(err, result) {
+				if (err) { throw err; }
+			});
+			appStart();
+		});
+	}; /* Connect db */
+
+
+};   /* Application.  */
+
+/*  ================================================================  */
+/*  Main                                                              */
+/*  ================================================================  */
+var theApp = new NodeApp();
+theApp.initialize();
+theApp.connectDb(theApp.start);
+
