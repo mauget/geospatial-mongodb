@@ -124,7 +124,7 @@ var NodeApp = function() {
         }; /* root */
 
 
-		self.routes['/near/zip/:zip''] = function(req, res) {
+		self.routes['/near/zip/:zip'] = function(req, res) {
 
 			// Fuquay record
 			// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
@@ -144,7 +144,7 @@ var NodeApp = function() {
 
 		}; /* nearZip */
 		
-		self.routes[''/near/lat/:lat/lon/:lon','] = function(req, res) {
+		self.routes['/near/lat/:lat/lon/:lon'] = function(req, res) {
 
 			var limit = 25;
 			var lat =  Number(req.params.lat);
