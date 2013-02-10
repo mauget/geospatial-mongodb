@@ -183,7 +183,7 @@ var NodeApp = function() {
 				}
 			}
 			
-		} /* cities search */
+		}; /* cities search */
 
     }; /* create routes */
 
