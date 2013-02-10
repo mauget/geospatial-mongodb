@@ -132,15 +132,15 @@ var NodeApp = function() {
 			var zipCode = req.params.zip;
 
 			self.db.collection( self.coll ).find( {zip: zipCode}).toArray( function( err, center)  {
-				if (center !== undefined && center.length > 0){
+				if (center && center.length > 0){
 					var record = center[0];
 					var y =  record.loc.y;
 					var x =  record.loc.x;
 					res.redirect("/near/lat/"+y+"/lon/"+x);
-					} else {
+				} else {
 					res.redirect("/");
-					}
-					});
+				}
+			});
 
 		}; /* nearZip */
 		
@@ -170,6 +170,20 @@ var NodeApp = function() {
 				}
 			});	
 	  	}; /* nearLatLon */
+	
+		
+		self.routes['/cities/:startsWith'] = function(req, res) {
+			var startsWith = req.params.startsWith;
+			var query = {'city': /^startsWith/ };
+			self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
+				if (!cities ) {
+					res.send('{err: "Nothing found"}');
+				} else {
+					res.send(cities);
+				}
+			}
+			
+		} /* cities search */
 
     }; /* create routes */
 
