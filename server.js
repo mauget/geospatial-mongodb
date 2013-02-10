@@ -162,6 +162,8 @@ var NodeApp = function() {
 	
 		
 		self.routes['/cities/:startsWith'] = function(req, res) {
+		
+			var limit = 25;
 			var startsWith = req.params.startsWith;
 			var query = {'city': /^startsWith/ };
 			self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
