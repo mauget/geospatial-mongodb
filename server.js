@@ -165,7 +165,9 @@ var NodeApp = function() {
 		
 			var limit = 25;
 			var startsWith = req.params.startsWith;
-			var query = {'city': /^startsWith/ };
+			
+			var query = {'city': { $regex: '^'+startsWith, $options: 'i' } );
+			
 			self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
 				if (!cities ) {
 					res.send('{err: "Nothing found"}');
