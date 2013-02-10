@@ -166,15 +166,20 @@ var NodeApp = function() {
 			var limit = 25;
 			var startsWith = req.params.startsWith;
 			
-			var query = {'city': { $regex: '^'+startsWith, $options: 'i' } );
+			if (!startsWith) {
+				res.send('{err: "Bad input"}');
+			} else {
+				startsWith = '^' + startsWith;
+				var query = {'city': { $regex: startsWith, $options: 'i' } );
 			
-			self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
-				if (!cities ) {
-					res.send('{err: "Nothing found"}');
-				} else {
-					res.send(cities);
-				}
-			});			
+				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
+					if (!cities ) {
+						res.send('{err: "Nothing found"}');
+					} else {
+						res.send(cities);
+					}
+				});	
+			}		
 		}; /* cities search */
 
     }; /* create routes */
