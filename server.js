@@ -31,7 +31,7 @@ var App = function(){
   self.routes = {};
   self.routes['health'] = function(req, res){ res.send('1'); };
 
-  self.routes['zip'] = function(req, res) {
+  self.routes['nearZip'] = function(req, res) {
 
 	// Fuquay record
 	// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
@@ -43,7 +43,7 @@ var App = function(){
 			var record = center[0];
 			var y =  record.loc.y;
 			var x =  record.loc.x;
-			res.redirect("/near/"+y+"/"+x);
+			res.redirect("/near/lat/"+y+"/lon/"+x);
 		} else {
 			res.redirect("/");
 		}
@@ -51,7 +51,7 @@ var App = function(){
 	
   };
 
-  self.routes['near'] = function(req, res) {
+  self.routes['nearLatLon'] = function(req, res) {
 	
 	var limit = 25;
 	var lat =  Number(req.params.lat);
@@ -79,8 +79,8 @@ var App = function(){
   
   self.app  = express();
   self.app.get('/health', self.routes['health']);
-  self.app.get('/zip/:zip', self.routes['zip']);
-  self.app.get('/near/:lat/:lon', self.routes['near']);
+  self.app.get('/near/zip/:zip', self.routes['nearZip']);
+  self.app.get('/near/lat/:lat/lon/:lon', self.routes['nearLatLon']);
   self.app.use(express.static(__dirname + '/html'));
  
   // Open a database connection. We call this outside of app so it is available to all our functions inside.
