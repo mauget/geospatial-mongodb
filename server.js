@@ -169,8 +169,8 @@ var NodeApp = function() {
 			if (!startsWith) {
 				res.send('{err: "Bad input"}');
 			} else {
-				startsWith = '^' + startsWith;
-				var query = {'city': { $regex: startsWith, $options: 'i' } );
+				startsWith = '^' + startsWith + '.*';
+				var query = {city: { $regex: startsWith, $options: 'i' } );
 			
 				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
 					if (!cities ) {
