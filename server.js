@@ -108,7 +108,7 @@ var NodeApp = function() {
     self.createRoutes = function() {
         self.routes = { };
 
-        // Routes for /health, /asciimo and /
+        // Routes for /health, /asciimo /scrips, and /
         self.routes['/health'] = function(req, res) {
             res.send('1');
         }; /* health */
