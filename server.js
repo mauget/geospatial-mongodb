@@ -169,7 +169,7 @@ var NodeApp = function() {
 			if (!like) {
 				res.send('{err: "Bad input"}');
 			} else {
-				// db.zips.find({city: {$regex: '^fuquay.*', $options: 'i' }}  )
+				// db.zips.find({city: {$regex: '^.*fuquay.*', $options: 'i' }}  )
 				var query = {city: { $regex: ('^.*%.*', like), $options: 'i' } };
 			
 				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
