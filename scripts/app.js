@@ -1,5 +1,5 @@
 // Application scripts
 
-var helloMauget = function() {
+function helloMauget() {
 	alert('Hello');
 }
