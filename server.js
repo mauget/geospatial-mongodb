@@ -123,9 +123,9 @@ var NodeApp = function() {
             res.send(self.cache_get('index.html') );
         }; /* root */
 
-		self.routes['/scripts'] = function(req, res) {
+		self.routes['/scripts/app.js'] = function(req, res) {
 			res.setHeader('Content-Type', 'text/javascript');
-			res.send(__dirname + '/scripts');
+			res.send(__dirname + '/scripts/app.js');
 		}; /* scripts */
 
 
