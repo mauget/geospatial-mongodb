@@ -161,16 +161,16 @@ var NodeApp = function() {
 	  	}; /* nearLatLon */
 	
 		
-		self.routes['/cities/:startsWith'] = function(req, res) {
+		self.routes['/cities/:like'] = function(req, res) {
 		
 			var limit = 25;
-			var startsWith = req.params.startsWith;
+			var like = req.params.like;
 			
-			if (!startsWith) {
+			if (!like) {
 				res.send('{err: "Bad input"}');
 			} else {
 				// db.zips.find({city: {$regex: '^fuquay.*', $options: 'i' }}  )
-				var query = {city: { $regex: ('^%.*', startsWith), $options: 'i' } };
+				var query = {city: { $regex: ('^.*%.*', startsWith), $options: 'i' } };
 			
 				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
 					if (!cities ) {
