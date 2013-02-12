@@ -32,6 +32,11 @@
 		        // log a message to the console
 		        console.log("Hooray, it worked!");
 		    });
+			
+			request.fail(function (response, textStatus, jqXHR){
+		        // log a message to the console
+		        console.log("Aw snap, it faile!");
+		    });
 		};
 
 		self.citiesVarina = function() {
@@ -47,21 +52,20 @@
 		        // log a message to the console
 		        console.log("Hooray, it worked!");
 		    });
+		
+			request.fail(function (response, textStatus, jqXHR){
+		        // log a message to the console
+		        console.log("Aw snap, it failed!");
+		    });
 		};
 
 		self.nearLatLon = function() {
 			
-		    var request = $.ajax({
-		        url: "/near/lat/35.579952/lon/78.790807",
-		        type: "get",
-				dataType: "json"
-		    });
-
-		    // callback handler that will be called on success
-		    request.done(function (response, textStatus, jqXHR){
-		        // log a message to the console
-		        console.log("Hooray, it worked!");
-		    });
+			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
+				$.each(data.items, function(i,item) {
+					console.log(item);
+				});
+			});
 		};
 
 	};
