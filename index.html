@@ -26,9 +26,10 @@ $
 		self.nearZip = function() {
 		    
 			$.getJSON("/near/zip/27526", function(data) {
-				$.each(data.items, function(i,item) {
-					console.log(item);
-				});
+				console.log("Made it");
+			//	$.each(data.items, function(i,item) {
+			//		console.log(item);
+			//	});
 			});
 		};
 
