@@ -20,10 +20,11 @@
 		};
 
 		self.nearZip = function() {
-		    // fire off the request to /form.php
+		    
 		    var request = $.ajax({
 		        url: "/near/zip/27526",
-		        type: "get"
+		        type: "get",
+				dataType: "json"
 		    });
 
 		    // callback handler that will be called on success
@@ -34,11 +35,33 @@
 		};
 
 		self.citiesVarina = function() {
+			
+		    var request = $.ajax({
+		        url: "/near/zip/27526",
+		        type: "get",
+				dataType: "json"
+		    });
 
+		    // callback handler that will be called on success
+		    request.done(function (response, textStatus, jqXHR){
+		        // log a message to the console
+		        console.log("Hooray, it worked!");
+		    });
 		};
 
 		self.nearLatLon = function() {
+			
+		    var request = $.ajax({
+		        url: "/near/zip/27526",
+		        type: "get",
+				dataType: "json"
+		    });
 
+		    // callback handler that will be called on success
+		    request.done(function (response, textStatus, jqXHR){
+		        // log a message to the console
+		        console.log("Hooray, it worked!");
+		    });
 		};
 
 	};
