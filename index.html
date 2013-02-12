@@ -21,42 +21,20 @@
 
 		self.nearZip = function() {
 		    
-		    var request = $.ajax({
-		        url: "/near/zip/27526",
-		        type: "get",
-				dataType: "json"
-		    });
-
-		    // callback handler that will be called on success
-		    request.done(function (response, textStatus, jqXHR){
-		        // log a message to the console
-		        console.log("Hooray, it worked!");
-		    });
-			
-			request.fail(function (response, textStatus, jqXHR){
-		        // log a message to the console
-		        console.log("Aw snap, it faile!");
-		    });
+			$.getJSON("/near/zip/27526", function(data) {
+				$.each(data.items, function(i,item) {
+					console.log(item);
+				});
+			});
 		};
 
 		self.citiesVarina = function() {
 			
-		    var request = $.ajax({
-		        url: "/cities/varina",
-		        type: "get",
-				dataType: "json"
-		    });
-
-		    // callback handler that will be called on success
-		    request.done(function (response, textStatus, jqXHR){
-		        // log a message to the console
-		        console.log("Hooray, it worked!");
-		    });
-		
-			request.fail(function (response, textStatus, jqXHR){
-		        // log a message to the console
-		        console.log("Aw snap, it failed!");
-		    });
+			$.getJSON("/cities/varina", function(data) {
+				$.each(data.items, function(i,item) {
+					console.log(item);
+				});
+			});
 		};
 
 		self.nearLatLon = function() {
@@ -86,8 +64,8 @@
 	<div data-role="content" >	
 		<h2>One</h2>
 		<button onclick="APP.helloMauget();">Click Me</button>
-		<button onclick="APP.nearZip();">nearZip Me</button>
-		<button onclick="APP.citiesVarina();">citiesVarina Me</button>
+		<button onclick="APP.nearZip();">nearZip</button>
+		<button onclick="APP.citiesVarina();">citiesVarina</button>
 		<button onclick="APP.nearLatLon();">nearLatLon</button>
 		<ul>
 			<li>Find <a href="near/zip/27526">near/zip/27526</a></li>
