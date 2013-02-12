@@ -21,8 +21,8 @@
 
 		self.nearZip = function() {
 		    
-			$.getJSON("/near/zip/27526", function(data) {
-				$.each(data.items, function(i,item) {
+			jQuery.getJSON("/near/zip/27526", function(data) {
+				jQuery.each(data.items, function(i,item) {
 					console.log(item);
 				});
 			});
@@ -30,8 +30,8 @@
 
 		self.citiesVarina = function() {
 			
-			$.getJSON("/cities/varina", function(data) {
-				$.each(data.items, function(i,item) {
+			jQuery.getJSON("/cities/varina", function(data) {
+				jQuery.each(data.items, function(i,item) {
 					console.log(item);
 				});
 			});
@@ -39,8 +39,8 @@
 
 		self.nearLatLon = function() {
 			
-			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
-				$.each(data.items, function(i,item) {
+			jQuery.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
+				jQuery.each(data.items, function(i,item) {
 					console.log(item);
 				});
 			});
