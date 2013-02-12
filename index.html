@@ -20,7 +20,18 @@
 		};
 
 		self.nearZip = function() {
+		    // fire off the request to /form.php
+		    var request = $.ajax({
+		        url: "/near/zip/27526",
+		        type: "get",
+		        data: serializedData
+		    });
 
+		    // callback handler that will be called on success
+		    request.done(function (response, textStatus, jqXHR){
+		        // log a message to the console
+		        console.log("Hooray, it worked!");
+		    });
 		};
 
 		self.citiesVarina = function() {
