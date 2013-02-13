@@ -1,24 +1,44 @@
+	
+//	$(document).ready(function() {
+//	  // Handler for .ready() called.
+//	});
+		
+	APP = new function() {
+	
+		var self = this;
 
-$(document).ready(function() {
-  // Handler for .ready() called.
-}
+		self.helloMauget = function () {
+			alert('Hello');
+		};
 
-var APP = function () {
+		self.nearZip = function() {
+		    
+			$.getJSON("/near/zip/27526", function(data) {
+				console.log(JSON.stringify(data));
+			//	$.each(data.items, function(i,item) {
+			//		console.log(item);
+			//	});
+			});
+		};
 
-	var helloMauget = function () {
-		alert('Hello');
+		self.citiesVarina = function() {
+			
+			$.getJSON("/cities/varina", function(data) {
+				console.log(JSON.stringify(data));
+			//	$.each(data.items, function(i,item) {
+			//		
+			//	});
+			});
+		};
+
+		self.nearLatLon = function() {
+			
+			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
+				console.log(JSON.stringify(data));
+			//	$.each(data.items, function(i,item) {
+			//		console.log(item);
+			//	});
+			});
+		};
+
 	};
-
-	var nearZip = function() {
-
-	};
-
-	var citiesVarina = function() {
-
-	};
-
-	var nearLatLon = function() {
-
-	};
-
-};
