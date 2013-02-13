@@ -36,8 +36,7 @@
 		};
 		
 		self.createRow = function(index, val) {
-			var r=('<div class="ui-block-a">%s</div><div class="ui-block-b">%s</div><div class="ui-block-c">%s</div><div class="ui-block-d">%s</div><div class="ui-block-e">(%s,%s)</div>, index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
-			return r;
+			('<div class="ui-block-a">%s</div><div class="ui-block-b">%s</div><div class="ui-block-c">%s</div><div class="ui-block-d">%s</div><div class="ui-block-e">(%s,%s)</div>, index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 		};
 
 		self.nearLatLon = function() {
