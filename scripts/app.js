@@ -40,12 +40,12 @@
 		
 			var row = '<div class="ui-block-a">%s1</div><div class="ui-block-b">%s2</div><div class="ui-block-c">%s3</div><div class="ui-block-d">%s4</div><div class="ui-block-e">(%s5,%s5)</div>';
 			
-			var row1 = row.replace('%1', index);
-			var row2 = row1.replace('%2', val.city);
-			var row3 = row2.replace('%3', val.state);
-			var row4 = row3.replace('%4', val.zip);
-			var row5 = row4.replace('%5', val.loc.y);
-			var row6 = row5.replace('%6', val.loc.x);
+			var row1 = row.replace('%s1', index);
+			var row2 = row1.replace('%s2', val.city);
+			var row3 = row2.replace('%s3', val.state);
+			var row4 = row3.replace('%s4', val.zip);
+			var row5 = row4.replace('%s5', val.loc.y);
+			var row6 = row5.replace('%s6', val.loc.x);
 			return row6;
 		};
 
