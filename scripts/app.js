@@ -25,9 +25,13 @@
 			
 			$.getJSON("/cities/varina", function(data) {
 				console.log(JSON.stringify(data));
-			//	$.each(data.items, function(i,item) {
-			//		
-			//	});
+				$.each(data.items, function(i,item) {
+					$('#nearList1').html(item.city);
+					$('#nearList2').html(item.state);
+					$('#nearList3').html(item.zip);
+					$('#nearList4').html(item.loc.y);
+					$('#nearList5').html(item.loc.x);
+				});
 			});
 		};
 
@@ -36,11 +40,11 @@
 			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
 				console.log(JSON.stringify(data));
 				$.each(data.items, function(i,item) {
-					$('#nearList1').text(item.city);
-					$('#nearList2').text(item.state);
-					$('#nearList3').text(item.zip);
-					$('#nearList4').text(item.loc.y);
-					$('#nearList5').text(item.loc.x);
+					$('#nearList1').html(item.city);
+					$('#nearList2').html(item.state);
+					$('#nearList3').html(item.zip);
+					$('#nearList4').html(item.loc.y);
+					$('#nearList5').html(item.loc.x);
 				});
 			});
 		};
