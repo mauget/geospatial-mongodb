@@ -26,12 +26,12 @@
 			
 			$.getJSON("/cities/varina", function(data) {
 				//console.log(JSON.stringify(data));
-				var items = '';
+			//	var items = '';
 				$.each(data, function(index, val) {
-					items = items + self.createRow(index, val);
+					 $('#nearList').append(createRow(index, val));
 					console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 				});
-				$('#nearList').html(items);	
+			//	$('#nearList').html(items);	
 			});
 		};
 		
