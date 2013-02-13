@@ -22,8 +22,8 @@
 			
 			$.getJSON("/cities/varina", function(data) {
 				console.log(JSON.stringify(data));
+			alert(data[0].city);
 				var items = jQuery.parseJSON(data);
-			alert(items[0].city);
 				$.each(items, function(i,rec) {
 					$('#nearList1').html(rec.city);
 					$('#nearList2').html(rec.state);
