@@ -28,7 +28,7 @@
 				//console.log(JSON.stringify(data));
 			//	var items = '';
 				$.each(data, function(index, val) {
-					 $('#nearList').append(createRow(index, val));
+					 $('#nearList').append(self.createRow(index, val));
 					console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 				});
 			//	$('#nearList').html(items);	
