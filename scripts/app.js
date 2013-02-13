@@ -24,7 +24,7 @@
 				console.log(JSON.stringify(data));
 				
 				$.each(data, function(index, value) {
-					console.log('index=%s, value=%s', index, value);
+					console.log('index=%s, value=%s', index, value.city);
 				});
 			});
 		};
