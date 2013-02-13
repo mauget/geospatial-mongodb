@@ -23,16 +23,9 @@
 			$.getJSON("/cities/varina", function(data) {
 				console.log(JSON.stringify(data));
 				
-				var items = [];
-
-				$.each(data, function(key, val) {
-					items.push('<li id="' + key + '">' + val + '</li>');
+				$.each(data, function(index, value) {
+					console.log('index=%s, value=%s', index, value);
 				});
-
-				$('<ul/>', {
-					'class': 'my-new-list',
-					html: items.join('')
-				}).appendTo('body');
 			});
 		};
 
