@@ -38,7 +38,7 @@
 		
 		self.createRow = function(index, val) {
 		
-			var row = '<div class="ui-block-a">%s1</div><div class="ui-block-b">%s2</div><div class="ui-block-c">%s3</div><div class="ui-block-d">%s4</div><div class="ui-block-e">(%s5,%s5)</div>';
+			var row = '<div class="ui-block-a">%s1</div><div class="ui-block-b">%s2</div><div class="ui-block-c">%s3</div><div class="ui-block-d">%s4</div><div class="ui-block-e">(%s5,%s6)</div>';
 			
 			var row1 = row.replace('%s1', index);
 			var row2 = row1.replace('%s2', val.city);
