@@ -17,7 +17,7 @@
 				//console.log(JSON.stringify(data));
 				
 				$.each(data, function(index, val) {
-					console.log('%s. %s, %s %s', index, val.city, val.state, val.zip);
+					console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 				});
 			});
 		};
@@ -28,7 +28,7 @@
 				//console.log(JSON.stringify(data));
 				
 				$.each(data, function(index, val) {
-					console.log('%s. %s, %s %s', index, val.city, val.state, val.zip);
+					console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 				});
 			});
 		};
@@ -40,7 +40,7 @@
 				var items = jQuery.parseJSON(data);
 							
 				$.each(data, function(index, val) {
-					console.log('%s. %s, %s %s', index, val.city, val.state, val.zip);
+					console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 				});
 			});
 		};
