@@ -40,13 +40,13 @@
 		
 			var row = '<div class="ui-block-a">%s1</div><div class="ui-block-b">%s2</div><div class="ui-block-c">%s3</div><div class="ui-block-d">%s4</div><div class="ui-block-e">(%s5,%s5)</div>';
 			
-			row = row.replace('%1', index);
-			row = row.replace('%2', val.city);
-			row = row.replace('%3', val.state);
-			row = row.replace('%4', val.zip);
-			row = row.replace('%5', val.loc.y);
-			row = row.replace('%6', val.loc.x);
-			return row;
+			var row1 = row.replace('%1', index);
+			var row2 = row1.replace('%2', val.city);
+			var row3 = row2.replace('%3', val.state);
+			var row4 = row3.replace('%4', val.zip);
+			var row5 = row4.replace('%5', val.loc.y);
+			var row6 = row5.replace('%6', val.loc.x);
+			return row6;
 		};
 
 		self.nearLatLon = function() {
