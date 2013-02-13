@@ -59,6 +59,7 @@ var NodeApp = function() {
 
         //  Local cache for static content.
         self.zcache['index.html'] = fs.readFileSync('./index.html');
+        self.zcache['app.js'] = fs.readFileSync('./scripts/app.js');
 
     }; /* populate cache */
 
@@ -125,7 +126,7 @@ var NodeApp = function() {
 
 		self.routes['/scripts/app.js'] = function(req, res) {
 			res.setHeader('Content-Type', 'text/javascript');
-			res.send(__dirname + '/scripts/app.js');
+			res.send(self.cache_get('app.js') );
 		}; /* scripts */
 
 
