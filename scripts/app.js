@@ -23,8 +23,8 @@
 			$.getJSON("/cities/varina", function(data) {
 				console.log(JSON.stringify(data));
 				
-				$.each(data, function(index, value) {
-					console.log('index=%s, value=%s', index, value.city);
+				$.each(data, function(index, val) {
+					console.log('%s. %s, %s %s', index, val.city, val.state, val.zip);
 				});
 			});
 		};
