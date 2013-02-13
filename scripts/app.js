@@ -14,10 +14,10 @@
 		self.nearZip = function() {
 		    
 			$.getJSON("/near/zip/27526", function(data) {
-				console.log(JSON.stringify(data));
-			//	$.each(data.items, function(i,item) {
-			//		console.log(item);
-			//	});
+				//console.log(JSON.stringify(data));
+				$.each(data.items, function(i,item) {
+					console.log(item.city);
+				});
 			});
 		};
 
@@ -29,8 +29,8 @@
 					$('#nearList1').html(item.city);
 					$('#nearList2').html(item.state);
 					$('#nearList3').html(item.zip);
-					$('#nearList4').html(item.loc.y);
-					$('#nearList5').html(item.loc.x);
+				//	$('#nearList4').html(item.loc.y);
+				//	$('#nearList5').html(item.loc.x);
 				});
 			});
 		};
@@ -43,8 +43,8 @@
 					$('#nearList1').html(item.city);
 					$('#nearList2').html(item.state);
 					$('#nearList3').html(item.zip);
-					$('#nearList4').html(item.loc.y);
-					$('#nearList5').html(item.loc.x);
+				//	$('#nearList4').html(item.loc.y);
+				//	$('#nearList5').html(item.loc.x);
 				});
 			});
 		};
