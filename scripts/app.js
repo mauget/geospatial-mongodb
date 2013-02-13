@@ -14,10 +14,7 @@
 		self.nearZip = function() {
 		    
 			$.getJSON("/near/zip/27526", function(data) {
-				//console.log(JSON.stringify(data));
-				$.each(data.items, function(i,item) {
-					console.log(item.city);
-				});
+				console.log(JSON.stringify(data));
 			});
 		};
 
@@ -25,12 +22,14 @@
 			
 			$.getJSON("/cities/varina", function(data) {
 				console.log(JSON.stringify(data));
-				$.each(data.items, function(i,item) {
-					$('#nearList1').html(item.city);
-					$('#nearList2').html(item.state);
-					$('#nearList3').html(item.zip);
-				//	$('#nearList4').html(item.loc.y);
-				//	$('#nearList5').html(item.loc.x);
+				var items = jQuery.parseJSON(data);
+			
+				$.each(items, function(i,rec) {
+					$('#nearList1').html(rec.city);
+					$('#nearList2').html(rec.state);
+					$('#nearList3').html(rec.zip);
+					$('#nearList4').html(rec.loc.y);
+					$('#nearList5').html(rec.loc.x);
 				});
 			});
 		};
@@ -39,12 +38,14 @@
 			
 			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
 				console.log(JSON.stringify(data));
-				$.each(data.items, function(i,item) {
-					$('#nearList1').html(item.city);
-					$('#nearList2').html(item.state);
-					$('#nearList3').html(item.zip);
-				//	$('#nearList4').html(item.loc.y);
-				//	$('#nearList5').html(item.loc.x);
+				var items = jQuery.parseJSON(data);
+			
+				$.each(items, function(i,rec) {
+					$('#nearList1').html(rec.city);
+					$('#nearList2').html(rec.state);
+					$('#nearList3').html(rec.zip);
+					$('#nearList4').html(rec.loc.y);
+					$('#nearList5').html(rec.loc.x);
 				});
 			});
 		};
