@@ -9,55 +9,6 @@
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
 	<script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 	<script src="/scripts/app.js"></script>
-	<!--
-	<script>
-	
-//	$(document).ready(function() {
-//	  // Handler for .ready() called.
-//	});
-		
-	APP = new function() {
-	
-		var self = this;
-
-		self.helloMauget = function () {
-			alert('Hello');
-		};
-
-		self.nearZip = function() {
-		    
-			$.getJSON("/near/zip/27526", function(data) {
-				console.log(JSON.stringify(data));
-			//	$.each(data.items, function(i,item) {
-			//		console.log(item);
-			//	});
-			});
-		};
-
-		self.citiesVarina = function() {
-			
-			$.getJSON("/cities/varina", function(data) {
-				console.log(JSON.stringify(data));
-			//	$.each(data.items, function(i,item) {
-			//		
-			//	});
-			});
-		};
-
-		self.nearLatLon = function() {
-			
-			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
-				console.log(JSON.stringify(data));
-			//	$.each(data.items, function(i,item) {
-			//		console.log(item);
-			//	});
-			});
-		};
-
-	};
-		
-	</script>
--->
 
 </head> 
 
@@ -79,11 +30,11 @@
 		<button onclick="APP.nearLatLon();">nearLatLon</button>
 		
 		<div id="nearList" class="class=ui-grid-d">
-			<div class="ui-block-a"></div>
-			<div class="ui-block-b"></div>
-			<div class="ui-block-c"></div>
-			<div class="ui-block-d"></div>
-			<div class="ui-block-e"></div>
+			<div class="ui-block-a">a</div>
+			<div class="ui-block-b">b</div>
+			<div class="ui-block-c">c</div>
+			<div class="ui-block-d">d</div>
+			<div class="ui-block-e">e</div>
 		</div>
 
 	</div><!-- /content -->
