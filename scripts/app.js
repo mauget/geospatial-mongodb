@@ -22,15 +22,17 @@
 			
 			$.getJSON("/cities/varina", function(data) {
 				console.log(JSON.stringify(data));
-			alert(data[0]);
-				var items = jQuery.parseJSON(data);
-				$.each(items, function(i,rec) {
-					$('#nearList1').html(rec.city);
-					$('#nearList2').html(rec.state);
-					$('#nearList3').html(rec.zip);
-					$('#nearList4').html(rec.loc.y);
-					$('#nearList5').html(rec.loc.x);
+				
+				var items = [];
+
+				$.each(data, function(key, val) {
+					items.push('<li id="' + key + '">' + val + '</li>');
 				});
+
+				$('<ul/>', {
+					'class': 'my-new-list',
+					html: items.join('')
+				}).appendTo('body');
 			});
 		};
 
