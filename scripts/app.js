@@ -36,7 +36,7 @@
 					$(row).appendTo('#nearList');
 					console.log(row);
 				});
-				$('#nearList').trigger('create');
+			//	$('#nearList').trigger('create');
 			});
 		};
 		
@@ -62,7 +62,7 @@
 					$(row).appendTo('#nearList');
 					console.log(row);
 				});
-				$('#nearList').trigger('create');
+			////	$('#nearList').trigger('create');
 			});
 		};
 
