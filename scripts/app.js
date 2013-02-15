@@ -40,14 +40,12 @@
 		
 		self.createRow = function(index, val) {
 		
-			var row = '<div class="ui-block-a">%s1</div><div class="ui-block-b">%s2</div><div class="ui-block-c">%s3</div><div class="ui-block-d">%s4</div>';
+			var row = '<div class="ui-block-a">%s1</div><div class="ui-block-b">%s2</div><div class="ui-block-c">%s3</div>;
 			
-			row = row.replace('%s1', Number(index) + 1);
-			row = row.replace('%s2', val.city);
-			row = row.replace('%s3', val.state);
-			row = row.replace('%s4', val.zip);
-		//	var row5 = row4.replace('%s5', val.loc.y);
-		//	var row6 = row5.replace('%s6', val.loc.x);
+		//	row = row.replace('%s1', Number(index) + 1);
+			row = row.replace('%s1', val.city);
+			row = row.replace('%s2', val.state);
+			row = row.replace('%s3', val.zip);
 			return row;
 		};
 
