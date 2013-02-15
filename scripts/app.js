@@ -40,7 +40,7 @@
 		
 		self.createRow = function(index, val) {
 		
-			var row = '<div class="ui-block-a">%s0</div><div class="ui-block-b">%s1</div><div class="ui-block-c">%s2&nbsp;&nbsp;%s3</div>';
+			var row = '<div class="ui-block-a">%s0&nbsp;%s1</div><div class="ui-block-b">%s2&nbsp;&nbsp;%s3</div>';
 			
 			row = row.replace('%s0', Number(index) + 1);
 			row = row.replace('%s1', val.city);
