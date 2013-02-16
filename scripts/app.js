@@ -39,11 +39,11 @@
 			var path = '../templates/location.jade';
 			var str = require('fs').readFileSync(path, 'utf8');
 			var fn = jade.compile(str, { filename: path, pretty: true });
-			
+
 			var row = fn({ seq: Number(index)+1, city:val.city, state:val.state, zip:val.zip });
 			
 		//	var row = '<div class="ui-block-a">%s0&nbsp;%s1</div><div class="ui-block-b">%s2&nbsp;&nbsp;%s3</div>';
-			
+
 		//	row = row.replace('%s0', Number(index) + 1);
 		//	row = row.replace('%s1', val.city);
 		//	row = row.replace('%s2', val.state);
