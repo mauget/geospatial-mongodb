@@ -1,11 +1,10 @@
 #!/bin/env node
 
-//  OpenShift sample Node application
+//  OpenShift Geospatial Node application
 var express = require('express');
 var fs      = require('fs');
 var jade    = require('jade');
 var mongodb = require('mongodb');
-
 
 /**
  *  Define the nodejs application.
