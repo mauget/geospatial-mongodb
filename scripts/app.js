@@ -38,9 +38,9 @@
 				//console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 		}
 		
-		self.createRow = function(index, val) {
-			
-			var row = '<div class="ui-block-a">%s0&nbsp;%s1</div><div class="ui-block-b">%s2&nbsp;&nbsp;%s3</div>';
+		self.createRow = function(index, val) {	
+			//var row = '<div class="ui-block-a">%s0&nbsp;%s1</div><div class="ui-block-b">%s2&nbsp;&nbsp;%s3</div>';
+			var row = '<a href="#">%s0.&nbsp;%s1&nbsp;%s2&nbsp;&nbsp;%s3</a>';
 			row = row.replace('%s0', Number(index) + 1)
 				.replace('%s1', val.city)
 				.replace('%s2', val.state)
