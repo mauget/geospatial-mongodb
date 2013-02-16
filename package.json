@@ -6,12 +6,13 @@
     "OpenShift",
     "Node.js",
     "application",
+	"jade",
     "openshift"
   ],
   "author": {
     "name": "L.E. Mauget",
     "email": "mauget@mindspring.com",
-    "url":  "http://openshift.redhat.com/"
+    "url":  "https://geospatial-mauget.rhcloud.com/"
   },
   "homepage": "http://openshift.redhat.com/",
   "repository": {
@@ -27,7 +28,8 @@
   
   "dependencies": {
       "mongodb" : "> 1.1.10" ,
-	  "express" : ">3.0.0rc4"
+	  "express" : ">3.0.0rc4",
+	  "jade"    : ">0.2.27"
   },
   "devDependencies": {},
   "bundleDependencies": [],
