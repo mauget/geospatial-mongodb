@@ -1,9 +1,5 @@
 // Client-side scripts:
 
-window.Jade = require('jade');
-JadeTemplates = {};
-JadeTemplates["locations"] = Jade.compile(".ui-block-a\n\t#{seq}&nbsp;#{city}\nui-block-b\n\t#{state}&nbsp;&nbsp;#{zip}\n");
-
 	APP = new function() {
 	
 		var self = this;
@@ -40,12 +36,6 @@ JadeTemplates["locations"] = Jade.compile(".ui-block-a\n\t#{seq}&nbsp;#{city}\nu
 		};
 		
 		self.createRow = function(index, val) {
-		
-		//	var path = '../templates/location.jade';
-		//	var str = require('fs').readFileSync(path, 'utf8');
-		//	var fn = jade.compile(str, { filename: path, pretty: true });
-
-		//	var row = fn({ seq: Number(index)+1, city:val.city, state:val.state, zip:val.zip });
 			
 			var row = '<div class="ui-block-a">%s0&nbsp;%s1</div><div class="ui-block-b">%s2&nbsp;&nbsp;%s3</div>';
 
