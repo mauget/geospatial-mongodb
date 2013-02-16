@@ -13,7 +13,7 @@
 				//console.log(JSON.stringify(data));
 				$('#nearList').html('');
 				$.each(data, function(index, val) {self.renderRow(index, val);});
-				$('#nearListContent').trigger('create');
+				$('#nearList').trigger('create');
 			});
 		};
 
@@ -21,7 +21,7 @@
 			$.getJSON("/cities/varina", function(data) {
 				$('#nearList').html('');	
 				$.each(data, function(index, val) {self.renderRow(index, val);});
-				$('#nearListContent').trigger('create');
+				$('#nearList').trigger('create');
 			});
 		};
 		
@@ -29,7 +29,7 @@
 			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
 				$('#nearList').html('');	
 				$.each(data, function(index, val) {self.renderRow(index, val);});
-				$('#nearListContent').trigger('create');
+				$('#nearList').trigger('create');
 			});
 		};
 
@@ -42,8 +42,7 @@
 		}
 		
 		self.createRow = function(index, val) {	
-			//var row = '<div class="ui-block-a">%s0&nbsp;%s1</div><div class="ui-block-b">%s2&nbsp;&nbsp;%s3</div>';
-			var row = '<li><a href="." data-role="button">%s0.&nbsp;%s1&nbsp;%s2&nbsp;&nbsp;%s3</a><li>';
+			var row = '<li><a href=".">%s0.&nbsp;%s1&nbsp;%s2&nbsp;&nbsp;%s3</a><li>';
 			row = row.replace('%s0', Number(index) + 1)
 				.replace('%s1', val.city)
 				.replace('%s2', val.state)
