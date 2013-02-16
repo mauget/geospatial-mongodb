@@ -33,7 +33,7 @@
 			
 			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
 				$('#nearList').html('');	
-				$.each(data, self.renderRow(index, val) {
+				$.each(data, function(index, val) {
 					self.renderRow(index, val);
 				});
 			});
