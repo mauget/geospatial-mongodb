@@ -12,13 +12,9 @@
 		    
 			$.getJSON("/near/zip/27526", function(data) {
 				//console.log(JSON.stringify(data));
-				
 				$('#nearList').html('');
 				$.each(data, function(index, val) {
-					//console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
-					var row = self.createRow(index, val);
-					$(row).appendTo('#nearList');
-					console.log(row);
+					self.renderRow(index, val);
 				});
 			});
 		};
@@ -28,9 +24,7 @@
 			$.getJSON("/cities/varina", function(data) {
 				$('#nearList').html('');	
 				$.each(data, function(index, val) {
-					var row = self.createRow(index, val);
-					$(row).appendTo('#nearList');
-					console.log(row);
+					self.renderRow(index, val);
 				});
 			});
 		};
@@ -39,7 +33,9 @@
 			
 			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
 				$('#nearList').html('');	
-				$.each(data, self.renderRow(index, val));
+				$.each(data, self.renderRow(index, val) {
+					self.renderRow(index, val);
+				});
 			});
 		};
 
@@ -48,6 +44,7 @@
 				var row = self.createRow(index, val);
 				$(row).appendTo('#nearList');
 				console.log(row);
+				//console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 		}
 		
 		self.createRow = function(index, val) {
