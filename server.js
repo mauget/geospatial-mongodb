@@ -29,7 +29,7 @@ var NodeApp = function() {
 		self.dbServer = new mongodb.Server(process.env.OPENSHIFT_MONGODB_DB_HOST,
 	                              parseInt(process.env.OPENSHIFT_MONGODB_DB_PORT));
 
-		self.db = new mongodb.Db(process.env.OPENSHIFT_APP_NAME, self.dbServer, {auto_reconnect: true});
+		self.db = new mongodb.Db(process.env.OPENSHIFT_APP_NAME, self.dbServer, {auto_reconnect: true, safe: false});
 
 		self.dbUser = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
 		self.dbPass = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
@@ -219,8 +219,6 @@ var NodeApp = function() {
         // Create the express server and routes.
         self.initializeServer();
 
-
-		var jade = require('jade');
 		console.log(jade);
 		
     }; /* initialize app */
