@@ -1,7 +1,6 @@
 	
-//	$(document).ready(function() {
-//	  // Handler for .ready() called.
-//	});
+var jade = require('jade');	
+	
 		
 	APP = new function() {
 	
