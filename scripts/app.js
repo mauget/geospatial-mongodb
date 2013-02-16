@@ -36,7 +36,7 @@
 		
 		self.createRow = function(index, val) {
 		
-			var path = __dirname + '/templates/location.jade';
+			var path = '../templates/location.jade';
 			var str = fs.readFileSync(path, 'utf8');
 			var fn = jade.compile(str, { filename: path, pretty: true });
 			
