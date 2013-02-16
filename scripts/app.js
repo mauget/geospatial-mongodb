@@ -43,7 +43,7 @@
 		
 		self.createRow = function(index, val) {	
 			//var row = '<div class="ui-block-a">%s0&nbsp;%s1</div><div class="ui-block-b">%s2&nbsp;&nbsp;%s3</div>';
-			var row = '<a href="." data-role="button">%s0.&nbsp;%s1&nbsp;%s2&nbsp;&nbsp;%s3</a>';
+			var row = '<li><a href="." data-role="button">%s0.&nbsp;%s1&nbsp;%s2&nbsp;&nbsp;%s3</a><li>';
 			row = row.replace('%s0', Number(index) + 1)
 				.replace('%s1', val.city)
 				.replace('%s2', val.state)
