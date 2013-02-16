@@ -1,8 +1,3 @@
-	
-var jade = require('jade');	
-var fn = jade.compile('string of jade', options);
-fn('');
-
 		
 	APP = new function() {
 	
