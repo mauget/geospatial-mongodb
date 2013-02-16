@@ -3,7 +3,6 @@
 //  OpenShift Geospatial Node application
 var express = require('express');
 var fs      = require('fs');
-var jade    = require('jade');
 var mongodb = require('mongodb');
 
 /**

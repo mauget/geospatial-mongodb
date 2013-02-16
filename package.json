@@ -6,7 +6,6 @@
     "OpenShift",
     "Node.js",
     "application",
-	"jade",
     "openshift"
   ],
   "author": {
@@ -28,8 +27,7 @@
   
   "dependencies": {
       "mongodb" : "> 1.1.10" ,
-	  "express" : ">3.0.0rc4",
-	  "jade"    : ">0.2.27"
+	  "express" : ">3.0.0rc4"
   },
   "devDependencies": {},
   "bundleDependencies": [],
