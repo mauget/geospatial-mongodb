@@ -1,6 +1,3 @@
-
-var jade = require('jade');
-console.log(jade);
 		
 	APP = new function() {
 	

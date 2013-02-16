@@ -6,6 +6,11 @@ var fs      = require('fs');
 var jade    = require('jade');
 var mongodb = require('mongodb');
 
+
+var jade = require('jade');
+console.log(jade);
+
+
 /**
  *  Define the nodejs application.
  */
