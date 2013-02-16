@@ -7,10 +7,6 @@ var jade    = require('jade');
 var mongodb = require('mongodb');
 
 
-var jade = require('jade');
-console.log(jade);
-
-
 /**
  *  Define the nodejs application.
  */
@@ -222,6 +218,11 @@ var NodeApp = function() {
 
         // Create the express server and routes.
         self.initializeServer();
+
+
+		var jade = require('jade');
+		console.log(jade);
+		
     }; /* initialize app */
 
 
