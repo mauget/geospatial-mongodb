@@ -219,7 +219,7 @@ var NodeApp = function() {
         // Create the express server and routes.
         self.initializeServer();
 
-		console.log(jade);
+	//	console.log(jade);
 		
     }; /* initialize app */
 
