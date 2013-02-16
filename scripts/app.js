@@ -37,7 +37,7 @@
 		self.createRow = function(index, val) {
 		
 			var path = '../templates/location.jade';
-			var str = fs.readFileSync(path, 'utf8');
+			var str = require('fs').readFileSync(path, 'utf8');
 			var fn = jade.compile(str, { filename: path, pretty: true });
 			
 			var row = fn({ seq: Number(index)+1, city:val.city, state:val.state, zip:val.zip });
