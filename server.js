@@ -61,6 +61,7 @@ var NodeApp = function() {
         //  Local cache for static content.
         self.zcache['index.html'] = fs.readFileSync('./index.html');
         self.zcache['app.js'] = fs.readFileSync('./scripts/app.js');
+        self.zcache['location.jade'] = fs.readFileSync('./templates/location.jade');
 
     }; /* populate cache */
 
