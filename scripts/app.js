@@ -8,34 +8,25 @@
 			alert('Hello');
 		};
 
-		self.nearZip = function() {
-		    
+		self.nearZip = function() {   
 			$.getJSON("/near/zip/27526", function(data) {
 				//console.log(JSON.stringify(data));
 				$('#nearList').html('');
-				$.each(data, function(index, val) {
-					self.renderRow(index, val);
-				});
+				$.each(data, function(index, val) {self.renderRow(index, val);});
 			});
 		};
 
-		self.citiesVarina = function() {
-			
+		self.citiesVarina = function() {	
 			$.getJSON("/cities/varina", function(data) {
 				$('#nearList').html('');	
-				$.each(data, function(index, val) {
-					self.renderRow(index, val);
-				});
+				$.each(data, function(index, val) {self.renderRow(index, val);});
 			});
 		};
 		
-		self.nearLatLon = function() {
-			
+		self.nearLatLon = function() {	
 			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
 				$('#nearList').html('');	
-				$.each(data, function(index, val) {
-					self.renderRow(index, val);
-				});
+				$.each(data, function(index, val) {self.renderRow(index, val);});
 			});
 		};
 
