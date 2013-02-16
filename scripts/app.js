@@ -1,5 +1,9 @@
 // Client-side scripts:
 
+window.Jade = require('jade');
+JadeTemplates = {};
+JadeTemplates["locations"] = Jade.compile(".ui-block-a\n\t#{seq}&nbsp;#{city}\nui-block-b\n\t#{state}&nbsp;&nbsp;#{zip}\n");
+
 	APP = new function() {
 	
 		var self = this;
