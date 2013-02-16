@@ -39,10 +39,10 @@
 			
 			var row = '<div class="ui-block-a">%s0&nbsp;%s1</div><div class="ui-block-b">%s2&nbsp;&nbsp;%s3</div>';
 
-			row = row.replace('%s0', Number(index) + 1);
-			row = row.replace('%s1', val.city);
-			row = row.replace('%s2', val.state);
-			row = row.replace('%s3', val.zip);
+			row.replace('%s0', Number(index) + 1)
+				.replace('%s1', val.city)
+				.replace('%s2', val.state)
+				.replace('%s3', val.zip);
 			return row;
 		};
 
