@@ -6,7 +6,7 @@ $(document).ready(function() {
 	
 		var txtIn = event.target.val();
 		console.log(txtIn);
-		$(event.target.html('');
+		event.target.html('');
 		
 		if (txtIn.length > 1){
 		
