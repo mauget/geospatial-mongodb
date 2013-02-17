@@ -7,13 +7,14 @@ $(document).ready(function() {
 		var txtIn = $('#citySearch').val();
 		txtIn = APP.trim(txtIn);
 		console.log(txtIn);
-				
+		
+		$('#cityList').html('');	
 		if (txtIn.length > 0){
 		
 			// REST: search
 			$.getJSON('/cities/' + txtIn, function(data) {
 				APP.renderList('#cityList', data);
-			});			
+			});	
 		}
 	});
 
@@ -45,8 +46,7 @@ APP = new function() {
 		});
 	};
 		
-	self.renderList = function(listSelector, data) {	
-		//$(listSelector).html('');
+	self.renderList = function(listSelector, data) {
 		var markup = [];
 		$.each(data, function(index, val) {self.renderRow(index, val, markup);});
 		$(listSelector).html(markup);
