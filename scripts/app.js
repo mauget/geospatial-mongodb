@@ -4,9 +4,9 @@ $(document).ready(function() {
 
 	$('#citySearch').keyup(function(event) {
 	
-		var txtIn = event.target.val();
+		var txtIn = $('#citySearch').val();
 		console.log(txtIn);
-		event.target.html('');
+		$('#citySearch').html('');
 		
 		if (txtIn.length > 1){
 		
