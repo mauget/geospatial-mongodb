@@ -5,10 +5,12 @@ $(document).ready(function() {
 	$('#citySearch').keyup(function(event) {
 	
 		var txtIn = $('#citySearch').val();
+		txtIn = APP.trime(txtIn);
 		console.log(txtIn);
+		
 		$('#citySearch').html('');
 		
-		if (txtIn.length > 1){
+		if (txtIn.length > 0){
 		
 			// REST: search
 			$.getJSON('/cities/' + txtIn, function(data) {
@@ -22,12 +24,16 @@ $(document).ready(function() {
 APP = new function() {
 	
 	var self = this;
+	
+	self.trim = function(str) {
+		return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+	}
 		
-		self.nearZip = function() {   
-			$.getJSON("/near/zip/27526", function(data) {
-				self.renderList('#nearList', data);
-			});
-		};
+	self.nearZip = function() {   
+		$.getJSON("/near/zip/27526", function(data) {
+			self.renderList('#nearList', data);
+		});
+	};
 
 		self.citiesVarina = function() {	
 			$.getJSON("/cities/varina", function(data) {
