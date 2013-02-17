@@ -30,22 +30,20 @@
 				$('#nearList').html('');	
 				$.each(data, function(index, val) {self.renderRow(index, val);});
 				$('#nearList').listview("refresh");
+				console.log($('#nearList').html());
 			});
 		};
-
 		
 		self.renderRow = function(index, val) {
 				var row = self.createRow(index, val);
-				$('#nearList').append(row);
-				console.log(row);
+				$(row).appendTo('#nearList');
+				//console.log(row);
 				//console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 		}
 		
 		self.createRow = function(index, val) {	
 			var row = '<li><a href=".">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a><li>';
-			return row.replace('%s1', val.city)
-				.replace('%s2', val.state)
-				.replace('%s3', val.zip);
+			return row.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip);
 		};
 
 	};
