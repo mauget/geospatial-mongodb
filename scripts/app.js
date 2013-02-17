@@ -17,6 +17,16 @@ $(document).ready(function() {
 			});	
 		}
 	});
+	
+	$('zipVal').click(function(event){
+		// Grab 'zipSel' attribute value from clickee
+		val = '27526'; // temp hardcoded value
+		
+		// REST: search
+		$.getJSON('/cities/' + val, function(data) {
+			APP.renderList('#cityList', data);
+		});
+	});
 
 });
 
