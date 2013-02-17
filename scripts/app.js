@@ -28,8 +28,8 @@
 		
 		self.renderList = function(listSelector, data) {
 			var markup = [''];
-			$.each(data, function(index, val) {self.renderRow(index, val, markup);});
-			$(listSelector).html(markup);
+		//	$.each(data, function(index, val) {self.renderRow(index, val, markup);});
+			$(listSelector).html($.each(data, function(index, val) {self.renderRow(index, val, markup);}));
 			$(listSelector).listview('refresh');
 		}
 		
