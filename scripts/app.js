@@ -26,7 +26,7 @@
 			});
 		};
 		
-		self.renderList(elementId, data) {
+		self.renderList = function(elementId, data) {
 			var markup = [];
 			$.each(data, function(index, val) {self.renderRow(index, val, markup);});
 			$(elementId).html(markup);
