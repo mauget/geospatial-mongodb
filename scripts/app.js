@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$('#citySearch').keyup(function(event) {
 	
 		var txtIn = $('#citySearch').val();
-		txtIn = APP.trime(txtIn);
+		txtIn = APP.trim(txtIn);
 		console.log(txtIn);
 		
 		$('#citySearch').html('');
