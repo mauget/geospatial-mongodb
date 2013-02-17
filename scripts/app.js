@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-	$('#citySearch').keyUp(function(event){
+	$('#citySearch').keyup(function(event){
 		var txtIn = $('#citySearch').val();
 		console.log(txtIn);
 	});
