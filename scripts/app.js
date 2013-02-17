@@ -8,7 +8,7 @@ $(document).ready(function() {
 		if (txtIn.length >= 3){
 			// Search
 			$.getJSON("/cities/varina", function(data) {
-				self.renderList('#cityList', data);
+				APP.renderList('#cityList', data);
 			});
 		}
 	});
