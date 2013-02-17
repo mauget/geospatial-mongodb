@@ -26,11 +26,11 @@
 			});
 		};
 		
-		self.renderList = function(elementId, data) {
+		self.renderList = function(listSelector, data) {
 			var markup = [];
 			$.each(data, function(index, val) {self.renderRow(index, val, markup);});
-			$(elementId).html(markup);
-			$(elementId).listview("refresh");
+			$(listSelector).html(markup);
+			$(listSelector).listview('refresh');
 		}
 		
 		self.renderRow = function(index, val, markup) {
