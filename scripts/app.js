@@ -7,9 +7,11 @@ $(document).ready(function() {
 		console.log(txtIn);
 		if (txtIn.length >= 3){
 			// Search
-			$.getJSON("/cities/varina", function(data) {
+			$.getJSON("/cities/" + txtIn, function(data) {
 				APP.renderList('#cityList', data);
 			});
+		} else {
+			$('#citySearch').html('');
 		}
 	});
 
