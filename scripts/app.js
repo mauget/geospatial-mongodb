@@ -3,27 +3,23 @@
 $(document).ready(function() {
 
 	$('#citySearch').keyup(function(event){
-		var txtIn = $('#citySearch').val();
+		var txtIn = event.currentTarget.val();
 		console.log(txtIn);
-		if (txtIn.length >= 3){
-			// Search
-			$.getJSON("/cities/" + txtIn, function(data) {
+		if (txtIn.length > 2){
+			// REST: search
+			$.getJSON('/cities/' + txtIn, function(data) {
 				APP.renderList('#cityList', data);
 			});
 		} else {
-			$('#citySearch').html('');
+			event.currentTarget.html('');
 		}
 	});
 
 });
 
-	APP = new function() {
+APP = new function() {
 	
-		var self = this;
-
-		self.helloMauget = function () {
-			alert('Hello');
-		};
+	var self = this;
 		
 		self.nearZip = function() {   
 			$.getJSON("/near/zip/27526", function(data) {
@@ -62,4 +58,4 @@ $(document).ready(function() {
 			return row.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip);
 		};
 
-	};
+};
