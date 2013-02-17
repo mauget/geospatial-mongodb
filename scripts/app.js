@@ -42,12 +42,11 @@
 		}
 		
 		self.createRow = function(index, val) {	
-			var row = '<li><a href=".">%s0.&nbsp;%s1&nbsp;%s2&nbsp;&nbsp;%s3</a><li>';
-			row = row.replace('%s0', Number(index) + 1)
-				.replace('%s1', val.city)
+			var row = '<li><a href=".">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a><li>';
+			var result = row.replace('%s1', val.city)
 				.replace('%s2', val.state)
 				.replace('%s3', val.zip);
-			return row;
+			return result;
 		};
 
 	};
