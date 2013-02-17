@@ -27,7 +27,7 @@
 		};
 		
 		self.renderList = function(listSelector, data) {
-			var markup = [];
+			var markup = [''];
 			$.each(data, function(index, val) {self.renderRow(index, val, markup);});
 			$(listSelector).html(markup);
 			$(listSelector).listview('refresh');
@@ -35,7 +35,7 @@
 		
 		self.renderRow = function(index, val, markup) {
 				var row = self.createRow(index, val);
-				markup.push(row);
+				markup[0] = markup[0] + row;
 				//console.log(row);
 				//console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 		}
