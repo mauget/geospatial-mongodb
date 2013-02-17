@@ -2,16 +2,18 @@
 
 $(document).ready(function() {
 
-	$('#citySearch').keyup(function(event){
+	$('#citySearch').keyup(function(event) {
+	
 		var txtIn = event.target.val();
 		console.log(txtIn);
-		if (txtIn.length > 2){
+		$(event.target.html('');
+		
+		if (txtIn.length > 1){
+		
 			// REST: search
 			$.getJSON('/cities/' + txtIn, function(data) {
 				APP.renderList('#cityList', data);
-			});
-		} else {
-			$(event.target.html('');
+			});			
 		}
 	});
 
