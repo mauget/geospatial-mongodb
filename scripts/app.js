@@ -12,8 +12,7 @@
 			$.getJSON("/near/zip/27526", function(data) {
 				var markup = [];
 				$.each(data, function(index, val) {self.renderRow(index, val, markup);});
-				$('#nearList').html('');
-				$('#nearList').append(markup);
+				$('#nearList').html(markup);
 				$('#nearList').listview("refresh");
 			});
 		};
@@ -22,8 +21,7 @@
 			$.getJSON("/cities/varina", function(data) {
 				var markup = [];
 				$.each(data, function(index, val) {self.renderRow(index, val, markup);});
-				$('#nearList').html('');
-				$('#nearList').append(markup);
+				$('#nearList').html(markup);
 				$('#nearList').listview("refresh");
 			});
 		};
@@ -33,7 +31,6 @@
 				var markup = [];
 				$.each(data, function(index, val) {self.renderRow(index, val, markup);});
 				$('#nearList').html(markup);
-			//	$('#nearList').append(markup);
 				$('#nearList').listview("refresh");
 			});
 		};
