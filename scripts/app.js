@@ -7,6 +7,11 @@
 		self.helloMauget = function () {
 			alert('Hello');
 		};
+		
+		self.citySearch = function(id) {
+			var txtIn = $(id).text();
+			console.log(txtIn);
+		};
 
 		self.nearZip = function() {   
 			$.getJSON("/near/zip/27526", function(data) {

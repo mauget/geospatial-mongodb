@@ -25,8 +25,12 @@
 	<div data-role="content" >	
 		<h2>One</h2>
 		<button onclick="APP.helloMauget();">Click Me</button>
-		<label for="citySearch">Partial City:</label>
-		<input type="text" name="citySearch" id="citySearch" value=""  />
+		<label for="citySearch">Type partial city name:</label>
+		<input type="text" onClick="APP.citySearch('#citySearch');" name="citySearch" id="citySearch" value=""  />
+			<div class="content-primary">	
+				<ol data-role="listview"  data-inset="true" id="cityList">
+				</ol>
+			</div>
 		<button onclick="APP.nearZip();">nearZip</button>
 		<button onclick="APP.citiesVarina();">citiesVarina</button>
 		<button onclick="APP.nearLatLon();">nearLatLon</button>
