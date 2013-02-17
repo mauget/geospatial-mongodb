@@ -61,8 +61,8 @@ APP = new function() {
 	}
 		
 	self.createRow = function(index, val) {	
-		var row = '<li><a href="." class="zipSelection" zip="%s3">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a></li>';
-		return row.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip);
+		var row = '<li><a href="." class="zipVal" zip="%s4">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a></li>';
+		return row.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip).replace('%s4', val.zip);
 	};
 
 };
