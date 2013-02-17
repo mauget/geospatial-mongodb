@@ -3,7 +3,7 @@
 $(document).ready(function() {
 
 	$('#citySearch').keyup(function(event){
-		var txtIn = event.currentTarget.val();
+		var txtIn = $('#citySearch').val();
 		console.log(txtIn);
 		if (txtIn.length > 2){
 			// REST: search
@@ -11,7 +11,7 @@ $(document).ready(function() {
 				APP.renderList('#cityList', data);
 			});
 		} else {
-			event.currentTarget.html('');
+			$('#citySearch').html('');
 		}
 	});
 
