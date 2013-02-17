@@ -1,5 +1,14 @@
 // Client-side scripts:
 
+$(document).ready(function() {
+
+	$('#citySearch').keyUp(function(event){
+		var txtIn = $('#citySearch').val();
+		console.log(txtIn);
+	});
+
+});
+
 	APP = new function() {
 	
 		var self = this;
@@ -8,11 +17,6 @@
 			alert('Hello');
 		};
 		
-		self.citySearch = function(id) {
-			var txtIn = $(id).text();
-			console.log(txtIn);
-		};
-
 		self.nearZip = function() {   
 			$.getJSON("/near/zip/27526", function(data) {
 				self.renderList('#nearList', data);
