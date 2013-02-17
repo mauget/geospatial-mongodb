@@ -10,7 +10,7 @@
 
 		self.nearZip = function() {   
 			$.getJSON("/near/zip/27526", function(data) {
-				var markup = '';
+				var markup = [];
 				$.each(data, function(index, val) {self.renderRow(index, val, markup);});
 				$('#nearList').html('');
 				$('#nearList').append(markup);
@@ -20,7 +20,7 @@
 
 		self.citiesVarina = function() {	
 			$.getJSON("/cities/varina", function(data) {
-				var markup = '';
+				var markup = [];
 				$.each(data, function(index, val) {self.renderRow(index, val, markup);});
 				$('#nearList').html('');
 				$('#nearList').append(markup);
@@ -30,17 +30,17 @@
 		
 		self.nearLatLon = function() {	
 			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {	
-				var markup = '';
+				var markup = [];
 				$.each(data, function(index, val) {self.renderRow(index, val, markup);});
-				$('#nearList').html('');
-				$('#nearList').append(markup);
+				$('#nearList').html(markup);
+			//	$('#nearList').append(markup);
 				$('#nearList').listview("refresh");
 			});
 		};
 		
 		self.renderRow = function(index, val, markup) {
 				var row = self.createRow(index, val);
-				markup = markup + row;
+				markup.push(row);
 				//$(row).appendTo('#nearList');
 				//console.log(row);
 				//console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
