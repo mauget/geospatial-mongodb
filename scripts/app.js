@@ -13,7 +13,7 @@
 				//console.log(JSON.stringify(data));
 				$('#nearList').html('');
 				$.each(data, function(index, val) {self.renderRow(index, val);});
-				$('#nearList').trigger('create');
+				$('#nearList').listview("refresh");
 			});
 		};
 
@@ -21,7 +21,7 @@
 			$.getJSON("/cities/varina", function(data) {
 				$('#nearList').html('');	
 				$.each(data, function(index, val) {self.renderRow(index, val);});
-				$('#nearList').trigger('create');
+				$('#nearList').listview("refresh");
 			});
 		};
 		
@@ -29,7 +29,7 @@
 			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
 				$('#nearList').html('');	
 				$.each(data, function(index, val) {self.renderRow(index, val);});
-			//	$('#nearList').trigger('create');
+				$('#nearList').listview("refresh");
 			});
 		};
 
