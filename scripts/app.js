@@ -29,8 +29,8 @@
 			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {
 				$('#nearList').html('');	
 				$.each(data, function(index, val) {self.renderRow(index, val);});
-				$('#nearList').listview("refresh");
 				console.log($('#nearList').html());
+				$('#nearList').listview("refresh");
 			});
 		};
 		
