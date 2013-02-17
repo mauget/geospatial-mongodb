@@ -43,7 +43,7 @@
 		
 		self.createRow = function(index, val) {	
 			var row = '<li><a href=".">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a><li>';
-			return row.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip);
+			return row;//.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip);
 		};
 
 	};
