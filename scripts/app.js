@@ -19,6 +19,7 @@ $(document).ready(function() {
 	});
 	
 	$('zipVal').click(function(event){
+		console.log('clicked a zipVal);
 		// Grab 'zipSel' attribute value from clickee
 		val = '27526'; // temp hardcoded value
 		
