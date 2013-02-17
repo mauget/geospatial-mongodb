@@ -8,7 +8,7 @@ $(document).ready(function() {
 		txtIn = APP.trim(txtIn);
 		console.log(txtIn);
 		
-		$('#citySearch').html('');
+		$('#cityList').html('');
 		
 		if (txtIn.length > 0){
 		
