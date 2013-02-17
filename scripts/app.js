@@ -5,6 +5,12 @@ $(document).ready(function() {
 	$('#citySearch').keyup(function(event){
 		var txtIn = $('#citySearch').val();
 		console.log(txtIn);
+		if (txtIn.length() >= 3){
+			// Search
+			$.getJSON("/cities/varina", function(data) {
+				self.renderList('#cityList', data);
+			});
+		}
 	});
 
 });
