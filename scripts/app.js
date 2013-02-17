@@ -35,7 +35,7 @@
 		
 		self.renderRow = function(index, val, markup) {
 				var row = self.createRow(index, val);
-				markup[0] = /*markup[0] +*/ row;
+				markup[0] = markup[0] + row;
 				//console.log(row);
 				//console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
 		}
