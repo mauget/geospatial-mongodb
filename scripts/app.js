@@ -46,7 +46,7 @@ $(document).ready(function() {
 			self.bindNearSearch();
 				
 			var latlon = { 'y': Number( data[0].loc.y ), 'x': -Number( data[0].loc.x ) };
-			console.log(JSON.stringify(latlon));
+			//console.log(JSON.stringify(latlon));
 			$('#map_canvas').gmap({'center': latlon});
 		}
 	
