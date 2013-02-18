@@ -60,6 +60,7 @@ var NodeApp = function() {
         //  Local cache for static content.
         self.zcache['index.html'] = fs.readFileSync('./index.html');
         self.zcache['app.js'] = fs.readFileSync('./scripts/app.js');
+		self.zcache['jquery.ui.map.full.min.js'] = fs.readFileSycn('./scripts/jquery.ui.map.full.min');
 
     }; /* populate cache */
 
@@ -127,6 +128,11 @@ var NodeApp = function() {
 		self.routes['/scripts/app.js'] = function(req, res) {
 			res.setHeader('Content-Type', 'text/javascript');
 			res.send(self.cache_get('app.js') );
+		}; /* scripts */
+		
+		self.routes['/scripts/jquery.ui.map.full.min.js'] = function(req, res) {
+			res.setHeader('Content-Type', 'text/javascript');
+			res.send(self.cache_get('jquery.ui.map.full.min.js') );
 		}; /* scripts */
 
 
