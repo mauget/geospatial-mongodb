@@ -99,11 +99,20 @@ $(document).ready(function() {
 	// Listen for city search clicks from now-on
 	APP.bindCitySearch();
 	
+	$(function() {
+		// Also works with: var yourStartLatLng = '59.3426606750, 18.0736160278';
+		//var yourStartLatLng = new google.maps.LatLng(59.3426606750, 18.0736160278);
+		var yourStartLatLng = '59.3426606750, 18.0736160278';
+		$('#map_canvas').gmap({'center': yourStartLatLng});
+    });
+	
+	/*
 	$('#map_canvas').gmap().bind('init', function(ev, map) {
 		$('#map_canvas').gmap('addMarker', {'position': '57.7973333,12.0502107', 'bounds': true}).click(function() {
 			$('#map_canvas').gmap('openInfoWindow', {'content': 'Hello World!'}, this);
 		});
 	});
+	*/
 
 });	
 
