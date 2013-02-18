@@ -76,7 +76,7 @@ APP = new function() {
 		
 			// REST: search
 			$.getJSON('/cities/' + val, function(data) {
-				APP.renderList('#cityList', data);
+				self.renderList('#cityList', data);
 			});
 		});
 	};
