@@ -10,7 +10,7 @@ $(document).ready(function() {
 		// Utilities
 		//-----------------
 		self.trim = function(str) {
-			return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+			return str;//.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 		}
 
 		//-----------------
