@@ -44,9 +44,6 @@ $(document).ready(function() {
 			$(listSelector).html(markup);
 			$(listSelector).listview('refresh');
 			self.bindNearSearch();
-			
-			var latlon = { 'y': Number(data[0].loc.y), 'x': -Number(data[0].x) };
-			$('#map_canvas').gmap({'center': latLon});
 		}
 	
 		self.renderRow = function(index, val, markup) {
@@ -54,6 +51,12 @@ $(document).ready(function() {
 			markup.push(row);
 			//console.log(row);
 			//console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
+			
+			if (index === 0) {
+				var latlon = { 'y': Number( val.loc.y), 'x': -Number(val.x) };
+				console.log(JSON.stringify(latlon));
+				$('#map_canvas').gmap({'center': latLon});
+			}
 		}
 	
 		self.createRow = function(index, val) {	
@@ -102,6 +105,7 @@ $(document).ready(function() {
 	// Listen for city search clicks from now-on
 	APP.bindCitySearch();
 	
+	/*
 	$(function() {
 		// Also works with: var latLon = '59.3426606750, 18.0736160278';
 		//var latLon = new google.maps.LatLng(59.3426606750, 18.0736160278);
@@ -109,6 +113,7 @@ $(document).ready(function() {
 		var latLon = '39.115733, -94.627139';
 		$('#map_canvas').gmap({'center': latLon});
     });
+(/)
 	
 	/*
 	$('#map_canvas').gmap().bind('init', function(ev, map) {
