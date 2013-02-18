@@ -10,7 +10,7 @@ $(document).ready(function() {
 		// Utilities
 		//-----------------
 		self.trim = function(str) {
-			return str;//.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+			return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 		}
 
 		//-----------------
@@ -111,7 +111,7 @@ $(document).ready(function() {
 		var latLon = '39.115733, -94.627139';
 		$('#map_canvas').gmap({'center': latLon});
     });
-(/)
+    */
 	
 	/*
 	$('#map_canvas').gmap().bind('init', function(ev, map) {
