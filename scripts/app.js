@@ -18,7 +18,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.zipClass').mouseUp(function(event) {
+	$('.zipClass').mouseup(function(event) {
 	
 		console.log('clicked a zipClass');
 		// Grab 'zipSel' attribute value from clickee
