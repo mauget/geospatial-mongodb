@@ -1,6 +1,6 @@
 // Client-side scripts:
 
-$(document).ready(function() {
+$(document).bind("mobileinit", function() {
 
 	$('#citySearch').keyup(function(event) {
 	
