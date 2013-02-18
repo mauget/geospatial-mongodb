@@ -100,11 +100,11 @@ $(document).ready(function() {
 	APP.bindCitySearch();
 	
 	$(function() {
-		// Also works with: var yourStartLatLng = '59.3426606750, 18.0736160278';
-		//var yourStartLatLng = new google.maps.LatLng(59.3426606750, 18.0736160278);
+		// Also works with: var latLon = '59.3426606750, 18.0736160278';
+		//var latLon = new google.maps.LatLng(59.3426606750, 18.0736160278);
 		// y" : 39.115733, "x" : 94.627139 }
-		var yourStartLatLng = '39.115733, -94.627139';
-		$('#map_canvas').gmap({'center': yourStartLatLng});
+		var latLon = '39.115733, -94.627139';
+		$('#map_canvas').gmap({'center': latLon});
     });
 	
 	/*
