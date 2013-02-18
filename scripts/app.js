@@ -75,7 +75,7 @@ APP = new function() {
 			var val = '27526'; // temp hardcoded value
 		
 			// REST: search
-			$.getJSON('/cities/' + val, function(data) {
+			$.getJSON('/near/zip/' + val, function(data) {
 				self.renderList('#cityList', data);
 			});
 		});
