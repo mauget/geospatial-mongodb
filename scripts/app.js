@@ -103,7 +103,7 @@ $(document).ready(function() {
 		// Also works with: var yourStartLatLng = '59.3426606750, 18.0736160278';
 		//var yourStartLatLng = new google.maps.LatLng(59.3426606750, 18.0736160278);
 		// y" : 39.115733, "x" : 94.627139 }
-		var yourStartLatLng = '-94.627139, 39.115733';
+		var yourStartLatLng = '94.627139, 39.115733';
 		$('#map_canvas').gmap({'center': yourStartLatLng});
     });
 	
