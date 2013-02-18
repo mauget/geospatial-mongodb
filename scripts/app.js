@@ -44,6 +44,10 @@ $(document).ready(function() {
 			$(listSelector).html(markup);
 			$(listSelector).listview('refresh');
 			self.bindNearSearch();
+				
+			var latlon = { 'y': Number( data[0].loc.y), 'x': -Number(data[0].x) };
+			console.log(JSON.stringify(latlon));
+			$('#map_canvas').gmap({'center': latLon});
 		}
 	
 		self.renderRow = function(index, val, markup) {
@@ -51,12 +55,6 @@ $(document).ready(function() {
 			markup.push(row);
 			//console.log(row);
 			//console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
-			
-			if (index === 0) {
-				var latlon = { 'y': Number( val.loc.y), 'x': -Number(val.x) };
-				console.log(JSON.stringify(latlon));
-				$('#map_canvas').gmap({'center': latLon});
-			}
 		}
 	
 		self.createRow = function(index, val) {	
