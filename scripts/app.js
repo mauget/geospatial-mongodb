@@ -97,7 +97,7 @@ $(document).ready(function() {
 	};
 
 	// Listen for city search clicks from now-on
-	self.bindCitySearch();
+	APP.bindCitySearch();
 
 });	
 
