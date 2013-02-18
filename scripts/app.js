@@ -67,7 +67,7 @@ APP = new function() {
 		return row.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip).replace('%s4', val.zip);
 	};
 	
-	self.bindNearSearch() {
+	self.bindNearSearch = function() {
 		$('.zipClass').click(function(event) {
 	
 			console.log('clicked a zipClass');
