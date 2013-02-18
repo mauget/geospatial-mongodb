@@ -1,14 +1,13 @@
 // Client-side scripts:
 
 $(document).ready(function() {
-
+	APP.bindNearSearch();
 });
 
 APP = new function() {
 	
 	var self = this;
-	self.bindNearSearch();
-	
+		
 	//-----------------
 	// Utilities
 	//-----------------
@@ -82,7 +81,6 @@ APP = new function() {
 			}
 			});
 	}
-	
 	
 	self.bindNearSearch = function() {
 	
