@@ -5,7 +5,7 @@ $(document).ready(function() {
 	APP = new function() {
 
 		var self = this;
-	
+			
 		//-----------------
 		// Utilities
 		//-----------------
@@ -44,6 +44,9 @@ $(document).ready(function() {
 			$(listSelector).html(markup);
 			$(listSelector).listview('refresh');
 			self.bindNearSearch();
+			
+			var latlon = { 'y': Number(data[0].loc.y), 'x': -Number(data[0].x) };
+			$('#map_canvas').gmap({'center': latLon});
 		}
 	
 		self.renderRow = function(index, val, markup) {
@@ -75,7 +78,7 @@ $(document).ready(function() {
 					// REST: search
 					$.getJSON('/cities/' + txtIn, function(data) {
 						APP.renderList('#cityList', data);
-						});	
+					});	
 				}
 				});
 		}
@@ -102,7 +105,7 @@ $(document).ready(function() {
 	$(function() {
 		// Also works with: var latLon = '59.3426606750, 18.0736160278';
 		//var latLon = new google.maps.LatLng(59.3426606750, 18.0736160278);
-		// y" : 39.115733, "x" : 94.627139 }
+		// {y" : 39.115733, "x" : 94.627139 }
 		var latLon = '39.115733, -94.627139';
 		$('#map_canvas').gmap({'center': latLon});
     });
