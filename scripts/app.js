@@ -18,17 +18,6 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.zipClass').mouseup(function(event) {
-	
-		console.log('clicked a zipClass');
-		// Grab 'zipSel' attribute value from clickee
-		var val = '27526'; // temp hardcoded value
-		
-		// REST: search
-		$.getJSON('/cities/' + val, function(data) {
-			APP.renderList('#cityList', data);
-		});
-	});
 
 });
 
@@ -63,6 +52,7 @@ APP = new function() {
 		$.each(data, function(index, val) {self.renderRow(index, val, markup);});
 		$(listSelector).html(markup);
 		$(listSelector).listview('refresh');
+		self.bindNearSearch();
 	}
 		
 	self.renderRow = function(index, val, markup) {
@@ -75,6 +65,20 @@ APP = new function() {
 	self.createRow = function(index, val) {	
 		var row = '<li><a class="zipClass" zip="%s4">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a></li>';
 		return row.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip).replace('%s4', val.zip);
+	};
+	
+	self.bindNearSearch() {
+		$('.zipClass').click(function(event) {
+	
+			console.log('clicked a zipClass');
+			// Grab 'zipSel' attribute value from clickee
+			var val = '27526'; // temp hardcoded value
+		
+			// REST: search
+			$.getJSON('/cities/' + val, function(data) {
+				APP.renderList('#cityList', data);
+			});
+		});
 	};
 
 };
