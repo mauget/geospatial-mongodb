@@ -1,6 +1,6 @@
 // Client-side scripts:
 
-$(document).bind("mobileinit", function() {
+$(document).ready(function() {
 
 	$('#citySearch').keyup(function(event) {
 	
@@ -18,7 +18,7 @@ $(document).bind("mobileinit", function() {
 		}
 	});
 	
-	$('zipVal').click(function(event){
+	$('a.zipVal').click(function(event){
 		console.log('clicked a zipVal');
 		// Grab 'zipSel' attribute value from clickee
 		var val = '27526'; // temp hardcoded value
