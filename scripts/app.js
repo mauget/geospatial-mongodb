@@ -18,7 +18,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.zipClass.ui-link-inherit').click(function(event) {
+	$('a.zipClass.ui-link-inherit').click(function(event) {
 	
 		console.log('clicked a zipClass');
 		// Grab 'zipSel' attribute value from clickee
