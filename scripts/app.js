@@ -85,8 +85,7 @@ APP = new function() {
 	}
 	
 	
-	
-	self.bindNearSearch = function() {
+	//self.bindNearSearch = function() {
 	
 		$('.zipClass').click(function(event) {
 	
@@ -98,6 +97,6 @@ APP = new function() {
 				self.renderList('#cityList', data);
 			});
 		});
-	};
+///	};
 
 };
