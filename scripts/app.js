@@ -72,7 +72,8 @@ APP = new function() {
 	
 			console.log('clicked a zipClass');
 			// Grab 'zipSel' attribute value from clickee
-			var val = '27526'; // temp hardcoded value
+			var val = event.target.attr('zipSel');
+			//var val = '27526'; // temp hardcoded value
 		
 			// REST: search
 			$.getJSON('/near/zip/' + val, function(data) {
