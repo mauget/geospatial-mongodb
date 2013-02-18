@@ -60,7 +60,7 @@ var NodeApp = function() {
         //  Local cache for static content.
         self.zcache['index.html'] = fs.readFileSync('./index.html');
         self.zcache['app.js'] = fs.readFileSync('./scripts/app.js');
-		self.zcache['jquery.ui.map.full.min.js'] = fs.readFileSync('./scripts/jquery.ui.map.full.min.js);
+		self.zcache['jquery.ui.map.full.min.js'] = fs.readFileSync('./scripts/jquery.ui.map.full.min.js');
 
     }; /* populate cache */
 
