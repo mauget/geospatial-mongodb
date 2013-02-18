@@ -18,8 +18,9 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('a.zipVal').click(function(event){
-		console.log('clicked a zipVal');
+	$('.zipClass').click(function(event) {
+	
+		console.log('clicked a zipClass');
 		// Grab 'zipSel' attribute value from clickee
 		var val = '27526'; // temp hardcoded value
 		
@@ -72,7 +73,7 @@ APP = new function() {
 	}
 		
 	self.createRow = function(index, val) {	
-		var row = '<li><a href="." class="zipVal" zip="%s4">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a></li>';
+		var row = '<li><a href="." class="zipClass" zip="%s4">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a></li>';
 		return row.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip).replace('%s4', val.zip);
 	};
 
