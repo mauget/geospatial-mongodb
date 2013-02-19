@@ -117,7 +117,7 @@ $(document).ready(function() {
 		var latLon = new google.maps.LatLng(47.611435, -122.330456();
 		// {y" : 39.115733, "x" : 94.627139 }
 		//var latLon = '39.115733, -94.627139';
-		$('#map_canvas').gmap({'center': latLon}).gmap('refresh');
+		$('#map_canvas').gmap({'center': latLon});
     });
     
 	
