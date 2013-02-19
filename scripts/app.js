@@ -114,10 +114,10 @@ $(document).ready(function() {
 	/*
 	$(function() {
 		// Also works with: var latLon = '59.3426606750, 18.0736160278';
-		//var latLon = new google.maps.LatLng(59.3426606750, 18.0736160278);
+		var latLon = new google.maps.LatLng(47.611435, -122.330456();
 		// {y" : 39.115733, "x" : 94.627139 }
-		var latLon = '39.115733, -94.627139';
-		$('#map_canvas').gmap({'center': latLon});
+		//var latLon = '39.115733, -94.627139';
+		$('#map_canvas').gmap({'center': latLon}).gmap('refresh');
     });
     */
 	
