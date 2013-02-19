@@ -31,18 +31,6 @@ $(document).ready(function() {
 		self.nearLatLon = function() {	
 			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {	
 				self.renderList('#nearList', data);	
-				
-				//var latLon = new google.maps.LatLng( Number( data[0].loc.y ), -Number( data[0].loc.x )  );
-				var template = '%s1, -%s2';
-				var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
-			
-				console.log(latLon);
-			
-				$('#two').live('pageshow', function() {
-					$('#map_canvas').gmap('refresh');
-				});
-				$('#map_canvas').gmap({'center': latLon});
-				
 			});
 		};
 
@@ -87,9 +75,25 @@ $(document).ready(function() {
 					// REST: search
 					$.getJSON('/cities/' + txtIn, function(data) {
 						APP.renderList('#cityList', data);
+						APP.drawMap(data);
 					});	
 				}
 				});
+		}
+		
+		self.drawMap = function(data) {
+		
+			//var latLon = new google.maps.LatLng( Number( data[0].loc.y ), -Number( data[0].loc.x )  );
+			var template = '%s1, -%s2';
+			var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
+	
+			console.log(latLon);
+	
+			$('#two').live('pageshow', function() {
+				$('#map_canvas').gmap('refresh');
+			});
+			$('#map_canvas').gmap({'center': latLon});
+		
 		}
 
 		self.bindNearSearch = function() {
