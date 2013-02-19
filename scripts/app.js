@@ -47,7 +47,7 @@ $(document).ready(function() {
 				
 			//var latLon = new google.maps.LatLng( Number( data[0].loc.y ), -Number( data[0].loc.x )  );
 			var template = '%s1, -%s2';
-			var latLon = template.replace('%s1', data[0].loc.y).template('%s2', data[0].loc.x);
+			var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
 			
 			//var latLon = '39.115733, -94.627139';
 			console.log(latLon);
