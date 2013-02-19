@@ -49,7 +49,6 @@ $(document).ready(function() {
 			var template = '%s1, -%s2';
 			var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
 			
-			//var latLon = '39.115733, -94.627139';
 			console.log(latLon);
 			
 			$('#two').live('pageshow', function() {
@@ -111,7 +110,7 @@ $(document).ready(function() {
 	// Listen for city search clicks from now-on
 	APP.bindCitySearch();
 	
-	
+	/*
 	$(function() {
 		// Also works with: var latLon = '59.3426606750, 18.0736160278';
 		var latLon = new google.maps.LatLng(47.611435, -122.330456);
@@ -119,7 +118,7 @@ $(document).ready(function() {
 		//var latLon = '39.115733, -94.627139';
 		$('#map_canvas').gmap({'center': latLon});
     });
-    
+    */
 	
 	/*
 	$('#map_canvas').gmap().bind('init', function(ev, map) {
