@@ -16,23 +16,23 @@ $(document).ready(function() {
 		//-----------------
 		// REST requestors
 		//-----------------
-		self.nearZip = function() {   
-			$.getJSON("/near/zip/27526", function(data) {
-				self.renderList('#nearList', data);
-			});
-		};
+//		self.nearZip = function() {   
+//			$.getJSON("/near/zip/27526", function(data) {
+//				self.renderList('#nearList', data);
+//			});
+//		};
 
-		self.citiesVarina = function() {	
-			$.getJSON("/cities/varina", function(data) {
-				self.renderList('#nearList', data);
-			});
-		};
+//		self.citiesVarina = function() {	
+//			$.getJSON("/cities/varina", function(data) {
+//				self.renderList('#nearList', data);
+//			});
+//		};
 	
-		self.nearLatLon = function() {	
-			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {	
-				self.renderList('#nearList', data);	
-			});
-		};
+//		self.nearLatLon = function() {	
+//			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {	
+//				self.renderList('#nearList', data);	
+//			});
+//		};
 
 		//-----------------
 		// Result rendering
@@ -75,7 +75,6 @@ $(document).ready(function() {
 					// REST: search
 					$.getJSON('/cities/' + txtIn, function(data) {
 						APP.renderList('#cityList', data);
-						APP.drawMap(data);
 					});	
 				}
 				});
@@ -106,6 +105,7 @@ $(document).ready(function() {
 				// REST: search
 				$.getJSON('/near/zip/' + val, function(data) {
 					self.renderList('#cityList', data);
+					APP.drawMap(data);
 				});
 			});
 		};
