@@ -45,9 +45,7 @@ $(document).ready(function() {
 			$(listSelector).listview('refresh');
 			self.bindNearSearch();
 				
-			var ll = { 'y': Number( data[0].loc.y ), 'x': -Number( data[0].loc.x ) };
-			var latlon = new google.maps.LatLng(ll.y, ll.x);
-			console.log(JSON.stringify(ll));
+			var latlon = new google.maps.LatLng( Number( data[0].loc.y ), -Number( data[0].loc.x )  );
 			$('#map_canvas').gmap({'center': latlon});
 		}
 	
