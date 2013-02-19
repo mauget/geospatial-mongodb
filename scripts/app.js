@@ -87,7 +87,7 @@ $(document).ready(function() {
 			var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
 	
 			console.log(latLon);
-	
+			$('#map_canvas').gmap('destroy');
 			$('#two').live('pageshow', function() {
 				$('#map_canvas').gmap('refresh');
 			});
