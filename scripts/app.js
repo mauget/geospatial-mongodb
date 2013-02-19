@@ -52,10 +52,10 @@ $(document).ready(function() {
 			//var latLon = '39.115733, -94.627139';
 			console.log(latLon);
 			
-			$('#two').live('pageshow', function() {
-				$('#map_canvas').gmap('refresh');
-			});
-			$('#map_canvas').gmap({'center': latLon});
+			//$('#two').live('pageshow', function() {
+			//	$('#map_canvas').gmap('refresh');
+			//});
+			$('#map_canvas').gmap({'center': latLon}).gmap('refresh');
 		}
 	
 		self.renderRow = function(index, val, markup) {
