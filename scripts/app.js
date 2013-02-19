@@ -46,11 +46,12 @@ $(document).ready(function() {
 			self.bindNearSearch();
 				
 			//var latLon = new google.maps.LatLng( Number( data[0].loc.y ), -Number( data[0].loc.x )  );
-			//var latLon = '%s1, -%s2';
-			// latLon.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
+			var latLon = '%s1, -%s2';
+			latLon.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
 			
-			var latLon = '39.115733, -94.627139';
+			//var latLon = '39.115733, -94.627139';
 			console.log(latLon);
+			
 			$('#map_canvas').gmap({'center': latLon});
 		}
 	
