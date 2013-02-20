@@ -77,7 +77,7 @@ $(document).ready(function() {
 						APP.renderList('#cityList', data);
 					});	
 				}
-				});
+			});
 		}
 		
 		self.drawMap = function(data) {
@@ -91,7 +91,14 @@ $(document).ready(function() {
 			$('#two').live('pageshow', function() {
 				$('#map_canvas').gmap('refresh');
 			});
-			$('#map_canvas').gmap({'center': latLon, 'zoom': 8});
+//			$('#map_canvas').gmap({'center': latLon, 'zoom': 8});
+			
+			$('#map_canvas').gmap({ 'center': latLon, 'zoom': 8, 'callback': function() {	        
+			    $.each( data, function(i, m) {
+					$('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(m.loc.y, m.loc.x) } );
+				});
+		
+			}});
 		
 		}
 
@@ -114,24 +121,6 @@ $(document).ready(function() {
 
 	// Listen for city search clicks from now-on
 	APP.bindCitySearch();
-	
-	/*
-	$(function() {
-		// Also works with: var latLon = '59.3426606750, 18.0736160278';
-		var latLon = new google.maps.LatLng(47.611435, -122.330456);
-		// {y" : 39.115733, "x" : 94.627139 }
-		//var latLon = '39.115733, -94.627139';
-		$('#map_canvas').gmap({'center': latLon});
-    });
-    */
-	
-	/*
-	$('#map_canvas').gmap().bind('init', function(ev, map) {
-		$('#map_canvas').gmap('addMarker', {'position': '57.7973333,12.0502107', 'bounds': true}).click(function() {
-			$('#map_canvas').gmap('openInfoWindow', {'content': 'Hello World!'}, this);
-		});
-	});
-	*/
 
 });	
 
