@@ -106,11 +106,10 @@ $(document).ready(function() {
 				$.getJSON('/near/zip/' + val, function(data) {
 					self.renderList('#cityList', data);
 					APP.drawMap(data);
-					$.mobile.changePage( "#two", { transition: "slideup"} );
+					$.mobile.changePage( "#two", { transition: "none"} );
 				});
 			});
 		};
-
 	};
 
 	// Listen for city search clicks from now-on
