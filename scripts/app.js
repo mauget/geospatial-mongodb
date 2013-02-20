@@ -91,8 +91,7 @@ $(document).ready(function() {
 			$('#two').live('pageshow', function() {
 				$('#map_canvas').gmap('refresh');
 			});
-			$('#map_canvas').gmap({'center': latLon});
-			$('#map_canvas').gmap({'zoom': 4});
+			$('#map_canvas').gmap({'center': latLon, 'zoom': 15});
 		
 		}
 
