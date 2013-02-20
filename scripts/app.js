@@ -106,6 +106,7 @@ $(document).ready(function() {
 				$.getJSON('/near/zip/' + val, function(data) {
 					self.renderList('#cityList', data);
 					APP.drawMap(data);
+					$.mobile.changePage( "#two", { transition: "slideup"} );
 				});
 			});
 		};
