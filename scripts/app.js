@@ -111,7 +111,7 @@ $(document).ready(function() {
 	
 				// REST: search
 				$.getJSON('/near/zip/' + val, function(data) {
-					self.renderList('#cityList', data);
+				//	self.renderList('#cityList', data);
 					APP.drawMap(data);
 					$.mobile.changePage( "#two", { transition: "none"} );
 				});
