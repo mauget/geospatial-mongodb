@@ -98,7 +98,7 @@ $(document).ready(function() {
 //					$('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(m.loc.y, m.loc.x) } );
 //				});
 		
-			} } );
+//			} } );
 		
 		}
 
