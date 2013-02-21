@@ -91,12 +91,12 @@ $(document).ready(function() {
 			$('#two').live('pageshow', function() {
 				$('#map_canvas').gmap('refresh');
 			});
-//			$('#map_canvas').gmap({'center': latLon, 'zoom': 8});
+			$('#map_canvas').gmap({'center': latLon, 'zoom': 8});
 			
-			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8, 'callback': function() {	        
-			    $.each( data, function(i, m) {
-					$('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(m.loc.y, m.loc.x) } );
-				});
+//			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8, 'callback': function() {	        
+//			    $.each( data, function(i, m) {
+//					$('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(m.loc.y, m.loc.x) } );
+//				});
 		
 			} } );
 		
