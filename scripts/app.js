@@ -82,28 +82,23 @@ $(document).ready(function() {
 		
 		self.drawMap = function(data) {
 		
-			//var latLon = new google.maps.LatLng( Number( data[0].loc.y ), -Number( data[0].loc.x )  );
 			var template = '%s1, -%s2';
 			var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
 	
 			console.log(latLon);
 			$('#map_canvas').gmap('destroy');
+			
 			$('#two').live('pageshow', function() {
 				$('#map_canvas').gmap('refresh');
 			});
-			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8} );
+			
+			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8 } );
+			
 			$.each( data, function(i, m) {
-				template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
+				latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
 				$('#map_canvas').gmap( 'addMarker', { 'position': latLon } );
 			});
-
-/*						
-			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8, 'callback': function() {	        
-			    $.each( data, function(i, m) {
-					$('#map_canvas').gmap('addMarker', { 'position': latLon } );
-				});
-			} } );
-*/		
+		
 		}
 
 		self.bindNearSearch = function() {
