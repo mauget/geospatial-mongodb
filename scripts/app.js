@@ -91,7 +91,11 @@ $(document).ready(function() {
 			$('#two').live('pageshow', function() {
 				$('#map_canvas').gmap('refresh');
 			});
-			$('#map_canvas').gmap({'center': latLon, 'zoom': 8});
+//			$('#map_canvas').gmap({'center': latLon, 'zoom': 8});
+			
+			$('#map_canvas').gmap({ 'center': new google.maps.LatLng(42.345573,-71.098326), 'callback': function() {
+			        $('#map_canvas').gmap('addMarker', { 'position': new google.maps.LatLng(42.345573,-71.098326) } );
+			}});
 /*			
 			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8, 'callback': function() {	        
 			    $.each( data, function(i, m) {
