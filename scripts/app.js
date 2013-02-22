@@ -92,7 +92,10 @@ $(document).ready(function() {
 				$('#map_canvas').gmap('refresh');
 			});
 			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8} );
-			$('#map_canvas').gmap('addMarker', { 'position': latLon } );
+			$.each( data, function(i, m) {
+				template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
+				$('#map_canvas').gmap( 'addMarker', { 'position': latLon } );
+			});
 
 /*						
 			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8, 'callback': function() {	        
