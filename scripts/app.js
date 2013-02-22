@@ -92,7 +92,7 @@ $(document).ready(function() {
 				$('#map_canvas').gmap('refresh');
 			});
 			
-			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 6 } );
+			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8 } );
 			
 			$.each( data, function(i, m) {
 				latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
