@@ -99,9 +99,19 @@ $(document).ready(function() {
 				var zipText = 'ZipCode ' + m.zip;
 				latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
 				// $('#map_canvas').gmap( 'addMarker', { 'position': latLon, 'bounds': true } );
+				
+				$('#map_canvas').gmap( { 'callback': function() {
+					var thisMap = this;
+					thisMap.gmap( 'addMarker', { 'position': latLon, 'bounds': true } ).click( function() {
+						thisMap.openInfoWindow( { 'content': zipText }, this);
+					});
+				}});
+				
+				/*
 				$('#map_canvas').gmap( 'addMarker', { 'position': latLon, 'bounds': true } ).click( function() {
 					thisMap.openInfoWindow( { 'content': zipText }, this);
 				});
+				*/
 			/*	
 				$('#map_canvas').gmap( { 'callback': function() {
 					var thisMap = this; 
