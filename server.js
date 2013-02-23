@@ -158,7 +158,7 @@ var NodeApp = function() {
 		
 		self.routes['/near/lat/:lat/lon/:lon'] = function(req, res) {
 
-			var limit = 25;
+			var limit = 10;
 			var lat =  Number(req.params.lat);
 			var lon =  Number(req.params.lon);
 			var query = {loc: {$near: [ lat, lon ] } };
@@ -175,7 +175,7 @@ var NodeApp = function() {
 		
 		self.routes['/cities/:like'] = function(req, res) {
 		
-			var limit = 25;
+			var limit = 20;
 			var like = req.params.like;
 			
 			if (!like) {
