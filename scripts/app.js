@@ -97,7 +97,7 @@ $(document).ready(function() {
 			
 			$.each( data, function(i, m) {
 				latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
-				$('#map_canvas').gmap( 'addMarker', { 'position': latLon, 'title': m.zip, 'zIndex': i } );
+				$('#map_canvas').gmap( 'addMarker', { 'position': latLon, 'marker': m.zip, 'zIndex': i } );
 			});
 				
 			self.clearSearch();
