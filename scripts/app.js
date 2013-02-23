@@ -101,7 +101,7 @@ $(document).ready(function() {
 				// $('#map_canvas').gmap( 'addMarker', { 'position': latLon, 'bounds': true } );
 				
 			//	$('#map_canvas').gmap( { 'callback': function() {
-					var thisMap = this;
+					var thisMap = $('#map_canvas');
 					thisMap.gmap( 'addMarker', { 'position': latLon, 'bounds': true } ).click( function() {
 						thisMap.openInfoWindow( { 'content': zipText }, this);
 					});
