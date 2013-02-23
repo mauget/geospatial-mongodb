@@ -57,7 +57,7 @@ var NodeApp = function() {
             self.zcache = { 'index.html': '' };
         }
 
-        //  Local cache for static content.
+        //  Local cache for static content. We sync-read just once per file.
         self.zcache['index.html'] = fs.readFileSync('./index.html');
         self.zcache['app.js'] = fs.readFileSync('./scripts/app.js');
 		self.zcache['jquery.ui.map.full.min.js'] = fs.readFileSync('./scripts/jquery.ui.map.full.min.js');
@@ -182,7 +182,8 @@ var NodeApp = function() {
 				res.send('{err: "Bad input"}');
 			} else {
 				// db.zips.find({city: {$regex: '^fuquay.*', $options: 'i' }}  )
-				var query = {city: { $regex: ('^%s.*', like), $options: 'i' } };
+				//var query = {city: { $regex: ('^%s.*', like), $options: 'i' } };
+				var query = {city: { $regex: (/^%s.*/, like), $options: 'ix' } };
 			
 				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
 					if (!cities ) {
