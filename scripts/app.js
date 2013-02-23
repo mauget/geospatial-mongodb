@@ -96,7 +96,7 @@ $(document).ready(function() {
 			
 			$.each( data, function(i, m) {
 				latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
-				$('#map_canvas').gmap( 'addMarker', { 'position': latLon } );
+				$('#map_canvas').gmap( 'addMarker', { 'position': latLon, 'title': m.zip } );
 			});
 		
 		}
@@ -118,7 +118,7 @@ $(document).ready(function() {
 		};
 	};
 
-	// Listen for city search clicks from now-on
+	// Listen for city search clicks for duration of life-cycle
 	APP.bindCitySearch();
 
 });	
