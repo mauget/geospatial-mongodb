@@ -99,9 +99,9 @@ $(document).ready(function() {
 				$('#map_canvas').gmap( 'addMarker', { 'position': latLon, 'title': m.zip, 'zIndex': i } );
 			});
 			
-			// Clear search
+			// Clear search input and output
 			$('#citySearch').val('');
-		
+			$('#cityList').html('');
 		}
 
 		self.bindNearSearch = function() {
