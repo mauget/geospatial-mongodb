@@ -70,7 +70,7 @@ $(document).ready(function() {
 				console.log(txtIn);
 	
 				$('#cityList').html('');	
-				if (txtIn.length > 0){
+				if (txtIn.length > 1){
 	
 					// REST: search
 					$.getJSON('/cities/' + txtIn, function(data) {
@@ -100,7 +100,7 @@ $(document).ready(function() {
 			});
 			
 			// Clear search
-			$('#citySearch').text = '';
+			$('#citySearch').val('');
 		
 		}
 
