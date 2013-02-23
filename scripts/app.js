@@ -70,7 +70,7 @@ $(document).ready(function() {
 				console.log(txtIn);
 	
 				$('#cityList').html('');	
-				if (txtIn.length > 1){
+				if (txtIn.length > 0){
 	
 					// REST: search
 					$.getJSON('/cities/' + txtIn, function(data) {
@@ -80,6 +80,7 @@ $(document).ready(function() {
 			});
 		}
 		
+		// Render map centered on chosen Zip, with map pins surrounding.
 		self.drawMap = function(data) {
 		
 			var template = '%s1, -%s2';
@@ -98,12 +99,17 @@ $(document).ready(function() {
 				latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
 				$('#map_canvas').gmap( 'addMarker', { 'position': latLon, 'title': m.zip, 'zIndex': i } );
 			});
-			
-			// Clear search input and output
+				
+			self.clearSearch();
+		}
+		
+		// Clear search input and output
+		self.clearSearch = function() {
 			$('#citySearch').val('');
 			$('#cityList').html('');
 		}
 
+		// Start list click listener
 		self.bindNearSearch = function() {
 
 			$('.zipClass').click(function(event) {
