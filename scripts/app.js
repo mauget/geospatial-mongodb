@@ -100,7 +100,7 @@ $(document).ready(function() {
 			});
 			
 			// Clear search
-			//$('#cityInput').text = '';
+			$('#citySearch').text = '';
 		
 		}
 
