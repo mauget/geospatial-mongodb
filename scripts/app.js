@@ -9,35 +9,31 @@ $(document).ready(function() {
 		//-----------------
 		// Utilities
 		//-----------------
+		
+		// Trim whitespace at either end of str
 		self.trim = function(str) {
 			return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-		}
+		};
+		
+		// Return lattitude/longitude for item
+		self.getLatLon = function(m) {
+			return '%s1, -%s2'.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
+		};
 
-		//-----------------
-		// REST requestors
-		//-----------------
-//		self.nearZip = function() {   
-//			$.getJSON("/near/zip/27526", function(data) {
-//				self.renderList('#nearList', data);
-//			});
-//		};
+		// Return maker popup text for item
+		self.getPopupTxt = function(m) {
+			return '%s1<br>%s2 %s3<br>(%s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
+		};
 
-//		self.citiesVarina = function() {	
-//			$.getJSON("/cities/varina", function(data) {
-//				self.renderList('#nearList', data);
-//			});
-//		};
-	
-//		self.nearLatLon = function() {	
-//			$.getJSON("/near/lat/35.579952/lon/78.790807", function(data) {	
-//				self.renderList('#nearList', data);	
-//			});
-//		};
+		// Clear search input and output
+		self.clearSearch = function() {
+			$('#citySearch').val('');
+			$('#cityList').html('');
+		};
 
-		//-----------------
-		// Result rendering
-		//-----------------
-	
+		//-----------------------
+		// Result list rendering
+		//-----------------------
 		self.renderList = function(listSelector, data) {
 			var markup = [];
 			$.each(data, function(index, val) {self.renderRow(index, val, markup);});
@@ -49,9 +45,7 @@ $(document).ready(function() {
 		self.renderRow = function(index, val, markup) {
 			var row = self.createRow(index, val);
 			markup.push(row);
-			//console.log(row);
-			//console.log('%s. %s, %s %s (%s,%s)', index, val.city, val.state, val.zip, val.loc.y, val.loc.x);
-		}
+		};
 	
 		self.createRow = function(index, val) {	
 			var row = '<li><a class="zipClass" zip="%s4">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a></li>';
@@ -81,13 +75,14 @@ $(document).ready(function() {
 				}
 			});
 			
-			
 			$('#one').live( 'pageshow', function() {
 				$('#citySearch').focus();
 			});
 		};
 		
+		//---------------------------------------------------------------
 		// Render map centered on chosen Zip, with map pins surrounding.
+		//---------------------------------------------------------------
 		self.drawMap = function(data) {
 			var zoomVal = 10;
 			var theMap = $('#map_canvas');
@@ -105,25 +100,13 @@ $(document).ready(function() {
 				theMap.gmap('refresh');
 			});
 			
-			$('#twoHead').html('%s Nearby Zip Codes'.replace('%s', data[0].zip));
+			$('#twoHead').html('Near %s1:'.replace('%s1', data[0].zip));
 			self.clearSearch();
 		};
 		
-		self.getLatLon = function(m) {
-			return '%s1, -%s2'.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
-		};
-		
-		self.getPopupTxt = function(m) {
-			return '%s1<br>%s2 %s3<br>(%s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
-		};
-		
-		// Clear search input and output
-		self.clearSearch = function() {
-			$('#citySearch').val('');
-			$('#cityList').html('');
-		};
-
+		//----------------------------
 		// Start list click listener
+		//----------------------------
 		self.bindNearSearch = function() {
 
 			$('.zipClass').click(function(event) {
@@ -131,17 +114,18 @@ $(document).ready(function() {
 				// Grab 'zip' attribute value from clickee
 				var val = event.target.attributes['zip'].nodeValue;
 	
-				// REST: search
+				// REST search for zips near the chosen zip code
 				$.getJSON('/near/zip/' + val, function(data) {
-				//	self.renderList('#cityList', data);
 					APP.drawMap(data);
 					$.mobile.changePage( "#two", { transition: "none"} );
 				});
 			});
 		};
 	};
-
+	
+	//----------------------------------------------------------
 	// Listen for city search clicks for duration of life-cycle
+	//----------------------------------------------------------
 	APP.bindCitySearch();
 
 });	
