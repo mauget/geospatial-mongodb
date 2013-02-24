@@ -1,6 +1,6 @@
 // Client-side scripts:
 
-$(document).bind("mobileinit", function() {
+$(document).ready() {
 
 	APP = new function() {
 
