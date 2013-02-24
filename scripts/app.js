@@ -1,6 +1,6 @@
 // Client-side scripts:
 
-$(document).ready() {
+$(document).ready(function() {
 
 	APP = new function() {
 
@@ -15,7 +15,7 @@ $(document).ready() {
 			return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 		};
 		
-		// Return lattitude/longitude for item
+		// Return latitude/longitude for item
 		self.getLatLon = function(m) {
 			return '%s1, -%s2'.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
 		};
