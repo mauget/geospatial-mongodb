@@ -175,7 +175,7 @@ var NodeApp = function() {
 		
 		self.routes['/cities/:like'] = function(req, res) {
 		
-			var limit = 20;
+			var limit = 20s;
 			var like = req.params.like;
 			
 			if (!like) {
