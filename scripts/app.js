@@ -108,16 +108,16 @@ $(document).ready(function() {
 			
 			$('#two').live('pageshow', function() {
 				$('#map_canvas').gmap('refresh');
-
+			};
 				
 			self.clearSearch();
-		}
+		};
 		
 		// Clear search input and output
 		self.clearSearch = function() {
 			$('#citySearch').val('');
 			$('#cityList').html('');
-		}
+		};
 
 		// Start list click listener
 		self.bindNearSearch = function() {
