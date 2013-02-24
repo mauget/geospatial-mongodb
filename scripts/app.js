@@ -89,7 +89,7 @@ $(document).ready(function() {
 	
 			console.log(latLon);
 		//	theMap.gmap('destroy');
-		//	theMap.html('');
+			theMap.html('');
 			theMap.gmap( { 'center': latLon, 'zoom': 8 } );
 			
 			$.each( data, function(i, m) {
