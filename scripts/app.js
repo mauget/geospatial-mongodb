@@ -84,8 +84,6 @@ $(document).ready(function() {
 		self.drawMap = function(data) {
 		
 			var theMap = $('#map_canvas');
-			//var template = '%s1, -%s2';
-			//var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
 	
 			theMap.gmap('destroy');
 			theMap.html('<br>');
@@ -102,8 +100,11 @@ $(document).ready(function() {
 			
 			$('#two').live( 'pageshow', function() {
 				theMap.gmap('refresh');
+				theMap.gmap.setZoom(8);
 			});
-				
+			
+			theMap.gmap.setZoom(8);
+			
 			self.clearSearch();
 		};
 		
