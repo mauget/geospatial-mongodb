@@ -104,7 +104,8 @@ $(document).ready(function() {
 			$('#two').live( 'pageshow', function() {
 				theMap.gmap('refresh');
 			});
-						
+			
+			$('#twoHead').html('%s Nearby Zip Codes'.replace('%s', data[0].zip));
 			self.clearSearch();
 		};
 		
