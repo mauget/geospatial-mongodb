@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 		// Return maker popup text for item
 		self.getPopupTxt = function(m) {
-			return '%s1<br>%s2 %s3<br>(%s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
+			return '%s1<br>%s2 %s3<br>(Zip Code pop %s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
 		};
 
 		// Clear search input and output
@@ -86,7 +86,6 @@ $(document).ready(function() {
 		self.drawMap = function(data) {
 			var zoomVal = 10;
 			var theMap = $('#map_canvas');
-			var markers = [];
 	
 			theMap.gmap('destroy');
 			theMap.gmap( { 'center': self.getLatLon(data[0]), 'zoom': zoomVal } );
@@ -95,11 +94,12 @@ $(document).ready(function() {
 				var marker = theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal } ).click(function() {
 					theMap.gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
 				});	
-				markers.push(marker);
+				if (i === 0) { 
+					// Pop central marker
+					marker.triggerEvent( 'click' );
+				};
 			});
-			
-			markers[0].triggerEvent( 'click' );
-			
+						
 			$('#two').live( 'pageshow', function() {
 				theMap.gmap('refresh');
 			});
