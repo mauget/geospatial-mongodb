@@ -81,7 +81,7 @@ $(document).ready(function() {
 		};
 		
 		//---------------------------------------------------------------
-		// Render map centered on chosen Zip, with map pins surrounding.
+		// Render map centered on chosen Zip, with markers surrounding.
 		//---------------------------------------------------------------
 		self.drawMap = function(data) {
 			var zoomVal = 10;
@@ -92,9 +92,11 @@ $(document).ready(function() {
 			
 			$.each( data, function(i, m) {				
 				theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal } ).click(function() {
-					$('#map_canvas').gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
+					theMap.gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
 				});	
 			});
+			
+			theMap.gmap( 'openInfoWindow', {'content': self.getPopupTxt(data[0]) }, this);
 			
 			$('#two').live( 'pageshow', function() {
 				theMap.gmap('refresh');
