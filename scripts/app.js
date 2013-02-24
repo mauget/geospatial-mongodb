@@ -104,7 +104,7 @@ $(document).ready(function() {
 				theMap.gmap('refresh');
 			});
 			
-			$('#twoHead').html('Near %s1:'.replace('%s1', data[0].zip));
+			$('#twoHead').html('Vicinity: %s1'.replace('%s1', data[0].zip));
 			self.clearSearch();
 		};
 		
@@ -127,9 +127,9 @@ $(document).ready(function() {
 		};
 	};
 	
-	//----------------------------------------------------------
-	// Listen for city search clicks for duration of life-cycle
-	//----------------------------------------------------------
+	//--------------------------------------------------------------
+	// Listen for city search clicks for the duration of page
+	//--------------------------------------------------------------
 	APP.bindCitySearch();
 
 });	
