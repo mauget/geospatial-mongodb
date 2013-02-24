@@ -44,7 +44,7 @@ $(document).ready(function() {
 			$(listSelector).html(markup);
 			$(listSelector).listview('refresh');
 			self.bindNearSearch();
-		}
+		};
 	
 		self.renderRow = function(index, val, markup) {
 			var row = self.createRow(index, val);
@@ -78,24 +78,24 @@ $(document).ready(function() {
 					});	
 				}
 			});
-		}
+		};
 		
 		// Render map centered on chosen Zip, with map pins surrounding.
 		self.drawMap = function(data) {
 		
 			var theMap = $('#map_canvas');
-			var template = '%s1, -%s2';
-			var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
+			//var template = '%s1, -%s2';
+			//var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
 	
 			console.log(latLon);
 			theMap.gmap('destroy');
-			theMap.gmap( { 'center': latLon, 'zoom': 8 } );
+			theMap.gmap( { 'center': self.getLatLon(data[0]), 'zoom': 8 } );
 			
 			$.each( data, function(i, m) {
 				var zipText = '%s1<br>%s2 %s3<br>(%s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
-				latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
+				//latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
 				
-				theMap.gmap('addMarker', { 'position': latLon, 'bounds': true, 'zoom': 8 } ).click(function() {
+				theMap.gmap('addMarker', { 'position': getLatLon(m), 'bounds': true, 'zoom': 8 } ).click(function() {
 					$('#map_canvas').gmap( 'openInfoWindow', {'content': zipText }, this);
 				});
 					
@@ -106,13 +106,17 @@ $(document).ready(function() {
 			});
 				
 			self.clearSearch();
-		}
+		};
+		
+		self.getLatLon(m) {
+			return '%s1, -%s2'.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
+		};
 		
 		// Clear search input and output
 		self.clearSearch = function() {
 			$('#citySearch').val('');
 			$('#cityList').html('');
-		}
+		};
 
 		// Start list click listener
 		self.bindNearSearch = function() {
