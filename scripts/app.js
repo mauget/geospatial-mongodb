@@ -98,7 +98,7 @@ $(document).ready(function() {
 				markers.push(marker);
 			});
 			
-	//		theMap.gmap( 'openInfoWindow', {'content': markers[0].getPopupTxt(data[0]) }, this);
+			markers[0].triggerEvent( 'click' );
 			
 			$('#two').live( 'pageshow', function() {
 				theMap.gmap('refresh');
