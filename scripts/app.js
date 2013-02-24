@@ -100,10 +100,10 @@ $(document).ready(function() {
 			
 			$('#two').live( 'pageshow', function() {
 				theMap.gmap('refresh');
-				theMap.gmap.setZoom(8);
+				theMap.gmap( { 'zoom': 8 });
 			});
 			
-			theMap.gmap.setZoom(8);
+			theMap.gmap( { 'zoom': 8 });
 			
 			self.clearSearch();
 		};
