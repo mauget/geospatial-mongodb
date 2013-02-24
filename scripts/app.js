@@ -88,6 +88,7 @@ $(document).ready(function() {
 			//var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
 	
 			theMap.gmap('destroy');
+			theMap.html('<br>');
 			theMap.gmap( { 'center': self.getLatLon(data[0]), 'zoom': 8 } );
 			
 			$.each( data, function(i, m) {
