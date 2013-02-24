@@ -86,13 +86,12 @@ $(document).ready(function() {
 			var theMap = $('#map_canvas');
 	
 			theMap.gmap('destroy');
-			theMap.html('<br>');
 			theMap.gmap( { 'center': self.getLatLon(data[0]), 'zoom': 8 } );
 			
 			$.each( data, function(i, m) {
 				var zipText = '%s1<br>%s2 %s3<br>(%s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
 				
-				theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': true, 'zoom': 8 } ).click(function() {
+				theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': 8 } ).click(function() {
 					$('#map_canvas').gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
 				});
 					
@@ -100,11 +99,8 @@ $(document).ready(function() {
 			
 			$('#two').live( 'pageshow', function() {
 				theMap.gmap('refresh');
-				theMap.gmap( { 'zoom': 8 });
 			});
-			
-			theMap.gmap( { 'zoom': 8 });
-			
+						
 			self.clearSearch();
 		};
 		
