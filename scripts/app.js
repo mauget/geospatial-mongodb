@@ -82,19 +82,16 @@ $(document).ready(function() {
 		
 		// Render map centered on chosen Zip, with map pins surrounding.
 		self.drawMap = function(data) {
-			var zoomVal = 9;
+			var zoomVal = 14;
 			var theMap = $('#map_canvas');
 	
 			theMap.gmap('destroy');
 			theMap.gmap( { 'center': self.getLatLon(data[0]), 'zoom': zoomVal } );
 			
-			$.each( data, function(i, m) {
-				var zipText = '%s1<br>%s2 %s3<br>(%s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
-				
+			$.each( data, function(i, m) {				
 				theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal } ).click(function() {
 					$('#map_canvas').gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
-				});
-					
+				});s	
 			});
 			
 			$('#two').live( 'pageshow', function() {
