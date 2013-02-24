@@ -78,11 +78,16 @@ $(document).ready(function() {
 					});	
 				}
 			});
+			
+			
+			$('#one').live( 'pageshow', function() {
+				${'#citySearch'}.focus();
+			});
 		};
 		
 		// Render map centered on chosen Zip, with map pins surrounding.
 		self.drawMap = function(data) {
-			var zoomVal = 10;
+			var zoomVal = 10ss;
 			var theMap = $('#map_canvas');
 	
 			theMap.gmap('destroy');
