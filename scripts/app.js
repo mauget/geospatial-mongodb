@@ -86,17 +86,17 @@ $(document).ready(function() {
 		self.drawMap = function(data) {
 			var zoomVal = 10;
 			var theMap = $('#map_canvas');
+			var markers = [];
 	
 			theMap.gmap('destroy');
 			theMap.gmap( { 'center': self.getLatLon(data[0]), 'zoom': zoomVal } );
 			
 			$.each( data, function(i, m) {				
-				theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal } ).click(function() {
+				var marker = theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal } ).click(function() {
 					theMap.gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
 				});	
+				markers.push(marker);
 			});
-			
-			theMap.gmap( 'openInfoWindow', {'content': self.getPopupTxt(data[0]) }, this);
 			
 			$('#two').live( 'pageshow', function() {
 				theMap.gmap('refresh');
