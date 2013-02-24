@@ -92,10 +92,9 @@ $(document).ready(function() {
 			
 			$.each( data, function(i, m) {
 				var zipText = '%s1<br>%s2 %s3<br>(%s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
-				//latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
 				
 				theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': true, 'zoom': 8 } ).click(function() {
-					$('#map_canvas').gmap( 'openInfoWindow', {'content': zipText }, this);
+					$('#map_canvas').gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
 				});
 					
 			});
@@ -109,6 +108,10 @@ $(document).ready(function() {
 		
 		self.getLatLon = function(m) {
 			return '%s1, -%s2'.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
+		};
+		
+		self.getPopupTxt = function(m) {
+			return '%s1<br>%s2 %s3<br>(%s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
 		};
 		
 		// Clear search input and output
