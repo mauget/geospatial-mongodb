@@ -104,7 +104,7 @@ $(document).ready(function() {
 				theMap.gmap('refresh');
 			});
 			
-			$('#twoHead').html('Vicinity: %s1'.replace('%s1', data[0].zip));
+			$('#twoHead').html('Vicinity of %s1'.replace('%s1', data[0].zip));
 			self.clearSearch();
 		};
 		
