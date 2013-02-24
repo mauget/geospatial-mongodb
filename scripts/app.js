@@ -62,7 +62,9 @@ $(document).ready(function() {
 		// Event listeners
 		//--------------------
 		self.bindCitySearch = function() {
-
+		
+			$('#citySearch').focus();
+			
 			$('#citySearch').keyup(function(event) {
 
 				var txtIn = $('#citySearch').val();
