@@ -91,7 +91,7 @@ $(document).ready(function() {
 			$.each( data, function(i, m) {				
 				theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal } ).click(function() {
 					$('#map_canvas').gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
-				});s	
+				});	
 			});
 			
 			$('#two').live( 'pageshow', function() {
