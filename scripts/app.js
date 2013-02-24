@@ -82,7 +82,7 @@ $(document).ready(function() {
 		
 		// Render map centered on chosen Zip, with map pins surrounding.
 		self.drawMap = function(data) {
-			var zoomVal = 11;
+			var zoomVal = 10;
 			var theMap = $('#map_canvas');
 	
 			theMap.gmap('destroy');
