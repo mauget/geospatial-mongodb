@@ -83,31 +83,26 @@ $(document).ready(function() {
 		// Render map centered on chosen Zip, with map pins surrounding.
 		self.drawMap = function(data) {
 		
+			var theMap = $('#map_canvas');
 			var template = '%s1, -%s2';
 			var latLon = template.replace('%s1', data[0].loc.y).replace('%s2', data[0].loc.x);
 	
 			console.log(latLon);
-			$('#map_canvas').gmap('destroy');
-			
-			$('#two').live('pageshow', function() {
-				$('#map_canvas').gmap('refresh');
-			});
-			
-			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8 } );
+			theMap.gmap('destroy');
+			theMap.gmap( { 'center': latLon, 'zoom': 8 } );
 			
 			$.each( data, function(i, m) {
-				var zipText = '%s1\n%s2 %s3\nPop %s4'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
+				var zipText = '%s1<br>%s2 %s3<br>(%s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
 				latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
-			//	$('#map_canvas').gmap( 'addMarker', { 'position': latLon, 'bounds': true } );
-			
-		//		$('#map_canvas').gmap().bind('init', function(ev, map) {
 				
-					$('#map_canvas').gmap('addMarker', { 'position': latLon, 'bounds': true } ).click(function() {
-						$('#map_canvas').gmap( 'openInfoWindow', {'content': zipText }, this);
-					});
+				theMap.gmap('addMarker', { 'position': latLon, 'bounds': true } ).click(function() {
+					$('#map_canvas').gmap( 'openInfoWindow', {'content': zipText }, this);
+				});
 					
-		//		});
-					
+			});
+			
+			$('#two').live('pageshow', function() {
+				theMap.gmap('refresh');
 			});
 				
 			self.clearSearch();
