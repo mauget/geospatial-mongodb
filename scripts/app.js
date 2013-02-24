@@ -96,7 +96,7 @@ $(document).ready(function() {
 			$('#map_canvas').gmap( { 'center': latLon, 'zoom': 8 } );
 			
 			$.each( data, function(i, m) {
-				var zipText = 'City: %s1\nZip Code: %s2\nPopulation %s3'.replace('%s1', m.city).replace('%s1', m.zip).replace('%s3', m.pop);
+				var zipText = '%s1\n%s2 %s3\nPop %s4'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
 				latLon = template.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
 			//	$('#map_canvas').gmap( 'addMarker', { 'position': latLon, 'bounds': true } );
 			
