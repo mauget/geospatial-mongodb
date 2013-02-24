@@ -98,6 +98,8 @@ $(document).ready(function() {
 				markers.push(marker);
 			});
 			
+			theMap.gmap( 'openInfoWindow', {'content': markers[0].getPopupTxt(m) }, this);
+			
 			$('#two').live( 'pageshow', function() {
 				theMap.gmap('refresh');
 			});
