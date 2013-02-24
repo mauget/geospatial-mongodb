@@ -81,7 +81,7 @@ $(document).ready(function() {
 			
 			
 			$('#one').live( 'pageshow', function() {
-				${'#citySearch'}.focus();
+				$('#citySearch').focus();
 			});
 		};
 		
