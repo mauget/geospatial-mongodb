@@ -116,7 +116,7 @@ $(document).ready(function() {
 			$.each( data, function(i, m) {
 			//	cidx = i === 0 ? 0 : 1;
 				var marker = theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal, 
-							'icon': pinUrl /* 'shadow': pinShadowUrl */ } ).click(function() {
+							'icon': pinUrl, 'shadow': pinShadowUrl } ).click(function() {
 					theMap.gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
 				});	
 				if (i === 0) { 
