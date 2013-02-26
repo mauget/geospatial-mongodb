@@ -109,7 +109,7 @@ var NodeApp = function() {
     self.createRoutes = function() {
         self.routes = { };
 
-        // Routes for /health, /asciimo /scrips, and /
+        // Routes for /health, /asciimo /scripts, and /index.html
         self.routes['/health'] = function(req, res) {
             res.send('1');
         }; /* health */
@@ -182,7 +182,7 @@ var NodeApp = function() {
 			} else {
 				// db.zips.find({city: {$regex: '^fuquay.*', $options: 'i' }}  )
 				//var query = {city: { $regex: ('^%s.*', like), $options: 'i' } };
-				var query = {city: { $regex: (/^%s.*/, like), $options: 'i' } };
+				var query = {city: /^%s.*$/ };
 			
 				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
 					if (!cities ) {
