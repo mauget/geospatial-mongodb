@@ -180,8 +180,10 @@ var NodeApp = function() {
 			if (!like) {
 				res.send('{err: "Bad input"}');
 			} else {
+				like = like.toUpperCase();
+				
 				// Regexp wildcard suffix query
-				var query = { city: { $regex: ('^%s.*$', like), $options: '' } };
+				var query = { city: { $regex: (/^%s.*$/, like)} };
 			
 				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
 					if (!cities ) {
