@@ -89,23 +89,13 @@ $(document).ready(function() {
 		//---------------------------------------------------------------
 		self.drawMap = function(data) {
 		
-			// Marker icon and shadow -- credit to: 
-			// http://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
-			
+			// Marker icon and shadow 
+		//	var pinUrl       = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor[idx];
+			var pinUrl       = "http://chart.apis.google.com/chart?chst=d_map_pin_icon_withshadow;
+			var pinShadowUrl = "http://chart.apis.google.com/chart?chst=d_map_pin_shadow";
+						
 			var pinColor = ['FE7569', '00c000'];
 			var idx = 1;
-			
-			var pinUrl = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor[idx];
-		    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor[idx],
-		        new google.maps.Size(21, 34),
-		        new google.maps.Point(0,0),
-		        new google.maps.Point(10, 34));
-		
-			var pinShadowUrl = "http://chart.apis.google.com/chart?chst=d_map_pin_shadow";
-		    var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
-		        new google.maps.Size(40, 37),
-		        new google.maps.Point(0, 0),
-		        new google.maps.Point(12, 35));
 		
 			var zoomVal = 10;
 			var theMap = $('#map_canvas');
@@ -116,7 +106,7 @@ $(document).ready(function() {
 			$.each( data, function(i, m) {
 			//	cidx = i === 0 ? 0 : 1;
 				var marker = theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal, 
-							'icon': pinUrl, 'shadow': pinShadowUrl } ).click(function() {
+							'icon': pinUrl /*, 'shadow': pinShadowUrl */ } ).click(function() {
 					theMap.gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
 				});	
 				if (i === 0) { 
