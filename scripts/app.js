@@ -91,7 +91,8 @@ $(document).ready(function() {
 		
 			// Marker icon and shadow -- credit to: 
 			// http://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
-			var pinColor = ["FE7569", "008000"];
+			
+			var pinColor = ['FE7569', '00c000'];
 			var cidx = 0;
 		    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor[cidx],
 		        new google.maps.Size(21, 34),
@@ -110,9 +111,8 @@ $(document).ready(function() {
 			
 			$.each( data, function(i, m) {
 				cidx = i === 0 ? 0 : 1;
-				var marker = theMap.gmap('addMarker', 
-					{ 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal, 
-										icon: pinImage, shadow: pinShadow } ).click(function() {
+				var marker = theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal, 
+										'icon': pinImage, 'shadow': pinShadow } ).click(function() {
 					theMap.gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
 				});	
 				if (i === 0) { 
