@@ -80,18 +80,7 @@ $(document).ready(function() {
 			});
 		};
 		
-		// Marker icon and shadow -- credit to: 
-		// http://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
 		
-		var pinColor = "FE7569";
-	    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
-	        new google.maps.Size(21, 34),
-	        new google.maps.Point(0,0),
-	        new google.maps.Point(10, 34));
-	    var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
-	        new google.maps.Size(40, 37),
-	        new google.maps.Point(0, 0),
-	        new google.maps.Point(12, 35));
 	
 			
 		
@@ -99,13 +88,28 @@ $(document).ready(function() {
 		// Render map centered on chosen Zip, with markers surrounding.
 		//---------------------------------------------------------------
 		self.drawMap = function(data) {
+		
+			// Marker icon and shadow -- credit to: 
+			// http://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
+			var pinColor = ["FE7569", "008000"];
+			var cidx = 0;
+		    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor[cidx],
+		        new google.maps.Size(21, 34),
+		        new google.maps.Point(0,0),
+		        new google.maps.Point(10, 34));
+		    var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+		        new google.maps.Size(40, 37),
+		        new google.maps.Point(0, 0),
+		        new google.maps.Point(12, 35));
+		
 			var zoomVal = 10;
 			var theMap = $('#map_canvas');
 	
 			theMap.gmap( 'destroy' );
 			theMap.gmap( { 'center': self.getLatLon(data[0]), 'zoom': zoomVal } );
 			
-			$.each( data, function(i, m) {				
+			$.each( data, function(i, m) {
+				cidx = i === 0 ? 0 : 1;
 				var marker = theMap.gmap('addMarker', 
 					{ 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal, 
 										icon: pinImage, shadow: pinShadow } ).click(function() {
