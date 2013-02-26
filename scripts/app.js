@@ -90,10 +90,10 @@ $(document).ready(function() {
 		self.drawMap = function(data) {
 		
 			var pinColor = ['FE7569', '00c000'];
-			var idx = 1;
 
 			// Marker icon with shadow 
-			var pinUrl       = "http://chart.apis.google.com/chart?chst=d_map_pin_letter_withshadow&chld=%E2%80%A2|" + pinColor[idx];
+			var pinUrl = ["http://chart.apis.google.com/chart?chst=d_map_pin_letter_withshadow&chld=%E2%80%A2|" + pinColor[0],
+						  "http://chart.apis.google.com/chart?chst=d_map_pin_letter_withshadow&chld=%E2%80%A2|" + pinColor[1]  ];
 		
 			var zoomVal = 10;
 			var theMap = $('#map_canvas');
@@ -102,9 +102,9 @@ $(document).ready(function() {
 			theMap.gmap( { 'center': self.getLatLon(data[0]), 'zoom': zoomVal } );
 			
 			$.each( data, function(i, m) {
-				idx = i === 0 ? 0 : 1;
+				var idx = (i === 0) ? 0 : 1;
 				var marker = theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal, 
-							'icon': pinUrl /*, 'shadow': pinShadowUrl */ } ).click(function() {
+															'icon': pinUrl[idx] } ).click(function() {
 					theMap.gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
 				});	
 				if (i === 0) { 
