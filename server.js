@@ -180,8 +180,7 @@ var NodeApp = function() {
 			if (!like) {
 				res.send('{err: "Bad input"}');
 			} else {
-				// db.zips.find({city: {$regex: '^fuquay.*', $options: 'i' }}  )
-				//var query = {city: { $regex: ('^%s.*', like), $options: 'i' } };
+				// Regexp wildcard suffix query
 				var query = {city: /^%s.*$/ };
 			
 				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
