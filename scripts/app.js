@@ -10,7 +10,7 @@ $(document).ready(function() {
 		// Utilities
 		//-----------------
 		
-		// Trim whitespace at either end of str
+		// Return str with trimmed whitespace at ends
 		self.trim = function(str) {
 			return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 		};
@@ -20,9 +20,9 @@ $(document).ready(function() {
 			return '%s1, -%s2'.replace('%s1', m.loc.y).replace('%s2', m.loc.x);
 		};
 
-		// Return maker popup text for item
+		// Return marker popup text for item
 		self.getPopupTxt = function(m) {
-			return '%s1<br>%s2 %s3<br>(Zip Code pop %s4)'.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
+			return '%s1<br>%s2 %s3<br>(Zip pop %s4) '.replace('%s1', m.city).replace('%s2', m.state).replace('%s3', m.zip).replace('%s4', m.pop);
 		};
 
 		// Clear search input and output
@@ -32,24 +32,24 @@ $(document).ready(function() {
 		};
 
 		//-----------------------
-		// Result list rendering
+		// List rendering
 		//-----------------------
 		self.renderList = function(listSelector, data) {
 			var markup = [];
-			$.each(data, function(index, val) {self.renderRow(index, val, markup);});
-			$(listSelector).html(markup);
-			$(listSelector).listview('refresh');
+			$.each(data, function( index, val)  { self.renderRow( index, val, markup); } );
+			$(listSelector).html( markup );
+			$(listSelector).listview( 'refresh' );
 			self.bindNearSearch();
 		};
 	
 		self.renderRow = function(index, val, markup) {
-			var row = self.createRow(index, val);
+			var row = self.createRow( index, val );
 			markup.push(row);
 		};
 	
 		self.createRow = function(index, val) {	
-			var row = '<li><a class="zipClass" zip="%s4">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a></li>';
-			return row.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip).replace('%s4', val.zip);
+			var rowTemplate = '<li><a class="zipClass" zip="%s4">%s1&nbsp;%s2&nbsp;&nbsp;%s3</a></li>';
+			return rowTemplate.replace('%s1', val.city).replace('%s2', val.state).replace('%s3', val.zip).replace('%s4', val.zip);
 		};
 
 		//-------------------
@@ -80,6 +80,21 @@ $(document).ready(function() {
 			});
 		};
 		
+		// Marker icon and shadow -- credit to: 
+		// http://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
+		
+		var pinColor = "FE7569";
+	    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+	        new google.maps.Size(21, 34),
+	        new google.maps.Point(0,0),
+	        new google.maps.Point(10, 34));
+	    var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+	        new google.maps.Size(40, 37),
+	        new google.maps.Point(0, 0),
+	        new google.maps.Point(12, 35));
+	
+			
+		
 		//---------------------------------------------------------------
 		// Render map centered on chosen Zip, with markers surrounding.
 		//---------------------------------------------------------------
@@ -87,11 +102,13 @@ $(document).ready(function() {
 			var zoomVal = 10;
 			var theMap = $('#map_canvas');
 	
-			theMap.gmap('destroy');
+			theMap.gmap( 'destroy' );
 			theMap.gmap( { 'center': self.getLatLon(data[0]), 'zoom': zoomVal } );
 			
 			$.each( data, function(i, m) {				
-				var marker = theMap.gmap('addMarker', { 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal } ).click(function() {
+				var marker = theMap.gmap('addMarker', 
+					{ 'position': self.getLatLon(m), 'bounds': false, 'zoom': zoomVal, 
+										icon: pinImage, shadow: pinShadow } ).click(function() {
 					theMap.gmap( 'openInfoWindow', {'content': self.getPopupTxt(m) }, this);
 				});	
 				if (i === 0) { 
@@ -113,7 +130,7 @@ $(document).ready(function() {
 		//----------------------------
 		self.bindNearSearch = function() {
 
-			$('.zipClass').click(function(event) {
+			$( '.zipClass' ).click(function(event) {
 
 				// Grab 'zip' attribute value from clickee
 				var val = event.target.attributes['zip'].nodeValue;
@@ -128,7 +145,7 @@ $(document).ready(function() {
 	};
 	
 	//--------------------------------------------------------------
-	// Listen for city search clicks for the duration of page
+	// Listen for city search clicks for life-cycle duration
 	//--------------------------------------------------------------
 	APP.bindCitySearch();
 
