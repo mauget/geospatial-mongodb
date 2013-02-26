@@ -181,7 +181,7 @@ var NodeApp = function() {
 				res.send('{err: "Bad input"}');
 			} else {
 				// Regexp wildcard suffix query
-				var query = { city: { $regex: ('^%s.*$', like) } };
+				var query = { city: { $regex: ('^%s.*$', like), $options: 'i' } };
 			
 				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
 					if (!cities ) {
