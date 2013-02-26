@@ -89,13 +89,13 @@ $(document).ready(function() {
 		//---------------------------------------------------------------
 		self.drawMap = function(data) {
 		
+			var pinColor = ['FE7569', '00c000'];
+			var idx = 1;
+
 			// Marker icon and shadow 
 		//	var pinUrl       = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor[idx];
 			var pinUrl       = "http://chart.apis.google.com/chart?chst=d_map_pin_letter_withshadow&chld=%E2%80%A2|" + pinColor[idx];
-		//	var pinShadowUrl = "http://chart.apis.google.com/chart?chst=d_map_pin_shadow";
-						
-			var pinColor = ['FE7569', '00c000'];
-			var idx = 1;
+		//	var pinShadowUrl = "http://chart.apis.google.com/chart?chst=d_map_pin_shadow";	
 		
 			var zoomVal = 10;
 			var theMap = $('#map_canvas');
