@@ -175,15 +175,13 @@ var NodeApp = function() {
 		self.routes['/cities/:like'] = function(req, res) {
 		
 			var limit = 20;
-			var like = req.params.like;
+			var likeArg = req.params.like;
 			
 			if (!like) {
 				res.send('{err: "Bad input"}');
-			} else {
-				like = like.toUpperCase();
-				
+			} else {				
 				// Regexp wildcard suffix query
-				var query = { city: { $regex: (/^%s.*$/, like)} };
+				var query = { city: { $regex: (/^%s.*$/, likeArg.toUpperCase())} };
 			
 				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
 					if (!cities ) {
