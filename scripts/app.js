@@ -91,7 +91,7 @@ $(document).ready(function() {
 		
 			// Marker icon and shadow 
 		//	var pinUrl       = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor[idx];
-			var pinUrl       = "http://chart.apis.google.com/chart?chst=d_map_pin_icon_withshadow";
+			var pinUrl       = "http://chart.apis.google.com/chart?chst=d_map_pin_icon_withshadow&chld=Z|FF0000|0000FF";
 		//	var pinShadowUrl = "http://chart.apis.google.com/chart?chst=d_map_pin_shadow";
 						
 			var pinColor = ['FE7569', '00c000'];
