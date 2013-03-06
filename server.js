@@ -107,32 +107,32 @@ var NodeApp = function() {
      *  Create the routing table entries with handlers for the application.
      */
     self.createRoutes = function() {
-        self.routes = { };
+        self.routes = { }
 
         // Routes for /health, /asciimo /scripts, and /index.html
         self.routes['/health'] = function(req, res) {
             res.send('1');
-        }; /* health */
+        } /* health */
 
         self.routes['/asciimo'] = function(req, res) {
             var link = "http://i.imgur.com/kmbjB.png";
             res.send("<html><body><img src='" + link + "'></body></html>");
-        }; /* asciimo */
+        } /* asciimo */
 
         self.routes['/'] = function(req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
-        }; /* root */
+        } /* root */
 
 		self.routes['/scripts/app.js'] = function(req, res) {
 			res.setHeader('Content-Type', 'text/javascript');
 			res.send(self.cache_get('app.js') );
-		}; /* scripts */
+		} /* scripts */
 		
 		self.routes['/scripts/jquery.ui.map.full.min.js'] = function(req, res) {
 			res.setHeader('Content-Type', 'text/javascript');
 			res.send(self.cache_get('jquery.ui.map.full.min.js') );
-		}; /* scripts */
+		} /* scripts */
 
 
 		self.routes['/near/zip/:zip'] = function(req, res) {
@@ -153,14 +153,14 @@ var NodeApp = function() {
 				}
 			});
 
-		}; /* nearZip */
+		} /* nearZip */
 		
 		self.routes['/near/lat/:lat/lon/:lon'] = function(req, res) {
 
 			var limit = 10;
 			var lat =  Number(req.params.lat);
 			var lon =  Number(req.params.lon);
-			var query = {loc: {$near: [ lat, lon ] } };
+			var query = {loc: {$near: [ lat, lon ] } }
 
 			self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
 				if (!locations ) {
@@ -169,7 +169,7 @@ var NodeApp = function() {
 					res.send(locations);
 				}
 			});	
-	  	}; /* nearLatLon */
+	  	} /* nearLatLon */
 	
 		
 		self.routes['/cities/:like'] = function(req, res) {
@@ -183,7 +183,7 @@ var NodeApp = function() {
 				like = like.toUpperCase();
 				
 				// Regexp wildcard suffix query
-				var query = { city: { $regex: (/^%s.*$/, like)} };
+				var query = { city: { $regex: (/^%s.*$/, like)} }
 			
 				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
 					if (!cities ) {
@@ -193,9 +193,9 @@ var NodeApp = function() {
 					}
 				});	
 			}		
-		}; /* cities search */
+		} /* cities search */
 
-    }; /* create routes */
+    } /* create routes */
 
 
     /**
@@ -210,7 +210,7 @@ var NodeApp = function() {
         for (var r in self.routes) {
             self.app.get(r, self.routes[r]);
         }
-    }; /* initialize server */
+    } /* initialize server */
 
 
     /**
@@ -223,7 +223,7 @@ var NodeApp = function() {
 
         // Create the express server and routes.
         self.initializeServer();
-    }; /* initialize app */
+    } /* initialize app */
 
 
 	/**
@@ -238,7 +238,7 @@ var NodeApp = function() {
 			console.log('%s: Node server started on %s:%d ...',
 				Date(Date.now() ), self.ipaddress, self.port);
 		});
-	}; /* app start */
+	} /* app start */
 
 	/**
 	 *  Connect db and then callback to start the application.
@@ -251,9 +251,9 @@ var NodeApp = function() {
 			});
 			appStart();
 		});
-	}; /* Connect db */
+	} /* Connect db */
 
-};   /* Application.  */
+}   /* Application.  */
 
 /*  ================================================================  */
 /*  Main                                                              */
