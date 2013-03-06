@@ -50,28 +50,6 @@ var NodeApp = function() {
 	} /* setupVariables */
 
     /**
-     *  Populate the cache.
-     */
-    self.populateCache = function() {
-
-        if (typeof self.zcache === "undefined") {
-            self.zcache = { 'index.html': '' };
-        }
-
-        //  Local cache for static content. We sync-read just once per file.
-        self.zcache['index.html'] = fs.readFileSync('./index.html');
-        self.zcache['app.js'] = fs.readFileSync('./scripts/app.js');
-		self.zcache['jquery.ui.map.full.min.js'] = fs.readFileSync('./scripts/jquery.ui.map.full.min.js');
-
-    } /* populate cache */
-
-    /**
-     *  Retrieve entry (content) from cache.
-     *  @param {string} key  Key identifying content to retrieve from cache.
-     */
-    self.cache_get = function(key) { return self.zcache[key]; };
-
-    /**
      *  terminator === the termination handler
      *  Terminate server on receipt of the specified signal.
      *  @param {string} sig  Signal to terminate on.
