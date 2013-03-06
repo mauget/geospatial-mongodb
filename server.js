@@ -4,6 +4,7 @@
 var express = require('express');
 var fs      = require('fs');
 var mongodb = require('mongodb');
+var routes = require('routes');
 
 /**
  *  Define the nodejs application.
@@ -12,7 +13,6 @@ var NodeApp = function() {
 
 	//  Scope.
 	var self = this;
- 	var routes = require('./routes');
 
     /*  ================================================================  */
     /*  Helper functions.                                                 */
