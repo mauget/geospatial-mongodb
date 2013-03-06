@@ -12,6 +12,7 @@ var NodeApp = function() {
 
 	//  Scope.
 	var self = this;
+ 	var routes = require('./routes');
 
     /*  ================================================================  */
     /*  Helper functions.                                                 */
@@ -106,97 +107,7 @@ var NodeApp = function() {
     /**
      *  Create the routing table entries with handlers for the application.
      */
-    self.createRoutes = function() {
-        self.routes = { }
-
-        // Routes for /health, /asciimo /scripts, and /index.html
-        self.routes['/health'] = function(req, res) {
-            res.send('1');
-        } /* health */
-
-        self.routes['/asciimo'] = function(req, res) {
-            var link = "http://i.imgur.com/kmbjB.png";
-            res.send("<html><body><img src='" + link + "'></body></html>");
-        } /* asciimo */
-
-        self.routes['/'] = function(req, res) {
-            res.setHeader('Content-Type', 'text/html');
-            res.send(self.cache_get('index.html') );
-        } /* root */
-
-		self.routes['/scripts/app.js'] = function(req, res) {
-			res.setHeader('Content-Type', 'text/javascript');
-			res.send(self.cache_get('app.js') );
-		} /* scripts */
-		
-		self.routes['/scripts/jquery.ui.map.full.min.js'] = function(req, res) {
-			res.setHeader('Content-Type', 'text/javascript');
-			res.send(self.cache_get('jquery.ui.map.full.min.js') );
-		} /* scripts */
-
-
-		self.routes['/near/zip/:zip'] = function(req, res) {
-
-			// Fuquay record
-			// db.zips.find({loc: {$near: [ 35.579952, 78.780807 ]}}) -->
-
-			var zipCode = req.params.zip;
-
-			self.db.collection( self.coll ).find( {zip: zipCode}).toArray( function( err, center)  {
-				if (center && center.length > 0){
-					var record = center[0];
-					var y =  record.loc.y;
-					var x =  record.loc.x;
-					res.redirect("/near/lat/"+y+"/lon/"+x);
-				} else {
-					res.redirect("/");
-				}
-			});
-
-		} /* nearZip */
-		
-		self.routes['/near/lat/:lat/lon/:lon'] = function(req, res) {
-
-			var limit = 10;
-			var lat =  Number(req.params.lat);
-			var lon =  Number(req.params.lon);
-			var query = {loc: {$near: [ lat, lon ] } }
-
-			self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, locations ) {
-				if (!locations ) {
-					res.send('{err: "Nothing found"}');
-				} else {
-					res.send(locations);
-				}
-			});	
-	  	} /* nearLatLon */
-	
-		
-		self.routes['/cities/:like'] = function(req, res) {
-		
-			var limit = 20;
-			var like = req.params.like;
-			
-			if (!like) {
-				res.send('{err: "Bad input"}');
-			} else {
-				like = like.toUpperCase();
-				
-				// Regexp wildcard suffix query
-				var query = { city: { $regex: (/^%s.*$/, like)} }
-			
-				self.db.collection( self.coll ).find( query ).limit( limit ).toArray( function( err, cities ) {
-					if (!cities ) {
-						res.send('{err: "Nothing found"}');
-					} else {
-						res.send(cities);
-					}
-				});	
-			}		
-		} /* cities search */
-
-    } /* create routes */
-
+	routes.createRoutes();
 
     /**
      *  Initialize the server (express) and create the routes and register
