@@ -105,16 +105,11 @@ var NodeApp = function() {
     /*  ================================================================  */
 
     /**
-     *  Create the routing table entries with handlers for the application.
-     */
-	routes();
-
-    /**
-     *  Initialize the server (express) and create the routes and register
-     *  the handlers.
+     *  Initialize the server (express) and create the routes using
+     *  module routes.js, and then register the handlers.
      */
     self.initializeServer = function() {
-        self.createRoutes();
+        routes();
         self.app = express();
 
         //  Add handlers for the app (from the routes).
