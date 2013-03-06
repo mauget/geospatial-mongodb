@@ -46,7 +46,7 @@ var NodeApp = function() {
             self.ipaddress = "127.0.0.1";
 		};
 
-	}; /* setupVariables */
+	} /* setupVariables */
 
     /**
      *  Populate the cache.
@@ -62,7 +62,7 @@ var NodeApp = function() {
         self.zcache['app.js'] = fs.readFileSync('./scripts/app.js');
 		self.zcache['jquery.ui.map.full.min.js'] = fs.readFileSync('./scripts/jquery.ui.map.full.min.js');
 
-    }; /* populate cache */
+    } /* populate cache */
 
     /**
      *  Retrieve entry (content) from cache.
@@ -82,7 +82,7 @@ var NodeApp = function() {
            process.exit(1);
         }
         console.log('%s: Node server stopped.', Date(Date.now()) );
-    }; /* terminator */
+    } /* terminator */
 
     /**
      *  Set termination handlers (for exit and a list of signals).
@@ -96,7 +96,7 @@ var NodeApp = function() {
         ].forEach(function(element, index, array) {
             process.on(element, function() { self.terminator(element); });
         });
-    }; /* termination handlers */
+    } /* termination handlers */
 
 
     /*  ================================================================  */
