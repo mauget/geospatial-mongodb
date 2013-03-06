@@ -107,7 +107,7 @@ var NodeApp = function() {
     /**
      *  Create the routing table entries with handlers for the application.
      */
-	routes.createRoutes();
+	routes();
 
     /**
      *  Initialize the server (express) and create the routes and register
