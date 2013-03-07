@@ -13,12 +13,8 @@ var NodeApp = function() {
 	//  Scope.
 	var self = this;
 	
-	var routes;
-
-    /*  ================================================================  */
-    /*  Helper functions.                                                 */
-    /*  ================================================================  */
-
+	//var routes;
+	
     /**
      *  Set up server IP address and port # using env variables/defaults.
      */
@@ -90,11 +86,11 @@ var NodeApp = function() {
      *  module routes.js, and then register the handlers.
      */
     self.initializeServer = function() {
-        self.routes = require('routes').createRoutes(self);
+        var routes = require('routes').createRoutes(self);
         self.app = express();
 
         //  Register handlers for the app (from the routes).
-        for (var r in self.routes) {
+        for (var r in routes) {
             self.app.get(r, self.routes[r]);
         }
     } /* initialize server */
@@ -130,9 +126,9 @@ var NodeApp = function() {
 	/**
 	 *  Connect db and then callback to start the application.
 	 */
-	self.connectDb = function(appStart) {
+	self.connectDb = function( appStart ) {
 		self.db.open(function(err, db) {
-			if (err) { throw err; }
+			if ( err ) { throw err; }
 			self.db.authenticate(self.dbUser, self.dbPass,  function(err, result) {
 				if (err) { throw err; }
 			});
@@ -147,5 +143,5 @@ var NodeApp = function() {
 /*  ================================================================  */
 var theApp = new NodeApp();
 theApp.initialize();
-theApp.connectDb(theApp.start);
+theApp.connectDb( theApp.start );
 
