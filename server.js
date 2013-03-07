@@ -4,7 +4,6 @@
 var express = require('express');
 var fs      = require('fs');
 var mongodb = require('mongodb');
-var routes = require('routes');
 
 /**
  *  Define the nodejs application.
@@ -13,6 +12,8 @@ var NodeApp = function() {
 
 	//  Scope.
 	var self = this;
+	
+	var routes;
 
     /*  ================================================================  */
     /*  Helper functions.                                                 */
@@ -87,7 +88,7 @@ var NodeApp = function() {
      *  module routes.js, and then register the handlers.
      */
     self.initializeServer = function() {
-        routes(self);
+        self.routes = require('routes').createRoutes(self);
         self.app = express();
 
         //  Add handlers for the app (from the routes).
@@ -102,7 +103,7 @@ var NodeApp = function() {
      */
     self.initialize = function() {
         self.setupVariables();
-        //self.populateCache();
+        self.zcache = require('routes').populateCache(self);
         self.setupTerminationHandlers();
 
         // Create the express server and routes.
