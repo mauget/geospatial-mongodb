@@ -37,7 +37,8 @@ var NodeApp = function() {
 		// Inject db reference into routes module.
 		require('routes').setDb(self.db);
 		
-		self.coll = 'zips';
+		//self.coll = 'zips';
+		require('routes').setMongoCollection('zips');
 		
 		//  Web app environment variables
 
