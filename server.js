@@ -13,8 +13,6 @@ var NodeApp = function() {
 	//  Scope.
 	var self = this;
 	
-	//var routes;
-	
     /**
      *  Set up server IP address and port # using env variables/defaults.
      */
