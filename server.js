@@ -93,7 +93,7 @@ var NodeApp = function() {
         self.routes = require('routes').createRoutes(self);
         self.app = express();
 
-        //  Add handlers for the app (from the routes).
+        //  Register handlers for the app (from the routes).
         for (var r in self.routes) {
             self.app.get(r, self.routes[r]);
         }
