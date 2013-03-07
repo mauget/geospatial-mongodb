@@ -103,7 +103,7 @@ var NodeApp = function() {
      */
     self.initialize = function() {
         self.setupVariables();
-        self.zcache = require('routes').populateCache(fs);
+        self.zcache = require('routes').(fs);
         self.setupTerminationHandlers();
 
         // Create the express server and routes.
