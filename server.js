@@ -34,6 +34,9 @@ var NodeApp = function() {
 		self.dbUser = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
 		self.dbPass = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
 		
+		// Inject db reference into routes module.
+		require('routes').setDb(self.db);
+		
 		self.coll = 'zips';
 		
 		//  Web app environment variables
