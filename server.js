@@ -87,7 +87,7 @@ var NodeApp = function() {
      *  module routes.js, and then register the handlers.
      */
     self.initializeServer = function() {
-        routes();
+        routes(self);
         self.app = express();
 
         //  Add handlers for the app (from the routes).
