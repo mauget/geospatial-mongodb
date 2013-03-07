@@ -91,7 +91,7 @@ var NodeApp = function() {
 
         //  Register handlers for the app (from the routes).
         for (var r in routes) {
-            self.app.get(r, self.routes[r]);
+            self.app.get(r, routes[r]);
         }
     } /* initialize server */
 
