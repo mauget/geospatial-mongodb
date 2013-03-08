@@ -62,14 +62,14 @@ $(document).ready(function() {
 			$('#citySearch').keyup(function(event) {
 
 				var txtIn = $('#citySearch').val();
-				txtIn = APP.trim(txtIn);
+				txtIn = APP.trim(txtIn).toUpperCase(),;
 				console.log(txtIn);
 	
 				$('#cityList').html('');	
 				if (txtIn.length > 0){
 	
 					// REST: search
-					$.getJSON('/cities/' + txtIn.toUpperCase(), function(data) {
+					$.getJSON('/cities/' + txtIn function(data) {
 						APP.renderList('#cityList', data);
 					});	
 				}
