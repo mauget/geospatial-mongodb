@@ -69,7 +69,7 @@ $(document).ready(function() {
 				if (txtIn.length > 0){
 	
 					// REST: search
-					$.getJSON('/cities/' + txtIn, function(data) {
+					$.getJSON('/cities/' + txtIn.toUpperCase(), function(data) {
 						APP.renderList('#cityList', data);
 					});	
 				}
