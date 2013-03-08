@@ -62,7 +62,7 @@ $(document).ready(function() {
 			$('#citySearch').keyup(function(event) {
 
 				var txtIn = $('#citySearch').val();
-				txtIn = APP.trim(txtIn).toUpperCase(),;
+				txtIn = APP.trim(txtIn).toUpperCase();
 				console.log(txtIn);
 	
 				$('#cityList').html('');	
