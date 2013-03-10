@@ -1,0 +1,117 @@
+mongoimport -d mongodb://linus.mongohq.com:10032/geo
+
+mongo linus.mongohq.com:10032/geo -u mauget -pPrissy11
+
+mongodb://mauget:Prissy11@linus.mongohq.com:10032/geo
+
+mongodb://24.225.91.70:2017/geo
+
+mongo linus.mongohq.com:10032/geo -u mauget -pPrissy11
+
+mongoimport --host linus.mongodb.com:10032 --db geo  --collection zips --username mauget  --password Prissy11 --type json  --file zips.json
+
+mongoimport --host mongodb://mauget:Prissy11@linus.mongohq.com:10032/geo --collection zips --type json  --file zips.json
+
+
+mongoimport --db geo  --collection zips --username mauget  --password Prissy11 --type json  --file zips.json
+
+mongorestore -h linus.mongohq.com:10032 -d geo -u mauget -p Prissy11 mongodump/geo
+
+How to Migrate Your Local mongodb into mongoHQ:
+http://mongohq-docs.herokuapp.com/topics/migrate-local-database-to-mongohq.html
+
+1. Create geo; then  import geo JSON to local
+	mongoimport -d geo -c zips zips.json  
+	  (or ?)
+	mongoimport --db geo  --collection zips --username mauget  --password Prissy11 --type json  --file zips.json
+2. Dump to local dir mondogump
+	mongodump -d geo -o mongodump
+3. restore to remote (HQ)
+	mongorestore -h linus.mongohq.com:10032 -d geo -u mauget -p Prissy11 mongodump/geo
+	
+	
+	db.zips.find( { loc: { $centerSphere: [ [ -74, 40.74 ] , 100 / 3963.192 ] } } )
+	
+// Spatial indices:  http://docs.mongodb.org/manual/core/geospatial-indexes/
+
+
+/// SoLoMo (social, local, and mobile).   https://openshift.redhat.com/community/blogs/spatial-mongodb-in-openshift-be-the-next-foursquare-part-1
+
+// https://openshift.redhat.com/community/blogs/using-nodejs-mongodb-express-for-your-spatial-web-service-and-its-free
+
+// http://www.slideshare.net/scitronpousty/spatial-mongodb-nodejs-and-express-serverside-js-for-your-application
+
+-------------------------------------------------------
+OPENSHIFT
+created geospatial-mauget  using node.js gear. Created sample application/repo on my local and on OpenShift
+~/geospatial is repo
+
+added mongodb cartidge via browser to openshift
+---------------------------------------------------------
+MongoDB 2.2 database added.  Please make note of these credentials:
+
+       Root User: admin
+   Root Password: Pcb7v7J3j1K1
+   Database Name: geospatial
+
+Connection URL: mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/
+
+You can manage your new MongoDB by also embedding rockmongo-1.1
+The rockmongo username and password will be the same as the MongoDB credentials above. (no, pw is Prissy11)
+
+Managing your cartridge
+Most of the capabilities of OpenShift are exposed through our command line tool, rhc. Whether it's adding cartridges, checking uptime, or pulling log files from the server, you can quickly put a finger on the pulse of your application. Follow these steps to install the client on Linux, Mac OS X, or Windows.
+
+You can get a list of cartridges by running
+
+rhc app cartridge list
+You can manage the cartridge by running one of these commands
+
+rhc app cartridge start -a geospatial -c mongodb-2.2
+rhc app cartridge stop -a geospatial -c mongodb-2.2
+rhc app cartridge restart -a geospatial -c mongodb-2.2
+rhc app cartridge reload -a geospatial -c mongodb-2.2
+rhc app cartridge status -a geospatial -c mongodb-2.2
+
+You can remove the cartridge by running the following command.
+
+Warning: make sure you've backed up any data you wish to keep before running this command
+rhc app cartridge remove -a geospatial -c mongodb-2.2
+
+Adding rockmongo:
+rhc cartridge add rockmongo-1.1 -a geospatial      {{pw Prissy11}}
+Connection URL = https://geospatial-mauget.rhcloud.com/rockmongo/
+
+Login:
+https://openshift.redhat.com/app/console/applications/geospatial
+
+My app:
+https://geospatial-mauget.rhcloud.com/
+
+Git repo:
+ssh://6ba2d097e79a4796b8c39ffd4bca5019@geospatial-mauget.rhcloud.com/~/git/geospatial.git/
+
+---------------------------------------------------------
+Used https://geospatial-mauget.rhcloud.com/rockmongo/    admin / Pcb7v7J3j1K1  to import zips.json to geospatial.zips
+Doesn't work on 1.1
+
+ssh 6ba2d097e79a4796b8c39ffd4bca5019@geospatial-mauget.rhcloud.com
+
+scp zips.json 6ba2d097e79a4796b8c39ffd4bca5019@geospatial-mauget.rhcloud.com:app-root/data
+
+list log in ssh session:
+cat  ~/nodejs-0.6/logs/*.log
+
+ssh in, then import
+(( Env entries didn't work. Plugged in hard values below))
+mongoimport -d geospatial -c zips --type json -h 127.6.238.129 -u admin -p Pcb7v7J3j1K1 <app-root/data/zips.json
+mongoimport -d geospatial -c zips --type json -h process.env.OPENSHIFT_MONGODB_DB_HOST -u process.env.OPENSHIFT_MONGODB_DB_USERNAME -p process.env.OPENSHIFT_MONGODB_DB_PASSWORD  <app-root/data/zips.json
+
+----------------
+If OpenShift mongod malfunctions -- eg. won't connect:
+1. Force stop your app rhc app force-stop -a $app and start it back up again
+OR
+2. ssh into the app/gear ssh $guid@$app-$ns.rhcloud.com and kill all the mongod processes killall -9 mongod
+and then start all the services ctl_all start (or restart).
+
+
