@@ -1,5 +1,7 @@
 geospatial-mongodb
 ==================
 
-A MongoDB-Nodejs-OpenShift-JQueryMobile Mashup
+This is a MongoDB-Nodejs-OpenShift-JQuery Mobile mashup.
+
+
 
