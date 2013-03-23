@@ -1,6 +1,6 @@
 // Client-side scripts:
 
-$(document).ready(function() {
+(function() {
 
 	APP = new function() {
 
@@ -141,7 +141,7 @@ $(document).ready(function() {
 	//--------------------------------------------------------------
 	APP.bindCitySearch();
 
-});	
+})();	
 
 
 
