@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-	APP = ( function() {
+	APP = new function() {
 
 		var self = this;
 			
@@ -134,7 +134,7 @@ $(document).ready(function() {
 				});
 			});
 		};
-	})();
+	};
 	
 	//--------------------------------------------------------------
 	// Listen for city search clicks for life-cycle duration
