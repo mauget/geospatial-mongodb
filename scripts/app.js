@@ -1,8 +1,8 @@
 // Client-side scripts:
 
-(function() {
+$(document).ready(function() {
 
-	APP = new function() {
+	APP = ( function() {
 
 		var self = this;
 			
@@ -134,14 +134,14 @@
 				});
 			});
 		};
-	};
+	})();
 	
 	//--------------------------------------------------------------
 	// Listen for city search clicks for life-cycle duration
 	//--------------------------------------------------------------
 	APP.bindCitySearch();
 
-})();	
+});	
 
 
 
