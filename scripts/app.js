@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-	APP = new function() {
+	var app = function() {
 
 		var self = this;
 			
@@ -139,6 +139,7 @@ $(document).ready(function() {
 	//--------------------------------------------------------------
 	// Listen for city search clicks for life-cycle duration
 	//--------------------------------------------------------------
+	var APP =  new app();
 	APP.bindCitySearch();
 
 });	
