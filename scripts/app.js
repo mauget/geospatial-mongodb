@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-	APP = new function() {
+	APP = function() {
 
 		var self = this;
 			
@@ -89,7 +89,7 @@ $(document).ready(function() {
 
 			// Marker icon with shadow 
 			var pinUrl = ["http://chart.apis.google.com/chart?chst=d_map_pin_letter_withshadow&chld=%E2%80%A2|" + pinColor[0],
-						  "http://chart.apis.google.com/chart?chst=d_map_pin_letter_withshadow&chld=%E2%80%A2|" + pinColor[1]  ];
+						"http://chart.apis.google.com/chart?chst=d_map_pin_letter_withshadow&chld=%E2%80%A2|" + pinColor[1]  ];
 		
 			var zoomVal = 10;
 			var theMap = $('#map_canvas');
@@ -106,7 +106,7 @@ $(document).ready(function() {
 				if (i === 0) { 
 					// Pop central marker
 					marker.triggerEvent( 'click' );
-				};
+				}
 			});
 						
 			$('#two').live( 'pageshow', function() {
@@ -125,7 +125,7 @@ $(document).ready(function() {
 			$( '.zipClass' ).click(function(event) {
 
 				// Grab 'zip' attribute value from clickee
-				var val = event.target.attributes['zip'].nodeValue;
+				var val = event.target.attributes.zip.nodeValue;
 	
 				// REST search for zips near the chosen zip code
 				$.getJSON('/near/zip/' + val, function(data) {
