@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-	APP = function() {
+	APP = new function() {
 
 		var self = this;
 			
