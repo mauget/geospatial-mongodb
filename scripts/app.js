@@ -63,7 +63,7 @@ $(document).ready(function() {
 
 				var txtIn = $('#citySearch').val();
 				txtIn = APP.trim(txtIn).toUpperCase();
-				console.log(txtIn);
+				//console.log(txtIn);
 	
 				$('#cityList').html('');	
 				if (txtIn.length > 0){
