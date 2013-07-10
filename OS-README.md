@@ -1,43 +1,66 @@
-#A simple Node.JS, Express, and Mongo template for OpenShift
-This is a simple Node.JS template that uses Express and has mongodb set up. It is all wired to go in OpenShift. I would not reccomend using this for a more complicated application, as there should be more seperation into different files for different logic.
+Feel free to change or remove this file, it is informational only.
 
-##How to use
-Assuming you already have an OpenShift account
-1) Create a Node.JS application and add a mongo cartridge
+Repo layout
+===========
+node_modules/                       - Any Node modules packaged with the app
+deplist.txt                         - Deprecated.
+package.json                        - npm package descriptor.
+.openshift/                         - Location for openshift specific files
+.openshift/action_hooks/pre_build   - Script that gets run every git push before
+                                      the build
+.openshift/action_hooks/build       - Script that gets run every git push as
+                                      part of the build process (on the CI
+                                      system if available)
+.openshift/action_hooks/deploy      - Script that gets run every git push after
+                                      build but before the app is restarted
+.openshift/action_hooks/post_deploy - Script that gets run every git push after
+                                      the app is restarted
 
-	rhc app create -t nodejs-0.6 -a <your app name>
-	rhc app cartridge add -a <your app name> -c mongodb-2.0
+Notes about layout
+==================
+Please leave the node_modules and .openshift directories but feel free to
+create additional directories if needed.
 
-2) cd into the directory that matches your application name
-	
-	cd <your app name>
-	
-3) add this git repository to your application
-	
-	git remote add upstream -m master git://github.com/openshift/simple_node_express_mongo.git
+Note: Every time you push, everything in your remote repo dir gets recreated
+      please store long term items (like an sqlite database) in the OpenShift
+      data directory, which will persist between pushes of your repo.
+      The OpenShift data directory is accessible relative to the remote repo
+      directory (../data) or via an environment variable OPENSHIFT_DATA_DIR.
 
-4) merge this repository into your application
 
-	git pull -s recursive -X theirs upstream master
-	
-5) Modify the code and push back up to your OpenShift gear
+Environment Variables
+=====================
+OpenShift provides several environment variables to reference for ease
+of use.  The following list are some common variables but far from exhaustive:
+    process.env.OPENSHIFT_GEAR_NAME  - Application name
+    process.env.OPENSHIFT_DATA_DIR  - For persistent storage (between pushes)
+    process.env.OPENSHIFT_TMP_DIR   - Temp storage (unmodified files deleted after 10 days)
 
-	git push
-	
+When embedding a database using 'rhc app cartridge add', you can reference environment
+variables for username, host and password:
+    process.env.OPENSHIFT_MYSQL_DB_HOST      - DB Host
+    process.env.OPENSHIFT_MYSQL_DB_PORT      - DB Port
+    process.env.OPENSHIFT_MYSQL_DB_USERNAME  - DB Username
+    process.env.OPENSHIFT_MYSQL_DB_PASSWORD  - DB Password
 
-The MongoDB code you want to modify can be found in this line
+When embedding a NoSQL database using 'rhc app cartridge add', you can reference environment
+variables for username, host and password:
+    process.env.OPENSHIFT_MONGODB_DB_HOST      - NoSQL DB Host
+    process.env.OPENSHIFT_MONGODB_DB_PORT      - NoSQL DB Port
+    process.env.OPENSHIFT_MONGODB_DB_USERNAME  - NoSQL DB Username
+    process.env.OPENSHIFT_MONGODB_DB_PASSWORD  - NoSQL DB Password
 
-	self.db.collection('names').find().toArray(function(err, names) {}
-	
-If you chose to use a different database other than the one named the same as your application you need to change the Auth section as well. 
+To get a full list of environment variables, simply add a line in your
+.openshift/action_hooks/build script that says "export" and push.
 
-OpenShift has authentication turned on for the database, therefore any connection has to authenticate. By default a connection from the MongoDB driver will try to authenticate against users in the DB you specify.
 
-Please change the Auth line to look like the following so that the authentication uses the OpenShift provided credentials.
+deplist.txt
+===========
+A list of node modules to install, line by line on the server. This will happen
+when the user does a git push.
 
-	self.db.authenticate(self.dbUser, self.dbPass, {authdb: "admin"}, function(err, res){...
 
-License
--------
+Additional information
+======================
+Link to additional information will be here, when we have it :)
 
-This code is dedicated to the public domain to the maximum extent permitted by applicable law, pursuant to CC0 (http://creativecommons.org/publicdomain/zero/1.0/)
