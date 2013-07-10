@@ -41,7 +41,7 @@ var NodeApp = function() {
 			//  Log errors on OpenShift but continue w/ 127.0.0.1 - this
 			//  enables running the app locally.
 
-			onsole.warn('No OPENSHIFT_INTERNAL_IP var, using 127.0.0.1');
+			console.warn('No OPENSHIFT_INTERNAL_IP var, using 127.0.0.1');
 			self.ipaddress = "127.0.0.1";
 		}
 
